@@ -27,14 +27,14 @@ public class GlowTorchBlock extends BaseTorchBlock implements SimpleWaterloggedB
     public static final MapCodec<GlowTorchBlock> CODEC = simpleCodec(GlowTorchBlock::new);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    @Override
-    public @NonNull MapCodec<? extends GlowTorchBlock> codec() {
-        return CODEC;
-    }
-
     public GlowTorchBlock(BlockBehaviour.Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false));
+    }
+
+    @Override
+    public @NonNull MapCodec<? extends GlowTorchBlock> codec() {
+        return CODEC;
     }
 
     @Override
@@ -51,13 +51,6 @@ public class GlowTorchBlock extends BaseTorchBlock implements SimpleWaterloggedB
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
-    @Nullable
-    @Override
-    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        FluidState fluidState = ctx.getLevel().getFluidState(ctx.getClickedPos());
-        return this.defaultBlockState().setValue(WATERLOGGED, fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8);
-    }
-
     @Override
     public void animateTick(@NonNull BlockState state, Level level, @NonNull BlockPos pos, @NonNull RandomSource random) {
         if (level.getRandom().nextInt(4) != 0) return;
@@ -67,6 +60,13 @@ public class GlowTorchBlock extends BaseTorchBlock implements SimpleWaterloggedB
             double f = pos.getZ() + 0.5 + (random.nextDouble() - 0.5) * 0.2;
             level.addParticle(ParticleTypes.GLOW, d, e, f, 0.0, 0.0, 0.0);
         }
+    }
+
+    @Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        FluidState fluidState = ctx.getLevel().getFluidState(ctx.getClickedPos());
+        return this.defaultBlockState().setValue(WATERLOGGED, fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8);
     }
 
     @Override

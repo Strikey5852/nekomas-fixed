@@ -11,12 +11,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.Mirror;
-import net.minecraft.world.level.block.Rotation;
-import net.minecraft.world.level.block.WallTorchBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -34,11 +29,6 @@ public class WallGlowTorchBlock extends GlowTorchBlock {
     public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = GlowTorchBlock.WATERLOGGED;
 
-    @Override
-    public @NonNull MapCodec<WallGlowTorchBlock> codec() {
-        return CODEC;
-    }
-
     public WallGlowTorchBlock(BlockBehaviour.Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any()
@@ -47,13 +37,8 @@ public class WallGlowTorchBlock extends GlowTorchBlock {
     }
 
     @Override
-    protected @NonNull VoxelShape getShape(@NonNull BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
-        return WallTorchBlock.getShape(state);
-    }
-
-    @Override
-    protected boolean canSurvive(BlockState state, @NonNull LevelReader level, @NonNull BlockPos pos) {
-        return WallTorchBlock.canSurvive(level, pos, state.getValue(FACING));
+    public @NonNull MapCodec<WallGlowTorchBlock> codec() {
+        return CODEC;
     }
 
     @Override
@@ -68,17 +53,6 @@ public class WallGlowTorchBlock extends GlowTorchBlock {
             : state;
     }
 
-    @Nullable
-    @Override
-    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        BlockState blockState = Blocks.WALL_TORCH.getStateForPlacement(ctx);
-        FluidState fluidState = ctx.getLevel().getFluidState(ctx.getClickedPos());
-        return blockState == null ? null :
-            this.defaultBlockState()
-                .setValue(FACING, blockState.getValue(FACING))
-                .setValue(WATERLOGGED, fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8);
-    }
-
     @Override
     public void animateTick(@NonNull BlockState state, Level level, @NonNull BlockPos pos, @NonNull RandomSource random) {
         if (level.getRandom().nextInt(4) != 0) return;
@@ -91,6 +65,32 @@ public class WallGlowTorchBlock extends GlowTorchBlock {
         }
     }
 
+    @Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        BlockState blockState = Blocks.WALL_TORCH.getStateForPlacement(ctx);
+        FluidState fluidState = ctx.getLevel().getFluidState(ctx.getClickedPos());
+        return blockState == null ? null :
+            this.defaultBlockState()
+                .setValue(FACING, blockState.getValue(FACING))
+                .setValue(WATERLOGGED, fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8);
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(FACING, WATERLOGGED);
+    }
+
+    @Override
+    protected @NonNull VoxelShape getShape(@NonNull BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
+        return WallTorchBlock.getShape(state);
+    }
+
+    @Override
+    protected boolean canSurvive(BlockState state, @NonNull LevelReader level, @NonNull BlockPos pos) {
+        return WallTorchBlock.canSurvive(level, pos, state.getValue(FACING));
+    }
+
     @Override
     protected @NonNull BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
@@ -99,10 +99,5 @@ public class WallGlowTorchBlock extends GlowTorchBlock {
     @Override
     protected @NonNull BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
-    }
-
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, WATERLOGGED);
     }
 }

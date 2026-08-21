@@ -23,6 +23,21 @@ public class ItemGroupRegistry {
             .icon(() -> new ItemStack(ItemRegistry.GLOW_TORCH))
             .displayItems((parameters, entries) -> {
                 entries.accept(ItemRegistry.GLOW_TORCH);
+                entries.accept(ItemRegistry.BAOBAB_LOG);
+                entries.accept(ItemRegistry.BAOBAB_WOOD);
+                entries.accept(ItemRegistry.STRIPPED_BAOBAB_LOG);
+                entries.accept(ItemRegistry.STRIPPED_BAOBAB_WOOD);
+                entries.accept(ItemRegistry.BAOBAB_PLANKS);
+                entries.accept(ItemRegistry.BAOBAB_STAIRS);
+                entries.accept(ItemRegistry.BAOBAB_SLAB);
+                entries.accept(ItemRegistry.BAOBAB_FENCE);
+                entries.accept(ItemRegistry.BAOBAB_FENCE_GATE);
+                entries.accept(ItemRegistry.BAOBAB_DOOR);
+                entries.accept(ItemRegistry.BAOBAB_TRAPDOOR);
+                entries.accept(ItemRegistry.BAOBAB_PRESSURE_PLATE);
+                entries.accept(ItemRegistry.BAOBAB_BUTTON);
+                entries.accept(ItemRegistry.BAOBAB_SIGN);
+                entries.accept(ItemRegistry.BAOBAB_HANGING_SIGN);
             })
             .build()
     );
