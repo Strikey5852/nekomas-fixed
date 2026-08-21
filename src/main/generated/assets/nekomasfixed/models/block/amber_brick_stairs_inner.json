@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "nekomasfixed:block/amber_bricks",
-    "side": "nekomasfixed:block/amber_bricks",
-    "top": "nekomasfixed:block/amber_bricks"
-  }
-}

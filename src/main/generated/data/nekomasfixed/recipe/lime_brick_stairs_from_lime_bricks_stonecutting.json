@@ -1,7 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": "nekomasfixed:lime_bricks",
-  "result": {
-    "id": "nekomasfixed:lime_brick_stairs"
-  }
-}

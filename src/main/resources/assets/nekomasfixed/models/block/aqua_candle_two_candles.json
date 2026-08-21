@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/template_two_candles",
-  "textures": {
-    "all": "nekomasfixed:block/aqua_candle",
-    "particle": "nekomasfixed:block/aqua_candle"
-  }
-}

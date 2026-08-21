@@ -7,8 +7,6 @@
 	"authors": [
 		"Green_Jab"
 	],
-	"contact": {
-	},
 	"license": "MIT",
 	"icon": "assets/nekomasfixed/icon.png",
 	"environment": "*",
@@ -19,24 +17,13 @@
 		"main": [
 			"net.greenjab.nekomasfixed.NekomasFixed"
 		],
-		"modmenu": [
-			"net.greenjab.nekomasfixed.screen.config.modmenu.ModMenuIntegration"
-		],
 		"fabric-datagen": [
 			"net.greenjab.nekomasfixed.NekomasFixedDataGenerator"
 		]
 	},
-	"mixins": [
-		"nekomasfixed.mixins.json",
-		{
-			"config": "nekomasfixed.client.mixins.json",
-			"environment": "client"
-		}
-	],
 	"depends": {
-		"java": ">=25",
+		"java": ">=21",
 		"minecraft": ">=${minecraft}",
 		"fabric-api": ">=${fabric_api}"
-	},
-	"accessWidener" : "nekomasfixed.accesswidener"
+	}
 }

@@ -1,35 +1,9 @@
 {
-  "required": true,
-  "package": "net.greenjab.nekomasfixed.mixin.client",
-  "compatibilityLevel": "JAVA_21",
-  "client": [
-    "AbstractMinecartEntityRendererMixin",
-    "ClientRecipeBookMixin",
-    "ClientTooltipComponentMixin",
-    "EquipmentAssetProviderMixin",
-    "EquipmentLayerRendererMixin",
-    "FlameFeatureRendererMixin",
-    "HumanoidMobRendererMixin",
-    "HumanoidModelMixin",
-    "ItemInHandRendererMixin",
-    "MinecartModelMixin",
-    "MinecraftMixin",
-    "MultiPlayerGameModeMixin",
-    "NameTagFeatureRendererMixin",
-    "NameTagFeatureRendererStorageMixin",
-    "ParticleEngineMixin",
-    "ParticleResourcesMixin",
-    "SheepRendererMixin",
-    "SheepRenderStateMixin",
-    "SheepWoolLayerMixin",
-    "ShulkerBoxRendererMixin",
-    "ShulkerBoxRenderStateMixin",
-    "SpecialModelRenderersMixin"
-  ],
-  "injectors": {
-    "defaultRequire": 1
-  },
-  "mixins": [
-    "IllagerModelMixin"
-  ]
+	"required": true,
+	"package": "net.greenjab.nekomasfixed.mixin.client",
+	"compatibilityLevel": "JAVA_21",
+	"client": [],
+	"injectors": {
+		"defaultRequire": 1
+	}
 }
