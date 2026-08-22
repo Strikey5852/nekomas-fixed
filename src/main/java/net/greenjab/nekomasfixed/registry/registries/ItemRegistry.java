@@ -39,6 +39,7 @@ public class ItemRegistry {
         BlockRegistry.BAOBAB_HANGING_SIGN,
         (block, settings) -> new HangingSignItem(block, BlockRegistry.BAOBAB_WALL_HANGING_SIGN, settings),
         new Item.Properties().stacksTo(16));
+    public static final Item BAOBAB_LEAVES = register(BlockRegistry.BAOBAB_LEAVES);
 
     private static Item register(Block block) {
         return Registry.register(BuiltInRegistries.ITEM,

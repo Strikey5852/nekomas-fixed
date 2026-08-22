@@ -38,6 +38,7 @@ public class ItemGroupRegistry {
                 entries.accept(ItemRegistry.BAOBAB_BUTTON);
                 entries.accept(ItemRegistry.BAOBAB_SIGN);
                 entries.accept(ItemRegistry.BAOBAB_HANGING_SIGN);
+                entries.accept(ItemRegistry.BAOBAB_LEAVES);
             })
             .build()
     );

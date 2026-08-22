@@ -133,6 +133,21 @@ public class BlockRegistry {
         BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).forceSolidOn()
             .instrument(NoteBlockInstrument.BASS).noCollission().strength(1.0F).ignitedByLava()
     );
+    public static final Block BAOBAB_LEAVES = register(
+        "baobab_leaves",
+        LeavesBlock::new,
+        BlockBehaviour.Properties.of()
+            .mapColor(MapColor.PLANT)
+            .strength(0.2F)
+            .sound(SoundType.GRASS)
+            .noOcclusion()
+            .isValidSpawn(((blockState, blockGetter, blockPos, object) -> false))
+            .isSuffocating(((blockState, blockGetter, blockPos) -> false))
+            .isViewBlocking(((blockState, blockGetter, blockPos) -> false))
+            .ignitedByLava()
+            .pushReaction(PushReaction.DESTROY)
+            .isRedstoneConductor(((blockState, blockGetter, blockPos) -> false))
+    );
 
     private static BlockBehaviour.Properties baobabWoodProperties() {
         return BlockBehaviour.Properties.of()
