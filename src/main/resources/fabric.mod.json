@@ -21,6 +21,9 @@
 			"net.greenjab.nekomasfixed.NekomasFixedDataGenerator"
 		]
 	},
+	"mixins": [
+		"nekomasfixed.mixins.json"
+	],
 	"depends": {
 		"java": ">=21",
 		"minecraft": ">=${minecraft}",

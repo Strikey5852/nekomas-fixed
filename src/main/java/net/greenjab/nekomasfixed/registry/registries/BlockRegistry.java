@@ -48,82 +48,66 @@ public class BlockRegistry {
     public static final Block BAOBAB_LOG = register(
         "baobab_log",
         RotatedPillarBlock::new,
-        BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.WOOD)
+        baobabWoodProperties()
     );
     public static final Block BAOBAB_WOOD = register(
         "baobab_wood",
         RotatedPillarBlock::new,
-        BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD)
+        baobabWoodProperties()
     );
     public static final Block STRIPPED_BAOBAB_LOG = register(
         "stripped_baobab_log",
         RotatedPillarBlock::new,
-        BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)
+        baobabWoodProperties()
     );
     public static final Block STRIPPED_BAOBAB_WOOD = register(
         "stripped_baobab_wood",
         RotatedPillarBlock::new,
-        BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD)
+        baobabWoodProperties()
     );
     public static final Block BAOBAB_PLANKS = register(
         "baobab_planks",
-        BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
+        baobabWoodProperties()
     );
     public static final Block BAOBAB_STAIRS = register(
         "baobab_stairs",
         settings -> new StairBlock(BAOBAB_PLANKS.defaultBlockState(), settings),
-        BlockBehaviour.Properties.ofLegacyCopy(BAOBAB_PLANKS)
+        baobabWoodProperties().strength(2.0F, 3.0F)
     );
     public static final Block BAOBAB_SLAB = register(
         "baobab_slab",
         SlabBlock::new,
-        BlockBehaviour.Properties.of().mapColor(MapColor.WOOD)
-            .instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F)
-            .sound(SoundType.WOOD).ignitedByLava()
+        baobabWoodProperties().strength(2.0F, 3.0F)
     );
     public static final Block BAOBAB_FENCE = register(
         "baobab_fence",
         FenceBlock::new,
-        BlockBehaviour.Properties.of().mapColor(BAOBAB_PLANKS.defaultMapColor())
-            .instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F)
-            .sound(SoundType.WOOD).ignitedByLava()
+        baobabWoodProperties().forceSolidOn().strength(2.0F, 3.0F)
     );
     public static final Block BAOBAB_FENCE_GATE = register(
         "baobab_fence_gate",
         settings -> new FenceGateBlock(BAOBAB_WOODTYPE, settings),
-        BlockBehaviour.Properties.of().mapColor(BAOBAB_PLANKS.defaultMapColor())
-            .forceSolidOn().instrument(NoteBlockInstrument.BASS)
-            .strength(2.0F, 3.0F).ignitedByLava()
+        baobabWoodProperties().forceSolidOn().strength(2.0F, 3.0F)
     );
     public static final Block BAOBAB_DOOR = register(
         "baobab_door",
         settings -> new DoorBlock(BAOBAB_BLOCKSETTYPE, settings),
-        BlockBehaviour.Properties.of().mapColor(BAOBAB_PLANKS.defaultMapColor())
-            .instrument(NoteBlockInstrument.BASS).strength(3.0F)
-            .noOcclusion().pushReaction(PushReaction.DESTROY).ignitedByLava()
+        baobabWoodProperties().strength(3.0F).noOcclusion().pushReaction(PushReaction.DESTROY)
     );
     public static final Block BAOBAB_TRAPDOOR = register(
         "baobab_trapdoor",
         settings -> new TrapDoorBlock(BAOBAB_BLOCKSETTYPE, settings),
-        BlockBehaviour.Properties.of().mapColor(MapColor.WOOD)
-            .instrument(NoteBlockInstrument.BASS).strength(3.0F)
-            .noOcclusion().isValidSpawn(Blocks::never).ignitedByLava()
+        baobabWoodProperties().strength(3.0F).noOcclusion().isValidSpawn(Blocks::never)
     );
     public static final Block BAOBAB_PRESSURE_PLATE = register(
         "baobab_pressure_plate",
         settings -> new PressurePlateBlock(BAOBAB_BLOCKSETTYPE, settings),
-        BlockBehaviour.Properties.of().mapColor(BAOBAB_PLANKS.defaultMapColor())
-            .forceSolidOn().instrument(NoteBlockInstrument.BASS)
-            .noCollission().strength(0.5F)
-            .pushReaction(PushReaction.DESTROY).ignitedByLava()
+        baobabWoodProperties().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY)
     );
     public static final Block BAOBAB_BUTTON = register(
         "baobab_button",
         settings -> new ButtonBlock(BAOBAB_BLOCKSETTYPE, 30, settings),
-        BlockBehaviour.Properties.of().mapColor(BAOBAB_PLANKS.defaultMapColor())
-            .forceSolidOn().instrument(NoteBlockInstrument.BASS)
-            .noCollission().strength(0.5F)
-            .pushReaction(PushReaction.DESTROY).ignitedByLava()
+        baobabWoodProperties().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY)
     );
     public static final Block BAOBAB_SIGN = register(
         "baobab_sign",
@@ -150,6 +134,14 @@ public class BlockRegistry {
             .instrument(NoteBlockInstrument.BASS).noCollission().strength(1.0F).ignitedByLava()
     );
 
+    private static BlockBehaviour.Properties baobabWoodProperties() {
+        return BlockBehaviour.Properties.of()
+            .mapColor(MapColor.WOOD)
+            .instrument(NoteBlockInstrument.BASS)
+            .sound(SoundType.WOOD)
+            .ignitedByLava();
+    }
+
     private static Block register(String id, BlockBehaviour.Properties settings) {
         return register(id, Block::new, settings);
     }
@@ -161,7 +153,7 @@ public class BlockRegistry {
     }
 
     public static void registerBlocks() {
-        NekomasFixed.LOGGER.info("Registered block : {}", GLOW_TORCH);
+        NekomasFixed.LOGGER.info("Registering blocks");
 
         FireBlock fireBlock = (FireBlock) Blocks.FIRE;
         fireBlock.setFlammable(BAOBAB_PLANKS, 5, 20);

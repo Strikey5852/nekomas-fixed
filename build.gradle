@@ -1,34 +1,34 @@
 plugins {
-	alias(libs.plugins.fabric.loom)
-	alias(libs.plugins.yamlang)
+    alias(libs.plugins.fabric.loom)
+    alias(libs.plugins.yamlang)
 }
 
 version = "0.5.2-1.21.1"
 group = "net.green_jab.nekomasfixed"
 
 base {
-	archivesName = project.name
+    archivesName = project.name
 }
 
 loom {
-	splitEnvironmentSourceSets()
+    splitEnvironmentSourceSets()
 
-	mods {
-		register("nekomasfixed") {
-			sourceSet(sourceSets["main"])
-			sourceSet(sourceSets["client"])
-		}
-	}
+    mods {
+        register("nekomasfixed") {
+            sourceSet(sourceSets["main"])
+            sourceSet(sourceSets["client"])
+        }
+    }
 
-	runs {
-		datagen {
-			client()
-			name "Data Generation"
-			vmArg "-Dfabric-api.datagen"
-			vmArg "-Dfabric-api.datagen.output-dir=${file('src/main/generated')}"
-			runDir "build/datagen"
-		}
-	}
+    runs {
+        datagen {
+            client()
+            name "Data Generation"
+            vmArg "-Dfabric-api.datagen"
+            vmArg "-Dfabric-api.datagen.output-dir=${file('src/main/generated')}"
+            runDir "build/datagen"
+        }
+    }
 }
 
 // Original mod (26.2 source) lives in the top-level reference/ folder as a
@@ -36,52 +36,52 @@ loom {
 // interferes with the 1.21.1 build.
 
 repositories {
-	maven { url "https://maven.fabricmc.net/" }
-	maven { url "https://maven.parchmentmc.org/" }
-	mavenCentral()
+    maven { url "https://maven.fabricmc.net/" }
+    maven { url "https://maven.parchmentmc.org/" }
+    mavenCentral()
 }
 
 dependencies {
-	minecraft(libs.minecraft)
-	mappings loom.layered {
-		officialMojangMappings()
-		parchment("org.parchmentmc.data:parchment-1.21.1:2024.11.17")
-	}
-	modImplementation(libs.fabric.loader)
-	modImplementation(libs.fabric.api)
-	compileOnly "net.fabricmc:sponge-mixin:0.15.5+mixin.0.8.7"
-	compileOnly "net.fabricmc:fabric-mixin-compile-extensions:0.6.0"
-	compileOnly "io.github.llamalad7:mixinextras-fabric:0.4.1"
-	compileOnly "org.jspecify:jspecify:1.0.0"
-	vineflowerDecompilerClasspath(libs.vineflower)
+    minecraft(libs.minecraft)
+    mappings loom.layered {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-1.21.1:2024.11.17")
+    }
+    modImplementation(libs.fabric.loader)
+    modImplementation(libs.fabric.api)
+    compileOnly "net.fabricmc:sponge-mixin:0.15.5+mixin.0.8.7"
+    compileOnly "net.fabricmc:fabric-mixin-compile-extensions:0.6.0"
+    compileOnly "io.github.llamalad7:mixinextras-fabric:0.4.1"
+    compileOnly "org.jspecify:jspecify:1.0.0"
+    vineflowerDecompilerClasspath(libs.vineflower)
 }
 
 tasks.processResources {
-	filesMatching("fabric.mod.json") {
-		expand(
-				"version": project.version,
-				"fabric_api": libs.versions.fabric.api.get(),
-				"minecraft": libs.versions.minecraft.get(),
-		)
-	}
+    filesMatching("fabric.mod.json") {
+        expand(
+            "version": project.version,
+            "fabric_api": libs.versions.fabric.api.get(),
+            "minecraft": libs.versions.minecraft.get(),
+        )
+    }
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 21
+    it.options.release = 21
 }
 
 java {
-	withSourcesJar()
+    withSourcesJar()
 }
 
 afterEvaluate {
-	loom {
-		runs {
-			configureEach {
-				vmArgs("-Xmx2G")
-				property("fabric.development", "true")
-				ideConfigGenerated(true)
-			}
-		}
-	}
+    loom {
+        runs {
+            configureEach {
+                vmArgs("-Xmx2G")
+                property("fabric.development", "true")
+                ideConfigGenerated(true)
+            }
+        }
+    }
 }

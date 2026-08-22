@@ -33,7 +33,7 @@ public class ItemRegistry {
     public static final Item BAOBAB_BUTTON = register(BlockRegistry.BAOBAB_BUTTON);
     public static final Item BAOBAB_SIGN = register(
         BlockRegistry.BAOBAB_SIGN,
-        (block, settings) -> new SignItem(settings, BlockRegistry.BAOBAB_WALL_SIGN, block),
+        (block, settings) -> new SignItem(settings, block, BlockRegistry.BAOBAB_WALL_SIGN),
         new Item.Properties().stacksTo(16));
     public static final Item BAOBAB_HANGING_SIGN = register(
         BlockRegistry.BAOBAB_HANGING_SIGN,
@@ -57,6 +57,6 @@ public class ItemRegistry {
     }
 
     public static void registerItems() {
-        NekomasFixed.LOGGER.info("Registered item: {}", GLOW_TORCH);
+        NekomasFixed.LOGGER.info("Registering items");
     }
 }

@@ -1,6 +1,7 @@
 package net.greenjab.nekomasfixed;
 
 import net.fabricmc.api.ModInitializer;
+import net.greenjab.nekomasfixed.registry.registries.BlockEntityRegistry;
 import net.greenjab.nekomasfixed.registry.registries.BlockRegistry;
 import net.greenjab.nekomasfixed.registry.registries.ItemGroupRegistry;
 import net.greenjab.nekomasfixed.registry.registries.ItemRegistry;
@@ -25,5 +26,6 @@ public class NekomasFixed implements ModInitializer {
         BlockRegistry.registerBlocks();
         ItemRegistry.registerItems();
         ItemGroupRegistry.registerItemGroup();
+        BlockEntityRegistry.attachBlockEntities();
     }
 }

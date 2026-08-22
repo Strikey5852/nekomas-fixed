@@ -13,5 +13,9 @@
   "block.nekomasfixed.baobab_door": "Baobab Door",
   "block.nekomasfixed.baobab_trapdoor": "Baobab Trapdoor",
   "block.nekomasfixed.baobab_pressure_plate": "Baobab Pressure Plate",
-  "block.nekomasfixed.baobab_button": "Baobab Button"
+  "block.nekomasfixed.baobab_button": "Baobab Button",
+  "block.nekomasfixed.baobab_sign": "Baobab Sign",
+  "block.nekomasfixed.baobab_wall_sign": "Baobab Wall Sign",
+  "block.nekomasfixed.baobab_hanging_sign": "Baobab Hanging Sign",
+  "block.nekomasfixed.baobab_wall_hanging_sign": "Baobab Wall Hanging Sign"
 }
