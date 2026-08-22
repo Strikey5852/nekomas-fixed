@@ -40,6 +40,7 @@ public class ItemGroupRegistry {
                 entries.accept(ItemRegistry.BAOBAB_HANGING_SIGN);
                 entries.accept(ItemRegistry.BAOBAB_LEAVES);
                 entries.accept(ItemRegistry.ROPE);
+                entries.accept(ItemRegistry.BAOBAB_FRUIT);
             })
             .build()
     );

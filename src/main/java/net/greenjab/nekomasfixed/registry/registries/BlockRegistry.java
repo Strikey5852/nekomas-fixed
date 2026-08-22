@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.greenjab.nekomasfixed.NekomasFixed;
+import net.greenjab.nekomasfixed.registry.block.BaobabFruitBlock;
 import net.greenjab.nekomasfixed.registry.block.GlowTorchBlock;
 import net.greenjab.nekomasfixed.registry.block.RopeBlock;
 import net.greenjab.nekomasfixed.registry.block.WallGlowTorchBlock;
@@ -157,6 +158,16 @@ public class BlockRegistry {
             .isRedstoneConductor((state, level, pos) -> false)
             .ignitedByLava()
             .noCollission()
+    );
+    public static final Block BAOBAB_FRUIT = register(
+        "baobab_fruit",
+        BaobabFruitBlock::new,
+        BlockBehaviour.Properties.of()
+            .randomTicks()
+            .strength(0.2F)
+            .isViewBlocking((state, level, pos) -> false)
+            .ignitedByLava()
+            .instabreak()
     );
 
     private static BlockBehaviour.Properties baobabWoodProperties() {

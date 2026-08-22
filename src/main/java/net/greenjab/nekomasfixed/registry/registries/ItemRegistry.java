@@ -9,6 +9,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.level.block.Block;
 
 import java.util.function.BiFunction;
@@ -42,11 +43,22 @@ public class ItemRegistry {
         new Item.Properties().stacksTo(16));
     public static final Item BAOBAB_LEAVES = register(BlockRegistry.BAOBAB_LEAVES);
     public static final Item ROPE = register(BlockRegistry.ROPE, RopeItem::new, new Item.Properties());
+    public static final FoodProperties BAOBAB_FRUIT_FOOD = new FoodProperties.Builder().nutrition(4).saturationModifier(0.3F).build();
+    public static final Item BAOBAB_FRUIT = register(
+        "baobab_fruit",
+        new Item.Properties().food(BAOBAB_FRUIT_FOOD)
+    );
 
     private static Item register(Block block) {
         return Registry.register(BuiltInRegistries.ITEM,
             ResourceKey.create(Registries.ITEM, blockKeyOf(block)),
             new BlockItem(block, new Item.Properties()));
+    }
+
+    private static Item register(String id, Item.Properties settings) {
+        return Registry.register(BuiltInRegistries.ITEM,
+            ResourceKey.create(Registries.ITEM, NekomasFixed.id(id)),
+            new Item(settings));
     }
 
     private static ResourceLocation blockKeyOf(Block block) {

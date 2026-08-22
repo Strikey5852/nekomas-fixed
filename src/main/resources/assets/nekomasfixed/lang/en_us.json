@@ -19,5 +19,7 @@
   "block.nekomasfixed.baobab_hanging_sign": "Baobab Hanging Sign",
   "block.nekomasfixed.baobab_wall_hanging_sign": "Baobab Wall Hanging Sign",
   "block.nekomasfixed.baobab_leaves": "Baobab Leaves",
-  "block.nekomasfixed.rope": "Rope"
+  "block.nekomasfixed.rope": "Rope",
+  "block.nekomasfixed.baobab_fruit": "Baobab Fruit",
+  "item.nekomasfixed.baobab_fruit": "Baobab Fruit"
 }
