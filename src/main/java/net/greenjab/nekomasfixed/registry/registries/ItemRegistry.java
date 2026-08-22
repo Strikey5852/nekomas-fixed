@@ -1,6 +1,7 @@
 package net.greenjab.nekomasfixed.registry.registries;
 
 import net.greenjab.nekomasfixed.NekomasFixed;
+import net.greenjab.nekomasfixed.registry.item.RopeItem;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -40,6 +41,7 @@ public class ItemRegistry {
         (block, settings) -> new HangingSignItem(block, BlockRegistry.BAOBAB_WALL_HANGING_SIGN, settings),
         new Item.Properties().stacksTo(16));
     public static final Item BAOBAB_LEAVES = register(BlockRegistry.BAOBAB_LEAVES);
+    public static final Item ROPE = register(BlockRegistry.ROPE, RopeItem::new, new Item.Properties());
 
     private static Item register(Block block) {
         return Registry.register(BuiltInRegistries.ITEM,

@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.greenjab.nekomasfixed.NekomasFixed;
 import net.greenjab.nekomasfixed.registry.block.GlowTorchBlock;
+import net.greenjab.nekomasfixed.registry.block.RopeBlock;
 import net.greenjab.nekomasfixed.registry.block.WallGlowTorchBlock;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -147,6 +148,15 @@ public class BlockRegistry {
             .ignitedByLava()
             .pushReaction(PushReaction.DESTROY)
             .isRedstoneConductor(((blockState, blockGetter, blockPos) -> false))
+    );
+    public static final Block ROPE = register(
+        "rope",
+        RopeBlock::new,
+        BlockBehaviour.Properties.of()
+            .strength(0.2F)
+            .isRedstoneConductor((state, level, pos) -> false)
+            .ignitedByLava()
+            .noCollission()
     );
 
     private static BlockBehaviour.Properties baobabWoodProperties() {

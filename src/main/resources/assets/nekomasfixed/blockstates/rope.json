@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "attached=true": {
+      "model": "nekomasfixed:block/rope_connected"
+    },
+    "attached=false": {
+      "model": "nekomasfixed:block/rope_base"
+    }
+  }
+}
