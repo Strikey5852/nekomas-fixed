@@ -1,6 +1,7 @@
 package net.greenjab.nekomasfixed.registry.registries;
 
 import net.greenjab.nekomasfixed.NekomasFixed;
+import net.greenjab.nekomasfixed.registry.item.BaobabSeedsItem;
 import net.greenjab.nekomasfixed.registry.item.RopeItem;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
@@ -13,6 +14,7 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.level.block.Block;
 
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public class ItemRegistry {
 
@@ -48,6 +50,11 @@ public class ItemRegistry {
         "baobab_fruit",
         new Item.Properties().food(BAOBAB_FRUIT_FOOD)
     );
+    public static final Item BAOBAB_SAPLING = register(BlockRegistry.BAOBAB_SAPLING);
+    public static final Item BAOBAB_SEEDS = register(
+        "baobab_seeds",
+        BaobabSeedsItem::new,
+        new Item.Properties());
 
     private static Item register(Block block) {
         return Registry.register(BuiltInRegistries.ITEM,
@@ -59,6 +66,12 @@ public class ItemRegistry {
         return Registry.register(BuiltInRegistries.ITEM,
             ResourceKey.create(Registries.ITEM, NekomasFixed.id(id)),
             new Item(settings));
+    }
+
+    private static Item register(String id, Function<Item.Properties, Item> factory, Item.Properties settings) {
+        return Registry.register(BuiltInRegistries.ITEM,
+            ResourceKey.create(Registries.ITEM, NekomasFixed.id(id)),
+            factory.apply(settings));
     }
 
     private static ResourceLocation blockKeyOf(Block block) {

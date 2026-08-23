@@ -5,6 +5,9 @@ import net.greenjab.nekomasfixed.registry.registries.BlockEntityRegistry;
 import net.greenjab.nekomasfixed.registry.registries.BlockRegistry;
 import net.greenjab.nekomasfixed.registry.registries.ItemGroupRegistry;
 import net.greenjab.nekomasfixed.registry.registries.ItemRegistry;
+import net.greenjab.nekomasfixed.registry.worldgen.ModWorldGeneration;
+import net.greenjab.nekomasfixed.util.ModTreeDecorators;
+import net.greenjab.nekomasfixed.util.ModTrunkPlacers;
 import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,9 +26,12 @@ public class NekomasFixed implements ModInitializer {
         // Ported one feature at a time from reference/ (see features.md). Feature
         // registration goes here as each one is re-enabled.
         LOGGER.info("[{}] loaded (1.21.1 port, scaffold)", MOD_NAME);
+        ModTreeDecorators.register();
+        ModTrunkPlacers.register();
         BlockRegistry.registerBlocks();
         ItemRegistry.registerItems();
         ItemGroupRegistry.registerItemGroup();
         BlockEntityRegistry.attachBlockEntities();
+        ModWorldGeneration.generateModWorldGen();
     }
 }

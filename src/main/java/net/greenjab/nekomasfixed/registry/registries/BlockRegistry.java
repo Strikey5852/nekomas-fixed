@@ -8,11 +8,13 @@ import net.greenjab.nekomasfixed.registry.block.BaobabFruitBlock;
 import net.greenjab.nekomasfixed.registry.block.GlowTorchBlock;
 import net.greenjab.nekomasfixed.registry.block.RopeBlock;
 import net.greenjab.nekomasfixed.registry.block.WallGlowTorchBlock;
+import net.greenjab.nekomasfixed.registry.worldgen.ModConfiguredFeatures;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -20,6 +22,7 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
+import java.util.Optional;
 import java.util.function.Function;
 
 public class BlockRegistry {
@@ -168,6 +171,13 @@ public class BlockRegistry {
             .isViewBlocking((state, level, pos) -> false)
             .ignitedByLava()
             .instabreak()
+    );
+    public static final Block BAOBAB_SAPLING = register(
+        "baobab_sapling",
+        settings -> new SaplingBlock(
+            new TreeGrower("nekomasfixed:baobab", Optional.of(ModConfiguredFeatures.BAOBAB_KEY), Optional.empty(), Optional.empty()),
+            settings),
+        BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_SAPLING)
     );
 
     private static BlockBehaviour.Properties baobabWoodProperties() {

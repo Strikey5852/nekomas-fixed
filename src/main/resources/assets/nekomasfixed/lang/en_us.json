@@ -21,5 +21,7 @@
   "block.nekomasfixed.baobab_leaves": "Baobab Leaves",
   "block.nekomasfixed.rope": "Rope",
   "block.nekomasfixed.baobab_fruit": "Baobab Fruit",
-  "item.nekomasfixed.baobab_fruit": "Baobab Fruit"
+  "item.nekomasfixed.baobab_fruit": "Baobab Fruit",
+  "block.nekomasfixed.baobab_sapling": "Baobab Sapling",
+  "item.nekomasfixed.baobab_seeds": "Baobab Seeds"
 }
