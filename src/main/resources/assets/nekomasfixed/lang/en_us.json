@@ -23,5 +23,9 @@
   "block.nekomasfixed.baobab_fruit": "Baobab Fruit",
   "item.nekomasfixed.baobab_fruit": "Baobab Fruit",
   "block.nekomasfixed.baobab_sapling": "Baobab Sapling",
-  "item.nekomasfixed.baobab_seeds": "Baobab Seeds"
+  "item.nekomasfixed.baobab_seeds": "Baobab Seeds",
+  "item.nekomasfixed.baobab_boat": "Baobab Boat",
+  "entity.nekomasfixed.baobab_boat": "Baobab Boat",
+  "item.nekomasfixed.baobab_chest_boat": "Baobab Boat with Chest",
+  "entity.nekomasfixed.baobab_chest_boat": "Baobab Boat with Chest"
 }

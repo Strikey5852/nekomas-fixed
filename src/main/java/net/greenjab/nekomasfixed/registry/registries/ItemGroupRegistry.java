@@ -43,6 +43,8 @@ public class ItemGroupRegistry {
                 entries.accept(ItemRegistry.BAOBAB_FRUIT);
                 entries.accept(ItemRegistry.BAOBAB_SAPLING);
                 entries.accept(ItemRegistry.BAOBAB_SEEDS);
+                entries.accept(ItemRegistry.BAOBAB_BOAT);
+                entries.accept(ItemRegistry.BAOBAB_CHEST_BOAT);
             })
             .build()
     );

@@ -1,6 +1,7 @@
 package net.greenjab.nekomasfixed.registry.registries;
 
 import net.greenjab.nekomasfixed.NekomasFixed;
+import net.greenjab.nekomasfixed.registry.item.BaobabBoatItem;
 import net.greenjab.nekomasfixed.registry.item.BaobabSeedsItem;
 import net.greenjab.nekomasfixed.registry.item.RopeItem;
 import net.minecraft.core.Direction;
@@ -9,8 +10,8 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.*;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 
 import java.util.function.BiFunction;
@@ -55,11 +56,23 @@ public class ItemRegistry {
         "baobab_seeds",
         BaobabSeedsItem::new,
         new Item.Properties());
+    public static final Item BAOBAB_BOAT = register(
+        "baobab_boat",
+        settings -> new BaobabBoatItem(false, settings),
+        new Item.Properties().stacksTo(1));
+    public static final Item BAOBAB_CHEST_BOAT = register(
+        "baobab_chest_boat",
+        settings -> new BaobabBoatItem(true, settings),
+        new Item.Properties().stacksTo(1));
 
     private static Item register(Block block) {
         return Registry.register(BuiltInRegistries.ITEM,
             ResourceKey.create(Registries.ITEM, blockKeyOf(block)),
             new BlockItem(block, new Item.Properties()));
+    }
+
+    private static ResourceLocation blockKeyOf(Block block) {
+        return BuiltInRegistries.BLOCK.getKey(block);
     }
 
     private static Item register(String id, Item.Properties settings) {
@@ -72,10 +85,6 @@ public class ItemRegistry {
         return Registry.register(BuiltInRegistries.ITEM,
             ResourceKey.create(Registries.ITEM, NekomasFixed.id(id)),
             factory.apply(settings));
-    }
-
-    private static ResourceLocation blockKeyOf(Block block) {
-        return BuiltInRegistries.BLOCK.getKey(block);
     }
 
     private static Item register(Block block, BiFunction<Block, Item.Properties, Item> factory, Item.Properties settings) {
