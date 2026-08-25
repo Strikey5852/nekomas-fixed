@@ -27,5 +27,11 @@
   "item.nekomasfixed.baobab_boat": "Baobab Boat",
   "entity.nekomasfixed.baobab_boat": "Baobab Boat",
   "item.nekomasfixed.baobab_chest_boat": "Baobab Boat with Chest",
-  "entity.nekomasfixed.baobab_chest_boat": "Baobab Boat with Chest"
+  "entity.nekomasfixed.baobab_chest_boat": "Baobab Boat with Chest",
+  "block.nekomasfixed.clam": "Clam",
+  "block.nekomasfixed.clam_blue": "Blue Clam",
+  "block.nekomasfixed.clam_pink": "Pink Clam",
+  "block.nekomasfixed.clam_purple": "Purple Clam",
+  "block.nekomasfixed.pearl_block": "Pearl Block",
+  "item.nekomasfixed.pearl": "Pearl"
 }

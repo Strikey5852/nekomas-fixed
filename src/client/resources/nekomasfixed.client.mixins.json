@@ -1,9 +1,12 @@
 {
-	"required": true,
-	"package": "net.greenjab.nekomasfixed.mixin.client",
-	"compatibilityLevel": "JAVA_21",
-	"client": [],
-	"injectors": {
-		"defaultRequire": 1
-	}
+  "required": true,
+  "package": "net.greenjab.nekomasfixed.mixin.client",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "ClientTooltipComponentMixin",
+    "ItemPropertiesAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
 }

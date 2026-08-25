@@ -6,12 +6,14 @@ import net.greenjab.nekomasfixed.registry.item.BaobabSeedsItem;
 import net.greenjab.nekomasfixed.registry.item.RopeItem;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.block.Block;
 
 import java.util.function.BiFunction;
@@ -64,6 +66,18 @@ public class ItemRegistry {
         "baobab_chest_boat",
         settings -> new BaobabBoatItem(true, settings),
         new Item.Properties().stacksTo(1));
+    public static final Item PEARL = register(
+        "pearl",
+        new Item.Properties());
+    public static final Item PEARL_BLOCK = register(BlockRegistry.PEARL_BLOCK);
+    public static final Item CLAM = register(BlockRegistry.CLAM,
+        new Item.Properties().stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
+    public static final Item CLAM_BLUE = register(BlockRegistry.CLAM_BLUE,
+        new Item.Properties().stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
+    public static final Item CLAM_PINK = register(BlockRegistry.CLAM_PINK,
+        new Item.Properties().stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
+    public static final Item CLAM_PURPLE = register(BlockRegistry.CLAM_PURPLE,
+        new Item.Properties().stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
 
     private static Item register(Block block) {
         return Registry.register(BuiltInRegistries.ITEM,
@@ -73,6 +87,12 @@ public class ItemRegistry {
 
     private static ResourceLocation blockKeyOf(Block block) {
         return BuiltInRegistries.BLOCK.getKey(block);
+    }
+
+    private static Item register(Block block, Item.Properties settings) {
+        return Registry.register(BuiltInRegistries.ITEM,
+            ResourceKey.create(Registries.ITEM, blockKeyOf(block)),
+            new BlockItem(block, settings));
     }
 
     private static Item register(String id, Item.Properties settings) {

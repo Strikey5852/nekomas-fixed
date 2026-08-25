@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "quality": 3,
+          "name": "minecraft:heart_of_the_sea"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nekomasfixed:pearl",
+          "weight": 20,
+          "quality": 20
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:coal",
+          "weight": 30,
+          "quality": 1
+        }
+      ],
+      "rolls": 100
+    }
+  ]
+}

@@ -20,14 +20,14 @@ public class NekomasFixed implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        // Ported one feature at a time from reference/ (see features.md). Feature
-        // registration goes here as each one is re-enabled.
         LOGGER.info("[{}] loaded (1.21.1 port, scaffold)", MOD_NAME);
+        ComponentRegistry.registerComponents();
         ModTreeDecorators.register();
         ModTrunkPlacers.register();
         BlockRegistry.registerBlocks();
         ItemRegistry.registerItems();
         EntityTypeRegistry.registerEntityType();
+        BlockEntityTypeRegistry.registerBlockEntityTypes();
         ItemGroupRegistry.registerItemGroup();
         BlockEntityRegistry.attachBlockEntities();
         ModWorldGeneration.generateModWorldGen();

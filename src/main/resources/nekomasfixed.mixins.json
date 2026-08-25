@@ -3,7 +3,8 @@
   "package": "net.greenjab.nekomasfixed.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "BlockEntityTypeAccessor"
+    "BlockEntityTypeAccessor",
+    "ItemStackMixin"
   ],
   "injectors": {
     "defaultRequire": 1

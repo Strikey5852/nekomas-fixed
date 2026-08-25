@@ -4,10 +4,8 @@ import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.greenjab.nekomasfixed.NekomasFixed;
-import net.greenjab.nekomasfixed.registry.block.BaobabFruitBlock;
-import net.greenjab.nekomasfixed.registry.block.GlowTorchBlock;
-import net.greenjab.nekomasfixed.registry.block.RopeBlock;
-import net.greenjab.nekomasfixed.registry.block.WallGlowTorchBlock;
+import net.greenjab.nekomasfixed.registry.block.*;
+import net.greenjab.nekomasfixed.registry.block.enums.ClamType;
 import net.greenjab.nekomasfixed.registry.worldgen.ModConfiguredFeatures;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -87,7 +85,7 @@ public class BlockRegistry {
     public static final Block BAOBAB_FENCE = register(
         "baobab_fence",
         FenceBlock::new,
-        baobabWoodProperties().forceSolidOn().strength(2.0F, 3.0F)
+        baobabWoodProperties().strength(2.0F, 3.0F)
     );
     public static final Block BAOBAB_FENCE_GATE = register(
         "baobab_fence_gate",
@@ -107,7 +105,7 @@ public class BlockRegistry {
     public static final Block BAOBAB_PRESSURE_PLATE = register(
         "baobab_pressure_plate",
         settings -> new PressurePlateBlock(BAOBAB_BLOCKSETTYPE, settings),
-        baobabWoodProperties().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY)
+        baobabWoodProperties().noCollission().forceSolidOn().strength(0.5F).pushReaction(PushReaction.DESTROY)
     );
     public static final Block BAOBAB_BUTTON = register(
         "baobab_button",
@@ -179,6 +177,43 @@ public class BlockRegistry {
             settings),
         BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_SAPLING)
     );
+
+    public static final Block CLAM = register(
+        "clam",
+        settings -> new ClamBlock(ClamType.REGULAR, settings),
+        clamBlockProperties()
+    );
+    public static final Block CLAM_BLUE = register(
+        "clam_blue",
+        settings -> new ClamBlock(ClamType.BLUE, settings),
+        clamBlockProperties()
+    );
+    public static final Block CLAM_PINK = register(
+        "clam_pink",
+        settings -> new ClamBlock(ClamType.PINK, settings),
+        clamBlockProperties()
+    );
+    public static final Block CLAM_PURPLE = register(
+        "clam_purple",
+        settings -> new ClamBlock(ClamType.PURPLE, settings),
+        clamBlockProperties()
+    );
+    public static final Block PEARL_BLOCK = register(
+        "pearl_block",
+        BlockBehaviour.Properties.of()
+            .mapColor(MapColor.SNOW)
+            .strength(0.5F)
+            .sound(SoundType.STONE)
+    );
+
+    private static BlockBehaviour.Properties clamBlockProperties() {
+        return BlockBehaviour.Properties.of()
+            .mapColor(MapColor.SAND)
+            .strength(0.5F)
+            .sound(SoundType.STONE)
+            .noOcclusion()
+            .isRedstoneConductor((state, level, pos) -> false);
+    }
 
     private static BlockBehaviour.Properties baobabWoodProperties() {
         return BlockBehaviour.Properties.of()
