@@ -2,8 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
-    "#": "minecraft:stick",
-    "W": "nekomasfixed:baobab_planks"
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "W": {
+      "item": "nekomasfixed:baobab_planks"
+    }
   },
   "pattern": [
     "#W#",

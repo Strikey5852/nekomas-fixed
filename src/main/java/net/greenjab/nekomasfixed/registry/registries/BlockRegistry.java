@@ -205,6 +205,40 @@ public class BlockRegistry {
             .strength(0.5F)
             .sound(SoundType.STONE)
     );
+public static final Block HOLLOW_OAK_LOG = register("hollow_oak_log", HollowLogBlock::new,
+        hollowLogProperties(Blocks.OAK_LOG));
+    public static final Block HOLLOW_SPRUCE_LOG = register("hollow_spruce_log", HollowLogBlock::new,
+        hollowLogProperties(Blocks.SPRUCE_LOG));
+    public static final Block HOLLOW_BIRCH_LOG = register("hollow_birch_log", HollowLogBlock::new,
+        hollowLogProperties(Blocks.BIRCH_LOG));
+    public static final Block HOLLOW_JUNGLE_LOG = register("hollow_jungle_log", HollowLogBlock::new,
+        hollowLogProperties(Blocks.JUNGLE_LOG));
+    public static final Block HOLLOW_ACACIA_LOG = register("hollow_acacia_log", HollowLogBlock::new,
+        hollowLogProperties(Blocks.ACACIA_LOG));
+    public static final Block HOLLOW_DARK_OAK_LOG = register("hollow_dark_oak_log", HollowLogBlock::new,
+        hollowLogProperties(Blocks.DARK_OAK_LOG));
+    public static final Block HOLLOW_MANGROVE_LOG = register("hollow_mangrove_log", HollowLogBlock::new,
+        hollowLogProperties(Blocks.MANGROVE_LOG));
+    public static final Block HOLLOW_CHERRY_LOG = register("hollow_cherry_log", HollowLogBlock::new,
+        hollowLogProperties(Blocks.CHERRY_LOG));
+    public static final Block HOLLOW_BAMBOO_BLOCK = register("hollow_bamboo_block", HollowLogBlock::new,
+        hollowLogProperties(Blocks.BAMBOO_BLOCK));
+    public static final Block HOLLOW_CRIMSON_STEM = register("hollow_crimson_stem", HollowLogBlock::new,
+        hollowLogProperties(Blocks.CRIMSON_HYPHAE));
+    public static final Block HOLLOW_WARPED_STEM = register("hollow_warped_stem", HollowLogBlock::new,
+        hollowLogProperties(Blocks.WARPED_HYPHAE));
+    public static final Block HOLLOW_BAOBAB_LOG = register("hollow_baobab_log", HollowLogBlock::new,
+        hollowLogProperties(BAOBAB_LOG));
+
+    // Build properties copied from the base log, with the emitted light driven by the
+    // hollow log's LIGHT_LEVEL state property. Non-occluding (1.21.1 culls
+    // neighbor faces by opaque-cube flag, unlike 26.x shape-based culling) so a
+    // block behind the hollow opening stays visible.
+    private static BlockBehaviour.Properties hollowLogProperties(Block baseLog) {
+        return BlockBehaviour.Properties.ofFullCopy(baseLog)
+            .lightLevel(state -> state.getValue(HollowLogBlock.LIGHT_LEVEL))
+            .noOcclusion();
+    }
 
     private static BlockBehaviour.Properties clamBlockProperties() {
         return BlockBehaviour.Properties.of()

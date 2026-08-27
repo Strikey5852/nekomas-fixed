@@ -51,6 +51,18 @@ public class ItemGroupRegistry {
                 entries.accept(ItemRegistry.CLAM_PURPLE);
                 entries.accept(ItemRegistry.PEARL);
                 entries.accept(ItemRegistry.PEARL_BLOCK);
+                entries.accept(ItemRegistry.HOLLOW_OAK_LOG);
+                entries.accept(ItemRegistry.HOLLOW_SPRUCE_LOG);
+                entries.accept(ItemRegistry.HOLLOW_BIRCH_LOG);
+                entries.accept(ItemRegistry.HOLLOW_JUNGLE_LOG);
+                entries.accept(ItemRegistry.HOLLOW_ACACIA_LOG);
+                entries.accept(ItemRegistry.HOLLOW_DARK_OAK_LOG);
+                entries.accept(ItemRegistry.HOLLOW_MANGROVE_LOG);
+                entries.accept(ItemRegistry.HOLLOW_CHERRY_LOG);
+                entries.accept(ItemRegistry.HOLLOW_BAMBOO_BLOCK);
+                entries.accept(ItemRegistry.HOLLOW_CRIMSON_STEM);
+                entries.accept(ItemRegistry.HOLLOW_WARPED_STEM);
+                entries.accept(ItemRegistry.HOLLOW_BAOBAB_LOG);
             })
             .build()
     );

@@ -2,7 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": "nekomasfixed:baobab_log"
+    "#": {
+      "item": "nekomasfixed:baobab_log"
+    }
   },
   "pattern": [
     "##",

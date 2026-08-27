@@ -2,8 +2,12 @@
   "type": "minecraft:crafting_shapeless",
   "group": "chest_boat",
   "ingredients": [
-    "minecraft:chest",
-    "nekomasfixed:baobab_planks"
+    {
+      "item": "minecraft:chest"
+    },
+    {
+      "item": "nekomasfixed:baobab_planks"
+    }
   ],
   "result": {
     "id": "nekomasfixed:baobab_chest_boat"

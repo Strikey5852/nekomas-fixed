@@ -1,8 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "#": "minecraft:stick",
-    "W": "nekomasfixed:baobab_planks"
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "W": {
+      "item": "nekomasfixed:baobab_planks"
+    }
   },
   "pattern": [
     "W#W",

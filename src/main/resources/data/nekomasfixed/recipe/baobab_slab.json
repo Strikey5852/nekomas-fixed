@@ -2,7 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": "nekomasfixed:baobab_planks"
+    "#": {
+      "item": "nekomasfixed:baobab_planks"
+    }
   },
   "pattern": [
     "###"

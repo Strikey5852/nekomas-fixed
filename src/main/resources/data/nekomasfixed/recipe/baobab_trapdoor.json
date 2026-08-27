@@ -2,7 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
-    "#": "nekomasfixed:baobab_planks"
+    "#": {
+      "item": "nekomasfixed:baobab_planks"
+    }
   },
   "pattern": [
     "###",

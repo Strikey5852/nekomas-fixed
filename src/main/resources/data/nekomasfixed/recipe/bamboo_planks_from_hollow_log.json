@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "nekomasfixed:hollow_bamboo_block"
+    }
+  ],
+  "result": {
+    "id": "minecraft:bamboo_planks"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "nekomasfixed:hollow_crimson_stem"
+    }
+  ],
+  "result": {
+    "id": "minecraft:crimson_planks"
+  }
+}

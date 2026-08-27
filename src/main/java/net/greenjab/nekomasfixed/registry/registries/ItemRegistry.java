@@ -79,6 +79,19 @@ public class ItemRegistry {
     public static final Item CLAM_PURPLE = register(BlockRegistry.CLAM_PURPLE,
         new Item.Properties().stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
 
+    public static final Item HOLLOW_OAK_LOG = register(BlockRegistry.HOLLOW_OAK_LOG);
+    public static final Item HOLLOW_SPRUCE_LOG = register(BlockRegistry.HOLLOW_SPRUCE_LOG);
+    public static final Item HOLLOW_BIRCH_LOG = register(BlockRegistry.HOLLOW_BIRCH_LOG);
+    public static final Item HOLLOW_JUNGLE_LOG = register(BlockRegistry.HOLLOW_JUNGLE_LOG);
+    public static final Item HOLLOW_ACACIA_LOG = register(BlockRegistry.HOLLOW_ACACIA_LOG);
+    public static final Item HOLLOW_DARK_OAK_LOG = register(BlockRegistry.HOLLOW_DARK_OAK_LOG);
+    public static final Item HOLLOW_MANGROVE_LOG = register(BlockRegistry.HOLLOW_MANGROVE_LOG);
+    public static final Item HOLLOW_CHERRY_LOG = register(BlockRegistry.HOLLOW_CHERRY_LOG);
+    public static final Item HOLLOW_BAMBOO_BLOCK = register(BlockRegistry.HOLLOW_BAMBOO_BLOCK);
+    public static final Item HOLLOW_CRIMSON_STEM = register(BlockRegistry.HOLLOW_CRIMSON_STEM);
+    public static final Item HOLLOW_WARPED_STEM = register(BlockRegistry.HOLLOW_WARPED_STEM);
+    public static final Item HOLLOW_BAOBAB_LOG = register(BlockRegistry.HOLLOW_BAOBAB_LOG);
+
     private static Item register(Block block) {
         return Registry.register(BuiltInRegistries.ITEM,
             ResourceKey.create(Registries.ITEM, blockKeyOf(block)),

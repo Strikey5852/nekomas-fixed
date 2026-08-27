@@ -2,7 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "group": "boat",
   "key": {
-    "#": "nekomasfixed:baobab_planks"
+    "#": {
+      "item": "nekomasfixed:baobab_planks"
+    }
   },
   "pattern": [
     "# #",

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "nekomasfixed:hollow_warped_stem"
+    }
+  ],
+  "result": {
+    "id": "minecraft:warped_planks"
+  }
+}
