@@ -15,5 +15,6 @@ public class ModTreeDecorators {
                     new TreeDecoratorType<>(BaobabTreeDecorator.CODEC)
             );
 
-    public static void register() {}
+    public static void register() {
+    }
 }

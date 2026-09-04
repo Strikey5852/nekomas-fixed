@@ -39,7 +39,7 @@ public class GlowTorchBlock extends BaseTorchBlock implements SimpleWaterloggedB
 
     @Override
     protected @NonNull BlockState updateShape(
-        BlockState state, @NonNull Direction direction, @NonNull BlockState neighbourState, @NonNull LevelAccessor level, @NonNull BlockPos pos, @NonNull BlockPos neighbourPos) {
+            BlockState state, @NonNull Direction direction, @NonNull BlockState neighbourState, @NonNull LevelAccessor level, @NonNull BlockPos pos, @NonNull BlockPos neighbourPos) {
         if (state.getValue(WATERLOGGED)) {
             level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         }

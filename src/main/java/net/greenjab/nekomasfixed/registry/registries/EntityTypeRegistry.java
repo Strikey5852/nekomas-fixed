@@ -13,22 +13,22 @@ import net.minecraft.world.entity.MobCategory;
 public class EntityTypeRegistry {
 
     public static final EntityType<BaobabBoat> BAOBAB_BOAT = register(
-        "baobab_boat",
-        EntityType.Builder.<BaobabBoat>of(
-                BaobabBoat::new, MobCategory.MISC)
-            .sized(1.375F, 0.5625F).clientTrackingRange(10)
+            "baobab_boat",
+            EntityType.Builder.<BaobabBoat>of(
+                            BaobabBoat::new, MobCategory.MISC)
+                    .sized(1.375F, 0.5625F).clientTrackingRange(10)
     );
     public static final EntityType<BaobabChestBoat> BAOBAB_CHEST_BOAT = register(
-        "baobab_chest_boat",
-        EntityType.Builder.<BaobabChestBoat>of(
-                BaobabChestBoat::new, MobCategory.MISC)
-            .sized(1.375F, 0.5625F).clientTrackingRange(10)
+            "baobab_chest_boat",
+            EntityType.Builder.<BaobabChestBoat>of(
+                            BaobabChestBoat::new, MobCategory.MISC)
+                    .sized(1.375F, 0.5625F).clientTrackingRange(10)
     );
 
     private static <T extends net.minecraft.world.entity.Entity> EntityType<T> register(String id, EntityType.Builder<T> builder) {
         return Registry.register(BuiltInRegistries.ENTITY_TYPE,
-            ResourceKey.create(Registries.ENTITY_TYPE, NekomasFixed.id(id)),
-            builder.build(id));
+                ResourceKey.create(Registries.ENTITY_TYPE, NekomasFixed.id(id)),
+                builder.build(id));
     }
 
     public static void registerEntityType() {

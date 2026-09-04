@@ -13,7 +13,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -43,13 +42,13 @@ public class GeyserBlock extends Block {
             java.util.Random random = new java.util.Random();
             for (int i = 0; i <= 20; ++i) {
                 level.addAlwaysVisibleParticle(ParticleTypes.LARGE_SMOKE, true,
-                    pos.getX() + (0.5 + random.nextDouble()) * (random.nextBoolean() ? 1 : -1),
-                    pos.getY() + 1.0,
-                    pos.getZ() + 0.5 + random.nextDouble() * (random.nextBoolean() ? 1 : -1),
-                    0.001 * (random.nextBoolean() ? 1 : -1), 0.0001, 0.001 * (random.nextBoolean() ? 1 : -1));
+                        pos.getX() + (0.5 + random.nextDouble()) * (random.nextBoolean() ? 1 : -1),
+                        pos.getY() + 1.0,
+                        pos.getZ() + 0.5 + random.nextDouble() * (random.nextBoolean() ? 1 : -1),
+                        0.001 * (random.nextBoolean() ? 1 : -1), 0.0001, 0.001 * (random.nextBoolean() ? 1 : -1));
                 if (i <= 10) {
                     level.addAlwaysVisibleParticle(ParticleTypes.FLAME, true,
-                        pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, 0, 0.2, 0);
+                            pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, 0, 0.2, 0);
                 }
             }
         }
@@ -59,10 +58,10 @@ public class GeyserBlock extends Block {
     public void animateTick(@NonNull BlockState state, Level level, @NonNull BlockPos pos, @NonNull RandomSource random) {
         if (level.isClientSide()) {
             level.addAlwaysVisibleParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true,
-                pos.getX() + 0.5 + random.nextDouble() / 2 * (random.nextBoolean() ? 1 : -1),
-                pos.getY() + random.nextDouble() + random.nextDouble(),
-                pos.getZ() + 0.5 + random.nextDouble() / 2 * (random.nextBoolean() ? 1 : -1),
-                0.0, 0.07, 0.0);
+                    pos.getX() + 0.5 + random.nextDouble() / 2 * (random.nextBoolean() ? 1 : -1),
+                    pos.getY() + random.nextDouble() + random.nextDouble(),
+                    pos.getZ() + 0.5 + random.nextDouble() / 2 * (random.nextBoolean() ? 1 : -1),
+                    0.0, 0.07, 0.0);
         }
     }
 

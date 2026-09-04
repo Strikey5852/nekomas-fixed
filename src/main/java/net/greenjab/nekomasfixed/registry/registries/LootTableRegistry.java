@@ -11,9 +11,10 @@ import net.minecraft.world.level.storage.loot.LootTable;
  */
 public final class LootTableRegistry {
 
-    private LootTableRegistry() {}
-
     public static final ResourceKey<LootTable> CLAM_LOOT_TABLE =
-        ResourceKey.create(net.minecraft.core.registries.Registries.LOOT_TABLE,
-            NekomasFixed.id("gameplay/clam"));
+            ResourceKey.create(net.minecraft.core.registries.Registries.LOOT_TABLE,
+                    NekomasFixed.id("gameplay/clam"));
+
+    private LootTableRegistry() {
+    }
 }

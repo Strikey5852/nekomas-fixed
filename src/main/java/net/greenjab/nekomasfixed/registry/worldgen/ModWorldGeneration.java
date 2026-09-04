@@ -17,26 +17,26 @@ public class ModWorldGeneration {
 
     @SuppressWarnings("unused")
     public static final Feature<CountConfiguration> CLAM_FEATURE =
-        Registry.register(BuiltInRegistries.FEATURE, NekomasFixed.id("clam"),
-            new ClamFeature(CountConfiguration.CODEC));
+            Registry.register(BuiltInRegistries.FEATURE, NekomasFixed.id("clam"),
+                    new ClamFeature(CountConfiguration.CODEC));
 
     @SuppressWarnings("unused")
     public static final GeyserBlockFeature GEYSER_FEATURE =
-        Registry.register(BuiltInRegistries.FEATURE, NekomasFixed.id("geyser_feature"),
-            new GeyserBlockFeature(SimpleBlockConfiguration.CODEC));
+            Registry.register(BuiltInRegistries.FEATURE, NekomasFixed.id("geyser_feature"),
+                    new GeyserBlockFeature(SimpleBlockConfiguration.CODEC));
 
     public static void generateModWorldGen() {
         BiomeModifications.addFeature(
-            BiomeSelectors.includeByKey(Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU, Biomes.WINDSWEPT_SAVANNA),
-            GenerationStep.Decoration.VEGETAL_DECORATION,
-            ModPlacedFeatures.BAOBAB_PLACED_KEY);
+                BiomeSelectors.includeByKey(Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU, Biomes.WINDSWEPT_SAVANNA),
+                GenerationStep.Decoration.VEGETAL_DECORATION,
+                ModPlacedFeatures.BAOBAB_PLACED_KEY);
         BiomeModifications.addFeature(
-            BiomeSelectors.includeByKey(Biomes.WARM_OCEAN),
-            GenerationStep.Decoration.VEGETAL_DECORATION,
-            ModPlacedFeatures.CLAM_PLACED_KEY);
+                BiomeSelectors.includeByKey(Biomes.WARM_OCEAN),
+                GenerationStep.Decoration.VEGETAL_DECORATION,
+                ModPlacedFeatures.CLAM_PLACED_KEY);
         BiomeModifications.addFeature(
-            BiomeSelectors.includeByKey(Biomes.CRIMSON_FOREST, Biomes.NETHER_WASTES),
-            GenerationStep.Decoration.LOCAL_MODIFICATIONS,
-            ModPlacedFeatures.GEYSER_PLACED_KEY);
+                BiomeSelectors.includeByKey(Biomes.CRIMSON_FOREST, Biomes.NETHER_WASTES),
+                GenerationStep.Decoration.LOCAL_MODIFICATIONS,
+                ModPlacedFeatures.GEYSER_PLACED_KEY);
     }
 }

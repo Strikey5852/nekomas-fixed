@@ -26,6 +26,17 @@ public class ClamBlockEntityRenderer implements BlockEntityRenderer<ClamBlockEnt
         this.model = new ClamBlockModel(context.bakeLayer(ModBlockEntityRendererRegistry.CLAM));
     }
 
+    private static ResourceLocation getTexture(net.minecraft.world.level.block.Block block) {
+        if (block == BlockRegistry.CLAM_BLUE) {
+            return NekomasFixed.id("textures/entity/chest/clam_blue.png");
+        } else if (block == BlockRegistry.CLAM_PINK) {
+            return NekomasFixed.id("textures/entity/chest/clam_pink.png");
+        } else if (block == BlockRegistry.CLAM_PURPLE) {
+            return NekomasFixed.id("textures/entity/chest/clam_purple.png");
+        }
+        return NekomasFixed.id("textures/entity/chest/clam.png");
+    }
+
     @Override
     public void render(ClamBlockEntity blockEntity, float partialTick, PoseStack poseStack,
                        MultiBufferSource buffer, int packedLight, int packedOverlay) {
@@ -55,22 +66,11 @@ public class ClamBlockEntityRenderer implements BlockEntityRenderer<ClamBlockEnt
                 poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
                 poseStack.scale(0.5F, 0.5F, 0.5F);
                 Minecraft.getInstance().getItemRenderer().renderStatic(held, ItemDisplayContext.FIXED,
-                    packedLight, packedOverlay, poseStack, buffer, blockEntity.getLevel(),
-                    (int) blockEntity.getBlockPos().asLong());
+                        packedLight, packedOverlay, poseStack, buffer, blockEntity.getLevel(),
+                        (int) blockEntity.getBlockPos().asLong());
                 poseStack.popPose();
             }
         }
-    }
-
-    private static ResourceLocation getTexture(net.minecraft.world.level.block.Block block) {
-        if (block == BlockRegistry.CLAM_BLUE) {
-            return NekomasFixed.id("textures/entity/chest/clam_blue.png");
-        } else if (block == BlockRegistry.CLAM_PINK) {
-            return NekomasFixed.id("textures/entity/chest/clam_pink.png");
-        } else if (block == BlockRegistry.CLAM_PURPLE) {
-            return NekomasFixed.id("textures/entity/chest/clam_purple.png");
-        }
-        return NekomasFixed.id("textures/entity/chest/clam.png");
     }
 
 }

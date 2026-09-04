@@ -121,8 +121,8 @@ public class BaobabFruitBlock extends Block implements BonemealableBlock {
 
     @Override
     protected @NonNull BlockState updateShape(
-        BlockState state, @NonNull Direction direction, @NonNull BlockState neighborState,
-        @NonNull LevelAccessor level, @NonNull BlockPos pos, @NonNull BlockPos neighborPos) {
+            BlockState state, @NonNull Direction direction, @NonNull BlockState neighborState,
+            @NonNull LevelAccessor level, @NonNull BlockPos pos, @NonNull BlockPos neighborPos) {
         return !state.canSurvive(level, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, direction, neighborState, level, pos, neighborPos);
     }
 }

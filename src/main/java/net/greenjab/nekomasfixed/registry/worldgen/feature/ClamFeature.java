@@ -32,6 +32,14 @@ public class ClamFeature extends Feature<CountConfiguration> {
         super(codec);
     }
 
+    public static int getLuck(Block clamType) {
+        if (clamType == BlockRegistry.CLAM) return 0;
+        if (clamType == BlockRegistry.CLAM_BLUE) return 1;
+        if (clamType == BlockRegistry.CLAM_PINK) return 2;
+        if (clamType == BlockRegistry.CLAM_PURPLE) return 3;
+        return 0;
+    }
+
     @Override
     public boolean place(FeaturePlaceContext<CountConfiguration> context) {
         int placed = 0;
@@ -47,30 +55,30 @@ public class ClamFeature extends Feature<CountConfiguration> {
             BlockPos pos = new BlockPos(origin.getX() + dx, y, origin.getZ() + dz);
             Block clamType = getClam(level.getRandom().nextFloat());
             BlockState blockState = clamType.defaultBlockState()
-                .setValue(ClamBlock.WATERLOGGED, true)
-                .setValue(ClamBlock.FACING, Direction.Plane.HORIZONTAL.getRandomDirection(random));
+                    .setValue(ClamBlock.WATERLOGGED, true)
+                    .setValue(ClamBlock.FACING, Direction.Plane.HORIZONTAL.getRandomDirection(random));
 
             if (level.getBlockState(pos).is(Blocks.WATER)
-                && level.getBlockState(pos.above()).is(Blocks.WATER)
-                && level.getBlockState(pos.below()).is(Blocks.SAND)
-                && blockState.canSurvive(level, pos)) {
+                    && level.getBlockState(pos.above()).is(Blocks.WATER)
+                    && level.getBlockState(pos.below()).is(Blocks.SAND)
+                    && blockState.canSurvive(level, pos)) {
                 level.setBlock(pos, blockState, Block.UPDATE_CLIENTS);
                 level.getBlockEntity(pos, BlockEntityTypeRegistry.CLAM_BLOCK_ENTITY)
-                    .ifPresent(blockEntity -> {
-                        LootTable lootTable = Objects.requireNonNull(level.getServer())
-                            .reloadableRegistries()
-                            .getLootTable(LootTableRegistry.CLAM_LOOT_TABLE);
+                        .ifPresent(blockEntity -> {
+                            LootTable lootTable = Objects.requireNonNull(level.getServer())
+                                    .reloadableRegistries()
+                                    .getLootTable(LootTableRegistry.CLAM_LOOT_TABLE);
 
-                        LootParams lootParams = (new LootParams.Builder(level.getLevel()))
-                            .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
-                            .withLuck(getLuck(clamType))
-                            .create(LootContextParamSets.FISHING);
+                            LootParams lootParams = (new LootParams.Builder(level.getLevel()))
+                                    .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
+                                    .withLuck(getLuck(clamType))
+                                    .create(LootContextParamSets.FISHING);
 
-                        ObjectArrayList<ItemStack> loots = lootTable.getRandomItems(lootParams);
-                        if (!loots.isEmpty()) {
-                            blockEntity.setHeldStack(loots.getFirst());
-                        }
-                    });
+                            ObjectArrayList<ItemStack> loots = lootTable.getRandomItems(lootParams);
+                            if (!loots.isEmpty()) {
+                                blockEntity.setHeldStack(loots.getFirst());
+                            }
+                        });
                 placed++;
             }
         }
@@ -83,13 +91,5 @@ public class ClamFeature extends Feature<CountConfiguration> {
         if (rarity > 0.125F) return BlockRegistry.CLAM_PINK;
         if (rarity > 0.0625F) return BlockRegistry.CLAM_PURPLE;
         return BlockRegistry.CLAM;
-    }
-
-    public static int getLuck(Block clamType) {
-        if (clamType == BlockRegistry.CLAM) return 0;
-        if (clamType == BlockRegistry.CLAM_BLUE) return 1;
-        if (clamType == BlockRegistry.CLAM_PINK) return 2;
-        if (clamType == BlockRegistry.CLAM_PURPLE) return 3;
-        return 0;
     }
 }

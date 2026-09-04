@@ -10,11 +10,11 @@ import net.minecraft.util.ExtraCodecs;
 public class ComponentRegistry {
 
     public static final DataComponentType<Integer> CLAM_STATE = Registry.register(
-        BuiltInRegistries.DATA_COMPONENT_TYPE, NekomasFixed.id("clam_state"),
-        DataComponentType.<Integer>builder()
-            .persistent(ExtraCodecs.intRange(0, 3))
-            .networkSynchronized(ByteBufCodecs.INT)
-            .build());
+            BuiltInRegistries.DATA_COMPONENT_TYPE, NekomasFixed.id("clam_state"),
+            DataComponentType.<Integer>builder()
+                    .persistent(ExtraCodecs.intRange(0, 3))
+                    .networkSynchronized(ByteBufCodecs.INT)
+                    .build());
 
     public static void registerComponents() {
         NekomasFixed.LOGGER.info("Registering components");

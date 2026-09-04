@@ -22,9 +22,9 @@ import java.util.function.Function;
 public class ItemRegistry {
 
     public static final Item GLOW_TORCH = register(
-        BlockRegistry.GLOW_TORCH,
-        (block, settings) -> new StandingAndWallBlockItem(block, BlockRegistry.GLOW_WALL_TORCH, settings, Direction.DOWN),
-        new Item.Properties());
+            BlockRegistry.GLOW_TORCH,
+            (block, settings) -> new StandingAndWallBlockItem(block, BlockRegistry.GLOW_WALL_TORCH, settings, Direction.DOWN),
+            new Item.Properties());
     public static final Item BAOBAB_LOG = register(BlockRegistry.BAOBAB_LOG);
     public static final Item BAOBAB_WOOD = register(BlockRegistry.BAOBAB_WOOD);
     public static final Item STRIPPED_BAOBAB_LOG = register(BlockRegistry.STRIPPED_BAOBAB_LOG);
@@ -39,46 +39,46 @@ public class ItemRegistry {
     public static final Item BAOBAB_PRESSURE_PLATE = register(BlockRegistry.BAOBAB_PRESSURE_PLATE);
     public static final Item BAOBAB_BUTTON = register(BlockRegistry.BAOBAB_BUTTON);
     public static final Item BAOBAB_SIGN = register(
-        BlockRegistry.BAOBAB_SIGN,
-        (block, settings) -> new SignItem(settings, block, BlockRegistry.BAOBAB_WALL_SIGN),
-        new Item.Properties().stacksTo(16));
+            BlockRegistry.BAOBAB_SIGN,
+            (block, settings) -> new SignItem(settings, block, BlockRegistry.BAOBAB_WALL_SIGN),
+            new Item.Properties().stacksTo(16));
     public static final Item BAOBAB_HANGING_SIGN = register(
-        BlockRegistry.BAOBAB_HANGING_SIGN,
-        (block, settings) -> new HangingSignItem(block, BlockRegistry.BAOBAB_WALL_HANGING_SIGN, settings),
-        new Item.Properties().stacksTo(16));
+            BlockRegistry.BAOBAB_HANGING_SIGN,
+            (block, settings) -> new HangingSignItem(block, BlockRegistry.BAOBAB_WALL_HANGING_SIGN, settings),
+            new Item.Properties().stacksTo(16));
     public static final Item BAOBAB_LEAVES = register(BlockRegistry.BAOBAB_LEAVES);
     public static final Item ROPE = register(BlockRegistry.ROPE, RopeItem::new, new Item.Properties());
     public static final FoodProperties BAOBAB_FRUIT_FOOD = new FoodProperties.Builder().nutrition(4).saturationModifier(0.3F).build();
     public static final Item BAOBAB_FRUIT = register(
-        "baobab_fruit",
-        new Item.Properties().food(BAOBAB_FRUIT_FOOD)
+            "baobab_fruit",
+            new Item.Properties().food(BAOBAB_FRUIT_FOOD)
     );
     public static final Item BAOBAB_SAPLING = register(BlockRegistry.BAOBAB_SAPLING);
     public static final Item BAOBAB_SEEDS = register(
-        "baobab_seeds",
-        BaobabSeedsItem::new,
-        new Item.Properties());
+            "baobab_seeds",
+            BaobabSeedsItem::new,
+            new Item.Properties());
     public static final Item BAOBAB_BOAT = register(
-        "baobab_boat",
-        settings -> new BaobabBoatItem(false, settings),
-        new Item.Properties().stacksTo(1));
+            "baobab_boat",
+            settings -> new BaobabBoatItem(false, settings),
+            new Item.Properties().stacksTo(1));
     public static final Item BAOBAB_CHEST_BOAT = register(
-        "baobab_chest_boat",
-        settings -> new BaobabBoatItem(true, settings),
-        new Item.Properties().stacksTo(1));
+            "baobab_chest_boat",
+            settings -> new BaobabBoatItem(true, settings),
+            new Item.Properties().stacksTo(1));
     public static final Item PEARL = register(
-        "pearl",
-        new Item.Properties());
+            "pearl",
+            new Item.Properties());
     public static final Item PEARL_BLOCK = register(BlockRegistry.PEARL_BLOCK);
     public static final Item GEYSER = register(BlockRegistry.GEYSER);
     public static final Item CLAM = register(BlockRegistry.CLAM,
-        new Item.Properties().stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
+            new Item.Properties().stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
     public static final Item CLAM_BLUE = register(BlockRegistry.CLAM_BLUE,
-        new Item.Properties().stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
+            new Item.Properties().stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
     public static final Item CLAM_PINK = register(BlockRegistry.CLAM_PINK,
-        new Item.Properties().stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
+            new Item.Properties().stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
     public static final Item CLAM_PURPLE = register(BlockRegistry.CLAM_PURPLE,
-        new Item.Properties().stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
+            new Item.Properties().stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
 
     public static final Item HOLLOW_OAK_LOG = register(BlockRegistry.HOLLOW_OAK_LOG);
     public static final Item HOLLOW_SPRUCE_LOG = register(BlockRegistry.HOLLOW_SPRUCE_LOG);
@@ -95,8 +95,8 @@ public class ItemRegistry {
 
     private static Item register(Block block) {
         return Registry.register(BuiltInRegistries.ITEM,
-            ResourceKey.create(Registries.ITEM, blockKeyOf(block)),
-            new BlockItem(block, new Item.Properties()));
+                ResourceKey.create(Registries.ITEM, blockKeyOf(block)),
+                new BlockItem(block, new Item.Properties()));
     }
 
     private static ResourceLocation blockKeyOf(Block block) {
@@ -105,26 +105,26 @@ public class ItemRegistry {
 
     private static Item register(Block block, Item.Properties settings) {
         return Registry.register(BuiltInRegistries.ITEM,
-            ResourceKey.create(Registries.ITEM, blockKeyOf(block)),
-            new BlockItem(block, settings));
+                ResourceKey.create(Registries.ITEM, blockKeyOf(block)),
+                new BlockItem(block, settings));
     }
 
     private static Item register(String id, Item.Properties settings) {
         return Registry.register(BuiltInRegistries.ITEM,
-            ResourceKey.create(Registries.ITEM, NekomasFixed.id(id)),
-            new Item(settings));
+                ResourceKey.create(Registries.ITEM, NekomasFixed.id(id)),
+                new Item(settings));
     }
 
     private static Item register(String id, Function<Item.Properties, Item> factory, Item.Properties settings) {
         return Registry.register(BuiltInRegistries.ITEM,
-            ResourceKey.create(Registries.ITEM, NekomasFixed.id(id)),
-            factory.apply(settings));
+                ResourceKey.create(Registries.ITEM, NekomasFixed.id(id)),
+                factory.apply(settings));
     }
 
     private static Item register(Block block, BiFunction<Block, Item.Properties, Item> factory, Item.Properties settings) {
         return Registry.register(BuiltInRegistries.ITEM,
-            ResourceKey.create(Registries.ITEM, blockKeyOf(block)),
-            factory.apply(block, settings));
+                ResourceKey.create(Registries.ITEM, blockKeyOf(block)),
+                factory.apply(block, settings));
     }
 
     public static void registerItems() {

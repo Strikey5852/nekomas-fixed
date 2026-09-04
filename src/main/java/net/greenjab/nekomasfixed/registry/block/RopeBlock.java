@@ -47,8 +47,8 @@ public class RopeBlock extends Block implements SimpleWaterloggedBlock {
         BlockPos pos = ctx.getClickedPos();
         boolean connected = level.getBlockState(pos.above()).is(BlockRegistry.ROPE) || level.getBlockState(pos.above()).is(BlockTags.LEAVES);
         return this.defaultBlockState()
-            .setValue(WATERLOGGED, level.getFluidState(pos).getType() == Fluids.WATER)
-            .setValue(ATTACHED, connected);
+                .setValue(WATERLOGGED, level.getFluidState(pos).getType() == Fluids.WATER)
+                .setValue(ATTACHED, connected);
     }
 
     @Override

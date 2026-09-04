@@ -59,10 +59,10 @@ import java.util.Map;
 public class ClamBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
 
     public static final MapCodec<ClamBlock> CODEC = RecordCodecBuilder.mapCodec(
-        instance -> instance.group(
-            ClamType.CODEC.fieldOf("clam_type").forGetter(ClamBlock::getClamType),
-            propertiesCodec()
-        ).apply(instance, ClamBlock::new)
+            instance -> instance.group(
+                    ClamType.CODEC.fieldOf("clam_type").forGetter(ClamBlock::getClamType),
+                    propertiesCodec()
+            ).apply(instance, ClamBlock::new)
     );
 
     public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
@@ -70,17 +70,17 @@ public class ClamBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final Map<Direction, VoxelShape> SHAPES_BY_DIRECTION =
-        directionalShapes(Block.box(1.0, 0.0, 0.0, 15.0, 4.0, 15.0));
+            directionalShapes(Block.box(1.0, 0.0, 0.0, 15.0, 4.0, 15.0));
 
     private final ClamType clamType;
 
     public ClamBlock(ClamType clamType, Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any()
-            .setValue(FACING, Direction.NORTH)
-            .setValue(WATERLOGGED, false)
-            .setValue(OPEN, false)
-            .setValue(POWERED, false));
+                .setValue(FACING, Direction.NORTH)
+                .setValue(WATERLOGGED, false)
+                .setValue(OPEN, false)
+                .setValue(POWERED, false));
         this.clamType = clamType;
     }
 
@@ -97,11 +97,54 @@ public class ClamBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         int times = (to.get2DDataValue() - Direction.NORTH.get2DDataValue() + 4) % 4;
         for (int i = 0; i < times; i++) {
             buffer[0].forAllBoxes((minX, minY, minZ, maxX, maxY, maxZ) -> buffer[1] = Shapes.or(buffer[1],
-                Shapes.box(1 - maxZ, minY, minX, 1 - minZ, maxY, maxX)));
+                    Shapes.box(1 - maxZ, minY, minX, 1 - minZ, maxY, maxX)));
             buffer[0] = buffer[1];
             buffer[1] = Shapes.empty();
         }
         return buffer[0];
+    }
+
+    public static ItemStack getItemStack(@Nullable ClamType clamType) {
+        return new ItemStack(get(clamType));
+    }
+
+    public static Block get(@Nullable ClamType clamType) {
+        if (clamType == null) {
+            return BlockRegistry.CLAM;
+        }
+        return switch (clamType) {
+            case REGULAR -> BlockRegistry.CLAM;
+            case BLUE -> BlockRegistry.CLAM_BLUE;
+            case PINK -> BlockRegistry.CLAM_PINK;
+            case PURPLE -> BlockRegistry.CLAM_PURPLE;
+        };
+    }
+
+    public static int getLuck(@Nullable ClamType clamType) {
+        if (clamType == null) {
+            return 0;
+        }
+        return switch (clamType) {
+            case REGULAR -> 0;
+            case BLUE -> 1;
+            case PINK -> 2;
+            case PURPLE -> 3;
+        };
+    }
+
+    private static boolean swapSingleStack(ItemStack stack, Player player,
+                                           ClamBlockEntity clamBlockEntity, Inventory playerInventory) {
+        ItemStack itemStack = clamBlockEntity.swapStack(0, stack);
+        ItemStack itemStack2 = player.getAbilities().instabuild && itemStack.isEmpty() ? stack.copy() : itemStack;
+        playerInventory.setItem(playerInventory.selected, itemStack2);
+        playerInventory.setChanged();
+        clamBlockEntity.setChanged();
+        if (clamBlockEntity.getLevel() != null) {
+            clamBlockEntity.getLevel().sendBlockUpdated(
+                    clamBlockEntity.getBlockPos(), clamBlockEntity.getBlockState(),
+                    clamBlockEntity.getBlockState(), 3);
+        }
+        return !itemStack.isEmpty();
     }
 
     @Override
@@ -119,10 +162,10 @@ public class ClamBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         Direction direction = ctx.getHorizontalDirection().getOpposite();
         FluidState fluidState = ctx.getLevel().getFluidState(ctx.getClickedPos());
         return this.defaultBlockState()
-            .setValue(FACING, direction)
-            .setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER)
-            .setValue(OPEN, false)
-            .setValue(POWERED, false);
+                .setValue(FACING, direction)
+                .setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER)
+                .setValue(OPEN, false)
+                .setValue(POWERED, false);
     }
 
     @Override
@@ -148,7 +191,7 @@ public class ClamBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
                         }
                         if (entity instanceof ServerPlayer serverPlayerEntity) {
                             serverPlayerEntity.connection.send(new ClientboundSetEntityMotionPacket(
-                                serverPlayerEntity.getId(), new Vec3(power * dirx, power, power * dirz)));
+                                    serverPlayerEntity.getId(), new Vec3(power * dirx, power, power * dirz)));
                         } else {
                             entity.setDeltaMovement(power * dirx, power, power * dirz);
                             // Force an immediate velocity sync so the client applies the launch
@@ -168,7 +211,7 @@ public class ClamBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         if (blockEntity instanceof ClamBlockEntity clamBlockEntity) {
             int cstate = state.getValue(ClamBlock.OPEN) ? 1 : 0;
             if (cstate == 1 && !clamBlockEntity.getItems().isEmpty()
-                && !clamBlockEntity.getItems().getFirst().isEmpty()) {
+                    && !clamBlockEntity.getItems().getFirst().isEmpty()) {
                 cstate++;
             }
             clamBlockEntity.setState(cstate);
@@ -178,7 +221,7 @@ public class ClamBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
                 ItemStack itemStack = getItemStack(this.getClamType());
                 itemStack.applyComponents(blockEntity.collectComponents());
                 ItemEntity itemEntity = new ItemEntity(level,
-                    pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, itemStack);
+                        pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, itemStack);
                 itemEntity.setDefaultPickUpDelay();
                 level.addFreshEntity(itemEntity);
             } else {
@@ -193,24 +236,8 @@ public class ClamBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         builder.add(FACING, WATERLOGGED, OPEN, POWERED);
     }
 
-    public static ItemStack getItemStack(@Nullable ClamType clamType) {
-        return new ItemStack(get(clamType));
-    }
-
     public ClamType getClamType() {
         return this.clamType;
-    }
-
-    public static Block get(@Nullable ClamType clamType) {
-        if (clamType == null) {
-            return BlockRegistry.CLAM;
-        }
-        return switch (clamType) {
-            case REGULAR -> BlockRegistry.CLAM;
-            case BLUE -> BlockRegistry.CLAM_BLUE;
-            case PINK -> BlockRegistry.CLAM_PINK;
-            case PURPLE -> BlockRegistry.CLAM_PURPLE;
-        };
     }
 
     @Override
@@ -223,8 +250,8 @@ public class ClamBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, @NonNull BlockState state,
                                                                   @NonNull BlockEntityType<T> type) {
         return level.isClientSide()
-            ? createTickerHelper(type, BlockEntityTypeRegistry.CLAM_BLOCK_ENTITY, ClamBlockEntity::clientTick)
-            : null;
+                ? createTickerHelper(type, BlockEntityTypeRegistry.CLAM_BLOCK_ENTITY, ClamBlockEntity::clientTick)
+                : null;
     }
 
     @Override
@@ -345,19 +372,19 @@ public class ClamBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
                     }
                 } else {
                     if (item.is(net.minecraft.world.item.Items.SAND) || item.is(net.minecraft.world.item.Items.GRAVEL)
-                        || item.is(net.minecraft.world.item.Items.DIRT)) {
+                            || item.is(net.minecraft.world.item.Items.DIRT)) {
                         clamBlockEntity.setHeldStack(item.copyWithCount(item.getCount() - 1));
                         if (random.nextInt(16) == 0) {
                             net.minecraft.world.level.storage.loot.LootTable lootTable = level.getServer()
-                                .reloadableRegistries().getLootTable(LootTableRegistry.CLAM_LOOT_TABLE);
+                                    .reloadableRegistries().getLootTable(LootTableRegistry.CLAM_LOOT_TABLE);
                             net.minecraft.world.level.storage.loot.LootParams lootParams =
-                                (new net.minecraft.world.level.storage.loot.LootParams.Builder(level))
-                                    .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
-                                    .withLuck(getLuck(this.getClamType()))
-                                    .create(net.minecraft.world.level.storage.loot.parameters.LootContextParamSets.FISHING);
+                                    (new net.minecraft.world.level.storage.loot.LootParams.Builder(level))
+                                            .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
+                                            .withLuck(getLuck(this.getClamType()))
+                                            .create(net.minecraft.world.level.storage.loot.parameters.LootContextParamSets.FISHING);
                             net.minecraft.world.item.ItemStack loots = lootTable.getRandomItems(lootParams).getFirst();
                             ItemEntity itemEntity = new ItemEntity(level,
-                                pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, item);
+                                    pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, item);
                             itemEntity.setDefaultPickUpDelay();
                             level.addFreshEntity(itemEntity);
                             clamBlockEntity.setHeldStack(loots);
@@ -375,33 +402,6 @@ public class ClamBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
     @Override
     protected boolean isRandomlyTicking(BlockState state) {
         return state.getValue(WATERLOGGED);
-    }
-
-    public static int getLuck(@Nullable ClamType clamType) {
-        if (clamType == null) {
-            return 0;
-        }
-        return switch (clamType) {
-            case REGULAR -> 0;
-            case BLUE -> 1;
-            case PINK -> 2;
-            case PURPLE -> 3;
-        };
-    }
-
-    private static boolean swapSingleStack(ItemStack stack, Player player,
-                                           ClamBlockEntity clamBlockEntity, Inventory playerInventory) {
-        ItemStack itemStack = clamBlockEntity.swapStack(0, stack);
-        ItemStack itemStack2 = player.getAbilities().instabuild && itemStack.isEmpty() ? stack.copy() : itemStack;
-        playerInventory.setItem(playerInventory.selected, itemStack2);
-        playerInventory.setChanged();
-        clamBlockEntity.setChanged();
-        if (clamBlockEntity.getLevel() != null) {
-            clamBlockEntity.getLevel().sendBlockUpdated(
-                clamBlockEntity.getBlockPos(), clamBlockEntity.getBlockState(),
-                clamBlockEntity.getBlockState(), 3);
-        }
-        return !itemStack.isEmpty();
     }
 
     private void playSound(LevelAccessor level, BlockPos pos, SoundEvent sound) {

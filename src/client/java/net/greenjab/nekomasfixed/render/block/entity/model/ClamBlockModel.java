@@ -31,17 +31,17 @@ public class ClamBlockModel extends Model {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();
         root.addOrReplaceChild("bottom",
-            CubeListBuilder.create().texOffs(0, 0).addBox(1.0F, 0.0F, 4.0F, 14.0F, 2.0F, 12.0F),
-            PartPose.ZERO);
+                CubeListBuilder.create().texOffs(0, 0).addBox(1.0F, 0.0F, 4.0F, 14.0F, 2.0F, 12.0F),
+                PartPose.ZERO);
         root.addOrReplaceChild("lid",
-            CubeListBuilder.create().texOffs(0, 14).addBox(1.0F, 0.0F, 3.0F, 14.0F, 2.0F, 12.0F),
-            PartPose.offset(0.0F, 2.0F, 1.0F));
+                CubeListBuilder.create().texOffs(0, 14).addBox(1.0F, 0.0F, 3.0F, 14.0F, 2.0F, 12.0F),
+                PartPose.offset(0.0F, 2.0F, 1.0F));
         root.addOrReplaceChild("bottom_hinge",
-            CubeListBuilder.create().texOffs(18, 28).addBox(5.0F, 0.0F, 1.0F, 6.0F, 2.0F, 3.0F),
-            PartPose.ZERO);
+                CubeListBuilder.create().texOffs(18, 28).addBox(5.0F, 0.0F, 1.0F, 6.0F, 2.0F, 3.0F),
+                PartPose.ZERO);
         root.addOrReplaceChild("lid_hinge",
-            CubeListBuilder.create().texOffs(0, 28).addBox(5.0F, 0.0F, 0.0F, 6.0F, 2.0F, 3.0F),
-            PartPose.offset(0.0F, 2.0F, 1.0F));
+                CubeListBuilder.create().texOffs(0, 28).addBox(5.0F, 0.0F, 0.0F, 6.0F, 2.0F, 3.0F),
+                PartPose.offset(0.0F, 2.0F, 1.0F));
         return LayerDefinition.create(mesh, 64, 64);
     }
 

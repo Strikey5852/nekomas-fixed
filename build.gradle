@@ -59,9 +59,9 @@ dependencies {
 tasks.processResources {
     filesMatching("fabric.mod.json") {
         expand(
-            "version": project.version,
-            "fabric_api": libs.versions.fabric.api.get(),
-            "minecraft": libs.versions.minecraft.get(),
+                "version": project.version,
+                "fabric_api": libs.versions.fabric.api.get(),
+                "minecraft": libs.versions.minecraft.get(),
         )
     }
 }

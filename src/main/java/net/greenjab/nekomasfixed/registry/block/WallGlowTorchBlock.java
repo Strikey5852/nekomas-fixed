@@ -32,8 +32,8 @@ public class WallGlowTorchBlock extends GlowTorchBlock {
     public WallGlowTorchBlock(BlockBehaviour.Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any()
-            .setValue(FACING, Direction.NORTH)
-            .setValue(WATERLOGGED, false));
+                .setValue(FACING, Direction.NORTH)
+                .setValue(WATERLOGGED, false));
     }
 
     @Override
@@ -43,14 +43,14 @@ public class WallGlowTorchBlock extends GlowTorchBlock {
 
     @Override
     protected @NonNull BlockState updateShape(
-        BlockState state, @NonNull Direction direction, @NonNull BlockState neighborState,
-        @NonNull LevelAccessor level, @NonNull BlockPos pos, @NonNull BlockPos neighborPos) {
+            BlockState state, @NonNull Direction direction, @NonNull BlockState neighborState,
+            @NonNull LevelAccessor level, @NonNull BlockPos pos, @NonNull BlockPos neighborPos) {
         if (state.getValue(WATERLOGGED)) {
             level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));   // CHANGE
         }
         return direction.getOpposite() == state.getValue(FACING) && !state.canSurvive(level, pos)
-            ? Blocks.AIR.defaultBlockState()
-            : state;
+                ? Blocks.AIR.defaultBlockState()
+                : state;
     }
 
     @Override
@@ -71,9 +71,9 @@ public class WallGlowTorchBlock extends GlowTorchBlock {
         BlockState blockState = Blocks.WALL_TORCH.getStateForPlacement(ctx);
         FluidState fluidState = ctx.getLevel().getFluidState(ctx.getClickedPos());
         return blockState == null ? null :
-            this.defaultBlockState()
-                .setValue(FACING, blockState.getValue(FACING))
-                .setValue(WATERLOGGED, fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8);
+                this.defaultBlockState()
+                        .setValue(FACING, blockState.getValue(FACING))
+                        .setValue(WATERLOGGED, fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8);
     }
 
     @Override

@@ -25,9 +25,6 @@ public enum HollowLogType {
     WARPED(Blocks.WARPED_HYPHAE, BlockRegistry.HOLLOW_WARPED_STEM),
     BAOBAB(BlockRegistry.BAOBAB_LOG, BlockRegistry.HOLLOW_BAOBAB_LOG);
 
-    private final Block baseLog;
-    private final Block hollowLog;
-
     private static final Map<Block, Block> BASE_TO_HOLLOW = new HashMap<>();
 
     static {
@@ -35,6 +32,9 @@ public enum HollowLogType {
             BASE_TO_HOLLOW.put(type.baseLog, type.hollowLog);
         }
     }
+
+    private final Block baseLog;
+    private final Block hollowLog;
 
     HollowLogType(Block baseLog, Block hollowLog) {
         this.baseLog = baseLog;

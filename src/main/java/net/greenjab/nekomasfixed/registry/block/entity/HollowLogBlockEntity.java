@@ -69,8 +69,8 @@ public class HollowLogBlockEntity extends BlockEntity implements Container {
         super.saveAdditional(tag, registries);
 
         BlockState.CODEC.encodeStart(NbtOps.INSTANCE, this.storedBlock)
-            .result()
-            .ifPresent(value -> tag.put("StoredBlock", value));
+                .result()
+                .ifPresent(value -> tag.put("StoredBlock", value));
         ContainerHelper.saveAllItems(tag, this.storedStack, registries);
     }
 

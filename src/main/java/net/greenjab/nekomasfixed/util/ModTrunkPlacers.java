@@ -15,5 +15,6 @@ public class ModTrunkPlacers {
                     new TrunkPlacerType<>(BaobabTrunkPlacer.CODEC)
             );
 
-    public static void register() {}
+    public static void register() {
+    }
 }

@@ -26,8 +26,8 @@ import java.util.function.BiConsumer;
 public class BaobabTrunkPlacer extends TrunkPlacer {
 
     public static final MapCodec<BaobabTrunkPlacer> CODEC =
-        RecordCodecBuilder.mapCodec(instance ->
-            trunkPlacerParts(instance).apply(instance, BaobabTrunkPlacer::new));
+            RecordCodecBuilder.mapCodec(instance ->
+                    trunkPlacerParts(instance).apply(instance, BaobabTrunkPlacer::new));
 
     public BaobabTrunkPlacer(int baseHeight, int firstRandomHeight, int secondRandomHeight) {
         super(baseHeight, firstRandomHeight, secondRandomHeight);
@@ -40,8 +40,8 @@ public class BaobabTrunkPlacer extends TrunkPlacer {
 
     @Override
     public @NonNull List<FoliagePlacer.FoliageAttachment> placeTrunk(
-        @NonNull LevelSimulatedReader level, @NonNull BiConsumer<BlockPos, BlockState> trunkSetter,
-        RandomSource random, int treeHeight, @NonNull BlockPos origin, @NonNull TreeConfiguration config) {
+            @NonNull LevelSimulatedReader level, @NonNull BiConsumer<BlockPos, BlockState> trunkSetter,
+            RandomSource random, int treeHeight, @NonNull BlockPos origin, @NonNull TreeConfiguration config) {
         List<FoliagePlacer.FoliageAttachment> list = Lists.newArrayList();
         int x, y, z;
         float X = random.nextFloat() - 0.5f;
@@ -123,7 +123,7 @@ public class BaobabTrunkPlacer extends TrunkPlacer {
                         trunkSetter.accept(pos, BlockRegistry.BAOBAB_LOG.defaultBlockState());
                     } else {
                         trunkSetter.accept(pos, BlockRegistry.BAOBAB_LOG.defaultBlockState()
-                            .setValue(RotatedPillarBlock.AXIS, Direction.fromYRot(rot).getAxis()));
+                                .setValue(RotatedPillarBlock.AXIS, Direction.fromYRot(rot).getAxis()));
                     }
                 }
                 if (length == 0) {

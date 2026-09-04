@@ -36,7 +36,7 @@ public class BaobabBoatItem extends Item {
         }
         Vec3 view = player.getViewVector(1.0F);
         List<Entity> entities = level.getEntities(player,
-            player.getBoundingBox().expandTowards(view.scale(5.0D)).inflate(1.0D), ENTITY_PREDICATE);
+                player.getBoundingBox().expandTowards(view.scale(5.0D)).inflate(1.0D), ENTITY_PREDICATE);
         for (Entity entity : entities) {
             if (entity.getBoundingBox().inflate(entity.getPickRadius()).contains(player.getEyePosition())) {
                 return InteractionResultHolder.pass(itemStack);

@@ -4,7 +4,17 @@
     "layer0": "nekomasfixed:item/clam_purple"
   },
   "overrides": [
-    { "predicate": { "nekomasfixed:clam_state": 0.5 }, "model": "nekomasfixed:item/clam_purple_open" },
-    { "predicate": { "nekomasfixed:clam_state": 1 }, "model": "nekomasfixed:item/clam_purple_item" }
+    {
+      "predicate": {
+        "nekomasfixed:clam_state": 0.5
+      },
+      "model": "nekomasfixed:item/clam_purple_open"
+    },
+    {
+      "predicate": {
+        "nekomasfixed:clam_state": 1
+      },
+      "model": "nekomasfixed:item/clam_purple_item"
+    }
   ]
 }

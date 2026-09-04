@@ -13,16 +13,16 @@ public class BlockEntityRegistry {
 
     private static void attachSignBlockEntities() {
         ((BlockEntityTypeAccessor) BlockEntityType.SIGN)
-            .nekomasfixed$getValidBlocks()
-            .addAll(Set.of(
-                BlockRegistry.BAOBAB_SIGN,
-                BlockRegistry.BAOBAB_WALL_SIGN
-            ));
+                .nekomasfixed$getValidBlocks()
+                .addAll(Set.of(
+                        BlockRegistry.BAOBAB_SIGN,
+                        BlockRegistry.BAOBAB_WALL_SIGN
+                ));
         ((BlockEntityTypeAccessor) BlockEntityType.HANGING_SIGN)
-            .nekomasfixed$getValidBlocks()
-            .addAll(Set.of(
-                BlockRegistry.BAOBAB_HANGING_SIGN,
-                BlockRegistry.BAOBAB_WALL_HANGING_SIGN
-            ));
+                .nekomasfixed$getValidBlocks()
+                .addAll(Set.of(
+                        BlockRegistry.BAOBAB_HANGING_SIGN,
+                        BlockRegistry.BAOBAB_WALL_HANGING_SIGN
+                ));
     }
 }

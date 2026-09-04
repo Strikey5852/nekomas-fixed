@@ -18,9 +18,9 @@ import java.util.List;
 public class ContainerTooltipComponent implements ClientTooltipComponent {
 
     private static final ResourceLocation BACKGROUND_SPRITE =
-        ResourceLocation.withDefaultNamespace("container/bundle/background");
+            ResourceLocation.withDefaultNamespace("container/bundle/background");
     private static final ResourceLocation SLOT_SPRITE =
-        ResourceLocation.withDefaultNamespace("container/bundle/slot");
+            ResourceLocation.withDefaultNamespace("container/bundle/slot");
     private final List<ItemStack> items;
 
     public ContainerTooltipComponent(ItemContainerContents contents) {

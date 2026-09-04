@@ -12,60 +12,60 @@ import net.minecraft.world.item.ItemStack;
 public class ItemGroupRegistry {
 
     public static final ResourceKey<CreativeModeTab> NEKOMASFIXED_KEY =
-        ResourceKey.create(net.minecraft.core.registries.Registries.CREATIVE_MODE_TAB,
-            NekomasFixed.id("nekomasfixed"));
+            ResourceKey.create(net.minecraft.core.registries.Registries.CREATIVE_MODE_TAB,
+                    NekomasFixed.id("nekomasfixed"));
 
     public static final CreativeModeTab NEKOMASFIXED = Registry.register(
-        BuiltInRegistries.CREATIVE_MODE_TAB,
-        NEKOMASFIXED_KEY,
-        FabricItemGroup.builder()
-            .title(Component.translatable("itemgroup.nekomasfixed"))
-            .icon(() -> new ItemStack(ItemRegistry.GLOW_TORCH))
-            .displayItems((parameters, entries) -> {
-                entries.accept(ItemRegistry.GLOW_TORCH);
-                entries.accept(ItemRegistry.BAOBAB_LOG);
-                entries.accept(ItemRegistry.BAOBAB_WOOD);
-                entries.accept(ItemRegistry.STRIPPED_BAOBAB_LOG);
-                entries.accept(ItemRegistry.STRIPPED_BAOBAB_WOOD);
-                entries.accept(ItemRegistry.BAOBAB_PLANKS);
-                entries.accept(ItemRegistry.BAOBAB_STAIRS);
-                entries.accept(ItemRegistry.BAOBAB_SLAB);
-                entries.accept(ItemRegistry.BAOBAB_FENCE);
-                entries.accept(ItemRegistry.BAOBAB_FENCE_GATE);
-                entries.accept(ItemRegistry.BAOBAB_DOOR);
-                entries.accept(ItemRegistry.BAOBAB_TRAPDOOR);
-                entries.accept(ItemRegistry.BAOBAB_PRESSURE_PLATE);
-                entries.accept(ItemRegistry.BAOBAB_BUTTON);
-                entries.accept(ItemRegistry.BAOBAB_SIGN);
-                entries.accept(ItemRegistry.BAOBAB_HANGING_SIGN);
-                entries.accept(ItemRegistry.BAOBAB_LEAVES);
-                entries.accept(ItemRegistry.ROPE);
-                entries.accept(ItemRegistry.BAOBAB_FRUIT);
-                entries.accept(ItemRegistry.BAOBAB_SAPLING);
-                entries.accept(ItemRegistry.BAOBAB_SEEDS);
-                entries.accept(ItemRegistry.BAOBAB_BOAT);
-                entries.accept(ItemRegistry.BAOBAB_CHEST_BOAT);
-                entries.accept(ItemRegistry.CLAM);
-                entries.accept(ItemRegistry.CLAM_BLUE);
-                entries.accept(ItemRegistry.CLAM_PINK);
-                entries.accept(ItemRegistry.CLAM_PURPLE);
-                entries.accept(ItemRegistry.PEARL);
-                entries.accept(ItemRegistry.PEARL_BLOCK);
-                entries.accept(ItemRegistry.GEYSER);
-                entries.accept(ItemRegistry.HOLLOW_OAK_LOG);
-                entries.accept(ItemRegistry.HOLLOW_SPRUCE_LOG);
-                entries.accept(ItemRegistry.HOLLOW_BIRCH_LOG);
-                entries.accept(ItemRegistry.HOLLOW_JUNGLE_LOG);
-                entries.accept(ItemRegistry.HOLLOW_ACACIA_LOG);
-                entries.accept(ItemRegistry.HOLLOW_DARK_OAK_LOG);
-                entries.accept(ItemRegistry.HOLLOW_MANGROVE_LOG);
-                entries.accept(ItemRegistry.HOLLOW_CHERRY_LOG);
-                entries.accept(ItemRegistry.HOLLOW_BAMBOO_BLOCK);
-                entries.accept(ItemRegistry.HOLLOW_CRIMSON_STEM);
-                entries.accept(ItemRegistry.HOLLOW_WARPED_STEM);
-                entries.accept(ItemRegistry.HOLLOW_BAOBAB_LOG);
-            })
-            .build()
+            BuiltInRegistries.CREATIVE_MODE_TAB,
+            NEKOMASFIXED_KEY,
+            FabricItemGroup.builder()
+                    .title(Component.translatable("itemgroup.nekomasfixed"))
+                    .icon(() -> new ItemStack(ItemRegistry.GLOW_TORCH))
+                    .displayItems((parameters, entries) -> {
+                        entries.accept(ItemRegistry.GLOW_TORCH);
+                        entries.accept(ItemRegistry.BAOBAB_LOG);
+                        entries.accept(ItemRegistry.BAOBAB_WOOD);
+                        entries.accept(ItemRegistry.STRIPPED_BAOBAB_LOG);
+                        entries.accept(ItemRegistry.STRIPPED_BAOBAB_WOOD);
+                        entries.accept(ItemRegistry.BAOBAB_PLANKS);
+                        entries.accept(ItemRegistry.BAOBAB_STAIRS);
+                        entries.accept(ItemRegistry.BAOBAB_SLAB);
+                        entries.accept(ItemRegistry.BAOBAB_FENCE);
+                        entries.accept(ItemRegistry.BAOBAB_FENCE_GATE);
+                        entries.accept(ItemRegistry.BAOBAB_DOOR);
+                        entries.accept(ItemRegistry.BAOBAB_TRAPDOOR);
+                        entries.accept(ItemRegistry.BAOBAB_PRESSURE_PLATE);
+                        entries.accept(ItemRegistry.BAOBAB_BUTTON);
+                        entries.accept(ItemRegistry.BAOBAB_SIGN);
+                        entries.accept(ItemRegistry.BAOBAB_HANGING_SIGN);
+                        entries.accept(ItemRegistry.BAOBAB_LEAVES);
+                        entries.accept(ItemRegistry.ROPE);
+                        entries.accept(ItemRegistry.BAOBAB_FRUIT);
+                        entries.accept(ItemRegistry.BAOBAB_SAPLING);
+                        entries.accept(ItemRegistry.BAOBAB_SEEDS);
+                        entries.accept(ItemRegistry.BAOBAB_BOAT);
+                        entries.accept(ItemRegistry.BAOBAB_CHEST_BOAT);
+                        entries.accept(ItemRegistry.CLAM);
+                        entries.accept(ItemRegistry.CLAM_BLUE);
+                        entries.accept(ItemRegistry.CLAM_PINK);
+                        entries.accept(ItemRegistry.CLAM_PURPLE);
+                        entries.accept(ItemRegistry.PEARL);
+                        entries.accept(ItemRegistry.PEARL_BLOCK);
+                        entries.accept(ItemRegistry.GEYSER);
+                        entries.accept(ItemRegistry.HOLLOW_OAK_LOG);
+                        entries.accept(ItemRegistry.HOLLOW_SPRUCE_LOG);
+                        entries.accept(ItemRegistry.HOLLOW_BIRCH_LOG);
+                        entries.accept(ItemRegistry.HOLLOW_JUNGLE_LOG);
+                        entries.accept(ItemRegistry.HOLLOW_ACACIA_LOG);
+                        entries.accept(ItemRegistry.HOLLOW_DARK_OAK_LOG);
+                        entries.accept(ItemRegistry.HOLLOW_MANGROVE_LOG);
+                        entries.accept(ItemRegistry.HOLLOW_CHERRY_LOG);
+                        entries.accept(ItemRegistry.HOLLOW_BAMBOO_BLOCK);
+                        entries.accept(ItemRegistry.HOLLOW_CRIMSON_STEM);
+                        entries.accept(ItemRegistry.HOLLOW_WARPED_STEM);
+                        entries.accept(ItemRegistry.HOLLOW_BAOBAB_LOG);
+                    })
+                    .build()
     );
 
     public static void registerItemGroup() {

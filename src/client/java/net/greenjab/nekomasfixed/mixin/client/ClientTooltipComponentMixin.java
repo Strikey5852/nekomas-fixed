@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public interface ClientTooltipComponentMixin {
 
     @Inject(method = "create(Lnet/minecraft/world/inventory/tooltip/TooltipComponent;)Lnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipComponent;",
-        at = @At("HEAD"), cancellable = true)
+            at = @At("HEAD"), cancellable = true)
     private static void useContainerTooltip(TooltipComponent component,
                                             CallbackInfoReturnable<ClientTooltipComponent> cir) {
         if (component instanceof ContainerTooltipData(ItemContainerContents contents)) {

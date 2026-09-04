@@ -12,14 +12,14 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 public class ModBlockEntityRendererRegistry {
 
     public static final ModelLayerLocation CLAM =
-        new ModelLayerLocation(NekomasFixed.id("clam"), "main");
+            new ModelLayerLocation(NekomasFixed.id("clam"), "main");
 
     @SuppressWarnings("deprecation")
     public static void registerBlockEntityRenderers() {
         EntityModelLayerRegistry.registerModelLayer(CLAM, ClamBlockModel::createBodyLayer);
         BlockEntityRendererRegistry.INSTANCE.register(
-            BlockEntityTypeRegistry.CLAM_BLOCK_ENTITY, ClamBlockEntityRenderer::new);
+                BlockEntityTypeRegistry.CLAM_BLOCK_ENTITY, ClamBlockEntityRenderer::new);
         BlockEntityRendererRegistry.INSTANCE.register(
-            BlockEntityTypeRegistry.HOLLOW_LOG_BLOCK_ENTITY, HollowLogBlockEntityRenderer::new);
+                BlockEntityTypeRegistry.HOLLOW_LOG_BLOCK_ENTITY, HollowLogBlockEntityRenderer::new);
     }
 }
