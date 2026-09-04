@@ -2,6 +2,7 @@ package net.greenjab.nekomasfixed.registry.block;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.greenjab.nekomasfixed.NekomasFixed;
 import net.greenjab.nekomasfixed.registry.block.entity.ClamBlockEntity;
 import net.greenjab.nekomasfixed.registry.block.enums.ClamType;
 import net.greenjab.nekomasfixed.registry.registries.BlockEntityTypeRegistry;
@@ -10,6 +11,7 @@ import net.greenjab.nekomasfixed.registry.registries.LootTableRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -42,6 +44,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
@@ -57,6 +60,8 @@ import java.util.List;
 import java.util.Map;
 
 public class ClamBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
+
+    public static final ResourceLocation CONTENTS_DYNAMIC_DROP_ID = NekomasFixed.id("clam_contents");
 
     public static final MapCodec<ClamBlock> CODEC = RecordCodecBuilder.mapCodec(
             instance -> instance.group(
@@ -229,6 +234,19 @@ public class ClamBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
             }
         }
         return super.playerWillDestroy(level, pos, state, player);
+    }
+
+    @Override
+    protected @NonNull List<ItemStack> getDrops(@NonNull BlockState state, LootParams.Builder builder) {
+        BlockEntity blockEntity = builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
+        if (blockEntity instanceof ClamBlockEntity clamBlockEntity) {
+            builder = builder.withDynamicDrop(CONTENTS_DYNAMIC_DROP_ID, lootConsumer -> {
+                for (int i = 0; i < clamBlockEntity.getContainerSize(); i++) {
+                    lootConsumer.accept(clamBlockEntity.getItem(i));
+                }
+            });
+        }
+        return super.getDrops(state, builder);
     }
 
     @Override

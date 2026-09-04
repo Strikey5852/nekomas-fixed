@@ -18,6 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.EmptyBlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
@@ -32,6 +33,8 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -39,6 +42,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jspecify.annotations.NonNull;
 
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -206,9 +210,9 @@ public class HollowLogBlock extends BaseEntityBlock implements SimpleWaterlogged
                         logBE.setStoredBlock(stack.copyWithCount(1), blockItem.getBlock().defaultBlockState());
                         stack.consume(1, player);
                         level.sendBlockUpdated(pos, state, state, 3);
-                        if (state.getValue(AXIS) == Direction.Axis.Y) {
-                            state = state.setValue(SOLID_INSIDE, true);
-                        }
+                        boolean fullBlock = blockItem.getBlock().defaultBlockState().getShape(
+                                EmptyBlockGetter.INSTANCE, BlockPos.ZERO) == Shapes.block();
+                        state = state.setValue(SOLID_INSIDE, fullBlock);
                         if (!stack.getHoverName().getString().toLowerCase().contains("glass")) {
                             state = state.setValue(WATERLOGGED, false);
                         }
@@ -253,14 +257,22 @@ public class HollowLogBlock extends BaseEntityBlock implements SimpleWaterlogged
                 // Drain the stored item so it isn't lost when the hollow log is broken.
                 net.minecraft.world.Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(),
                         logBE.getStoredStack());
-                if (logBE.getStoredBlock().is(BlockTags.FLOWER_POTS)
-                        && !logBE.getStoredBlock().is(Blocks.FLOWER_POT)) {
-                    net.minecraft.world.Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(),
-                            Items.FLOWER_POT.getDefaultInstance());
-                }
             }
             super.onRemove(state, level, pos, newState, movedByPiston);
         }
+    }
+
+    @Override
+    protected @NonNull List<ItemStack> getDrops(@NonNull BlockState state, LootParams.Builder builder) {
+        BlockEntity blockEntity = builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
+        List<ItemStack> list = super.getDrops(state, builder);
+        if (blockEntity instanceof HollowLogBlockEntity hollowLogBlockEntity) {
+            if (hollowLogBlockEntity.getStoredBlock().is(BlockTags.FLOWER_POTS)
+                    && !hollowLogBlockEntity.getStoredBlock().is(Blocks.FLOWER_POT)) {
+                list.add(Items.FLOWER_POT.getDefaultInstance());
+            }
+        }
+        return list;
     }
 
     @Override
@@ -271,7 +283,7 @@ public class HollowLogBlock extends BaseEntityBlock implements SimpleWaterlogged
     }
     // The shell is drawn by its blockstate model -- BASE_ENTITY's default render shape would
     // skip the model and render nothing (hollow logs would look see-through). The block-entity
-    // renderer is still called separatelyto draw the stored block inside.
+    // renderer is still called separately to draw the stored block inside.
 
     @Override
     public BlockEntity newBlockEntity(@NonNull BlockPos pos, @NonNull BlockState state) {
