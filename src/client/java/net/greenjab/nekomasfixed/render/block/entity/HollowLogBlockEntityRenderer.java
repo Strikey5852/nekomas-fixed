@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jspecify.annotations.NonNull;
 
 public class HollowLogBlockEntityRenderer implements BlockEntityRenderer<HollowLogBlockEntity> {
 
@@ -15,8 +16,8 @@ public class HollowLogBlockEntityRenderer implements BlockEntityRenderer<HollowL
     }
 
     @Override
-    public void render(HollowLogBlockEntity blockEntity, float partialTick, PoseStack poseStack,
-                       MultiBufferSource buffer, int packedLight, int packedOverlay) {
+    public void render(HollowLogBlockEntity blockEntity, float partialTick, @NonNull PoseStack poseStack,
+                       @NonNull MultiBufferSource buffer, int packedLight, int packedOverlay) {
         BlockState stored = blockEntity.getStoredBlock();
         if (stored.isAir()) {
             return;

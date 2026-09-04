@@ -20,12 +20,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.RenderShape;
-import net.minecraft.world.level.block.Rotation;
-import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -41,6 +36,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jspecify.annotations.NonNull;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -58,34 +54,34 @@ public class HollowLogBlock extends BaseEntityBlock implements SimpleWaterlogged
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public static final MapCodec<HollowLogBlock> CODEC = RecordCodecBuilder.mapCodec(
-        instance -> instance.group(
-            propertiesCodec()
-        ).apply(instance, HollowLogBlock::new));
+            instance -> instance.group(
+                    propertiesCodec()
+            ).apply(instance, HollowLogBlock::new));
 
     // A hollow shell tube. Each shell is four walls around the bore, which runs
     // along the log's axis and is open at both ends of that axis (matching the
     // blockstate model's hollow faces). The FILLED variant adds a solid core
     // rod down the centre of the bore.
     private static final VoxelShape Y_AXIS_SHELL = Shapes.or(
-        // closed: left (x=0), right (x=16), north (z=0), south (z=16); open: up/down
-        Block.box(0.0, 0.0, 0.0, 2.0, 16.0, 16.0),
-        Block.box(14.0, 0.0, 0.0, 16.0, 16.0, 16.0),
-        Block.box(0.0, 0.0, 0.0, 16.0, 16.0, 2.0),
-        Block.box(0.0, 0.0, 14.0, 16.0, 16.0, 16.0)
+            // closed: left (x=0), right (x=16), north (z=0), south (z=16); open: up/down
+            Block.box(0.0, 0.0, 0.0, 2.0, 16.0, 16.0),
+            Block.box(14.0, 0.0, 0.0, 16.0, 16.0, 16.0),
+            Block.box(0.0, 0.0, 0.0, 16.0, 16.0, 2.0),
+            Block.box(0.0, 0.0, 14.0, 16.0, 16.0, 16.0)
     );
     private static final VoxelShape X_AXIS_SHELL = Shapes.or(
-        // closed: bottom (y=0), top (y=16), north (z=0), south (z=16); open: east/west
-        Block.box(0.0, 0.0, 0.0, 16.0, 2.0, 16.0),
-        Block.box(0.0, 14.0, 0.0, 16.0, 16.0, 16.0),
-        Block.box(0.0, 0.0, 0.0, 16.0, 16.0, 2.0),
-        Block.box(0.0, 0.0, 14.0, 16.0, 16.0, 16.0)
+            // closed: bottom (y=0), top (y=16), north (z=0), south (z=16); open: east/west
+            Block.box(0.0, 0.0, 0.0, 16.0, 2.0, 16.0),
+            Block.box(0.0, 14.0, 0.0, 16.0, 16.0, 16.0),
+            Block.box(0.0, 0.0, 0.0, 16.0, 16.0, 2.0),
+            Block.box(0.0, 0.0, 14.0, 16.0, 16.0, 16.0)
     );
     private static final VoxelShape Z_AXIS_SHELL = Shapes.or(
-        // closed: bottom (y=0), top (y=16), left (x=0), right (x=16); open: north/south
-        Block.box(0.0, 0.0, 0.0, 16.0, 2.0, 16.0),
-        Block.box(0.0, 14.0, 0.0, 16.0, 16.0, 16.0),
-        Block.box(0.0, 0.0, 0.0, 2.0, 16.0, 16.0),
-        Block.box(14.0, 0.0, 0.0, 16.0, 16.0, 16.0)
+            // closed: bottom (y=0), top (y=16), left (x=0), right (x=16); open: north/south
+            Block.box(0.0, 0.0, 0.0, 16.0, 2.0, 16.0),
+            Block.box(0.0, 14.0, 0.0, 16.0, 16.0, 16.0),
+            Block.box(0.0, 0.0, 0.0, 2.0, 16.0, 16.0),
+            Block.box(14.0, 0.0, 0.0, 16.0, 16.0, 16.0)
     );
     private static final VoxelShape Y_AXIS_FILLED = Shapes.or(Y_AXIS_SHELL, Block.box(2.0, 0.0, 2.0, 14.0, 16.0, 14.0));
     private static final VoxelShape X_AXIS_FILLED = Shapes.or(X_AXIS_SHELL, Block.box(0.0, 2.0, 2.0, 16.0, 14.0, 14.0));
@@ -97,28 +93,9 @@ public class HollowLogBlock extends BaseEntityBlock implements SimpleWaterlogged
     public HollowLogBlock(BlockBehaviour.Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any()
-            .setValue(WATERLOGGED, false)
-            .setValue(SOLID_INSIDE, false)
-            .setValue(AXIS, Direction.Axis.Y));
-    }
-
-    @Override
-    public MapCodec<? extends HollowLogBlock> codec() {
-        return CODEC;
-    }
-
-    @Override
-    protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState,
-            LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
-        if (state.getValue(WATERLOGGED)) {
-            level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
-        }
-        return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
-    }
-
-    @Override
-    protected BlockState rotate(BlockState state, Rotation rotation) {
-        return changeRotation(state, rotation);
+                .setValue(WATERLOGGED, false)
+                .setValue(SOLID_INSIDE, false)
+                .setValue(AXIS, Direction.Axis.Y));
     }
 
     public static BlockState changeRotation(BlockState state, Rotation rotation) {
@@ -132,8 +109,43 @@ public class HollowLogBlock extends BaseEntityBlock implements SimpleWaterlogged
         };
     }
 
+    // Build the axis-mapped shell shapes so each hollow opening runs along the
+    // log's axis (the same faces the blockstate model shows as hollow).
+    private static Map<Direction.Axis, VoxelShape> buildAxisShapes(boolean filled) {
+        Map<Direction.Axis, VoxelShape> map = new EnumMap<>(Direction.Axis.class);
+        if (filled) {
+            map.put(Direction.Axis.Y, Y_AXIS_FILLED);
+            map.put(Direction.Axis.X, X_AXIS_FILLED);
+            map.put(Direction.Axis.Z, Z_AXIS_FILLED);
+        } else {
+            map.put(Direction.Axis.Y, Y_AXIS_SHELL);
+            map.put(Direction.Axis.X, X_AXIS_SHELL);
+            map.put(Direction.Axis.Z, Z_AXIS_SHELL);
+        }
+        return map;
+    }
+
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    public @NonNull MapCodec<? extends HollowLogBlock> codec() {
+        return CODEC;
+    }
+
+    @Override
+    protected @NonNull BlockState updateShape(BlockState state, @NonNull Direction direction, @NonNull BlockState neighborState,
+                                              @NonNull LevelAccessor level, @NonNull BlockPos pos, @NonNull BlockPos neighborPos) {
+        if (state.getValue(WATERLOGGED)) {
+            level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+        }
+        return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
+    }
+
+    @Override
+    protected @NonNull BlockState rotate(@NonNull BlockState state, @NonNull Rotation rotation) {
+        return changeRotation(state, rotation);
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.@NonNull Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(AXIS, WATERLOGGED, LIGHT_LEVEL, SOLID_INSIDE);
     }
@@ -142,16 +154,17 @@ public class HollowLogBlock extends BaseEntityBlock implements SimpleWaterlogged
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
         FluidState fluidState = ctx.getLevel().getFluidState(ctx.getClickedPos());
         return this.defaultBlockState()
-            .setValue(AXIS, ctx.getClickedFace().getAxis())
-            .setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER);
+                .setValue(AXIS, ctx.getClickedFace().getAxis())
+                .setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER);
     }
 
     @Override
-    protected FluidState getFluidState(BlockState state) {
+    protected @NonNull FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
-@Override
-    public boolean placeLiquid(LevelAccessor level, BlockPos pos, BlockState state, FluidState fluidState) {
+
+    @Override
+    public boolean placeLiquid(LevelAccessor level, @NonNull BlockPos pos, @NonNull BlockState state, @NonNull FluidState fluidState) {
         if (level.getBlockEntity(pos) instanceof HollowLogBlockEntity logBE) {
             if (!(logBE.getStoredBlock() == Blocks.AIR.defaultBlockState()
                     || logBE.getStoredStack().getHoverName().getString().toLowerCase().contains("glass"))) {
@@ -162,7 +175,7 @@ public class HollowLogBlock extends BaseEntityBlock implements SimpleWaterlogged
     }
 
     @Override
-    public boolean canPlaceLiquid(Player filler, BlockGetter level, BlockPos pos, BlockState state, Fluid fluid) {
+    public boolean canPlaceLiquid(Player filler, BlockGetter level, @NonNull BlockPos pos, @NonNull BlockState state, @NonNull Fluid fluid) {
         if (level.getBlockEntity(pos) instanceof HollowLogBlockEntity logBE) {
             if (!(logBE.getStoredBlock() == Blocks.AIR.defaultBlockState()
                     || logBE.getStoredStack().getHoverName().getString().toLowerCase().contains("glass"))) {
@@ -171,9 +184,10 @@ public class HollowLogBlock extends BaseEntityBlock implements SimpleWaterlogged
         }
         return SimpleWaterloggedBlock.super.canPlaceLiquid(filler, level, pos, state, fluid);
     }
-@Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
-            Player player, InteractionHand hand, BlockHitResult hit) {
+
+    @Override
+    protected @NonNull ItemInteractionResult useItemOn(@NonNull ItemStack stack, @NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos,
+                                                       @NonNull Player player, @NonNull InteractionHand hand, @NonNull BlockHitResult hit) {
         if (level instanceof ServerLevel serverLevel) {
             BlockEntity be = level.getBlockEntity(pos);
             if (be instanceof HollowLogBlockEntity logBE) {
@@ -232,17 +246,17 @@ public class HollowLogBlock extends BaseEntityBlock implements SimpleWaterlogged
     }
 
     @Override
-    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
+    protected void onRemove(BlockState state, @NonNull Level level, @NonNull BlockPos pos, BlockState newState, boolean movedByPiston) {
         if (!state.is(newState.getBlock())) {
             BlockEntity be = level.getBlockEntity(pos);
             if (be instanceof HollowLogBlockEntity logBE) {
                 // Drain the stored item so it isn't lost when the hollow log is broken.
                 net.minecraft.world.Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(),
-                    logBE.getStoredStack());
+                        logBE.getStoredStack());
                 if (logBE.getStoredBlock().is(BlockTags.FLOWER_POTS)
                         && !logBE.getStoredBlock().is(Blocks.FLOWER_POT)) {
                     net.minecraft.world.Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(),
-                        Items.FLOWER_POT.getDefaultInstance());
+                            Items.FLOWER_POT.getDefaultInstance());
                 }
             }
             super.onRemove(state, level, pos, newState, movedByPiston);
@@ -250,39 +264,23 @@ public class HollowLogBlock extends BaseEntityBlock implements SimpleWaterlogged
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    public @NonNull VoxelShape getShape(BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
         return state.getValue(SOLID_INSIDE)
-            ? SHAPES_BY_AXIS_FILLED.get(state.getValue(AXIS))
-            : SHAPES_BY_AXIS.get(state.getValue(AXIS));
-    }
-
-    @Override
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new HollowLogBlockEntity(pos, state);
+                ? SHAPES_BY_AXIS_FILLED.get(state.getValue(AXIS))
+                : SHAPES_BY_AXIS.get(state.getValue(AXIS));
     }
     // The shell is drawn by its blockstate model -- BASE_ENTITY's default render shape would
     // skip the model and render nothing (hollow logs would look see-through). The block-entity
     // renderer is still called separatelyto draw the stored block inside.
 
     @Override
-        public RenderShape getRenderShape(BlockState state) {
-        return RenderShape.MODEL;
-
+    public BlockEntity newBlockEntity(@NonNull BlockPos pos, @NonNull BlockState state) {
+        return new HollowLogBlockEntity(pos, state);
     }
 
-    // Build the axis-mapped shell shapes so each hollow opening runs along the
-    // log's axis (the same faces the blockstate model shows as hollow).
-    private static Map<Direction.Axis, VoxelShape> buildAxisShapes(boolean filled) {
-        Map<Direction.Axis, VoxelShape> map = new EnumMap<>(Direction.Axis.class);
-        if (filled) {
-            map.put(Direction.Axis.Y, Y_AXIS_FILLED);
-            map.put(Direction.Axis.X, X_AXIS_FILLED);
-            map.put(Direction.Axis.Z, Z_AXIS_FILLED);
-        } else {
-            map.put(Direction.Axis.Y, Y_AXIS_SHELL);
-            map.put(Direction.Axis.X, X_AXIS_SHELL);
-            map.put(Direction.Axis.Z, Z_AXIS_SHELL);
-        }
-        return map;
+    @Override
+    public @NonNull RenderShape getRenderShape(@NonNull BlockState state) {
+        return RenderShape.MODEL;
+
     }
 }

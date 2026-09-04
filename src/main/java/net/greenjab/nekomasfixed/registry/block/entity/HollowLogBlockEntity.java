@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.Shapes;
+import org.jspecify.annotations.NonNull;
 
 public class HollowLogBlockEntity extends BlockEntity implements Container {
     private BlockState storedBlock = Blocks.AIR.defaultBlockState();
@@ -29,15 +30,27 @@ public class HollowLogBlockEntity extends BlockEntity implements Container {
         super(BlockEntityTypeRegistry.HOLLOW_LOG_BLOCK_ENTITY, pos, state);
     }
 
+    public static boolean canStoreBlock(HollowLogBlockEntity logBE, BlockItem blockItem, boolean vertical) {
+        BlockState blockItemState = blockItem.getBlock().defaultBlockState();
+        if (!logBE.getStoredBlock().isAir()) return false;
+        if (blockItem.getBlock().defaultBlockState().is(BlockTags.SHULKER_BOXES)) return false;
+        if (blockItemState.getShape(EmptyBlockGetter.INSTANCE, BlockPos.ZERO) == Shapes.block()) return true;
+        if (!vertical) return blockItemState.is(BlockTags.SMALL_FLOWERS) || blockItemState.is(Blocks.FLOWER_POT) ||
+                blockItemState.is(Blocks.TORCH) || blockItemState.is(Blocks.SOUL_TORCH) ||
+                blockItemState.is(Blocks.LANTERN) || blockItemState.is(Blocks.SOUL_LANTERN);
+        return false;
+    }
+
     public BlockState getStoredBlock() {
         return this.storedBlock;
     }
+
     public ItemStack getStoredStack() {
         return getHeldStack();
     }
 
     @Override
-    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+    public @NonNull CompoundTag getUpdateTag(HolderLookup.@NonNull Provider registries) {
         return saveWithoutMetadata(registries);
     }
 
@@ -52,25 +65,27 @@ public class HollowLogBlockEntity extends BlockEntity implements Container {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+    protected void saveAdditional(@NonNull CompoundTag tag, HolderLookup.@NonNull Provider registries) {
         super.saveAdditional(tag, registries);
 
-        tag.put("StoredBlock",
-            BlockState.CODEC.encodeStart(NbtOps.INSTANCE, this.storedBlock).result().orElse(null));
+        BlockState.CODEC.encodeStart(NbtOps.INSTANCE, this.storedBlock)
+            .result()
+            .ifPresent(value -> tag.put("StoredBlock", value));
         ContainerHelper.saveAllItems(tag, this.storedStack, registries);
     }
 
     @Override
-    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+    protected void loadAdditional(@NonNull CompoundTag tag, HolderLookup.@NonNull Provider registries) {
         super.loadAdditional(tag, registries);
 
         this.storedBlock = tag.contains("StoredBlock")
-            ? BlockState.CODEC.parse(NbtOps.INSTANCE, tag.get("StoredBlock"))
+                ? BlockState.CODEC.parse(NbtOps.INSTANCE, tag.get("StoredBlock"))
                 .result().orElse(Blocks.AIR.defaultBlockState())
-            : Blocks.AIR.defaultBlockState();
+                : Blocks.AIR.defaultBlockState();
         this.storedStack = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ContainerHelper.loadAllItems(tag, this.storedStack, registries);
     }
+
     @Override
     public int getContainerSize() {
         return 1;
@@ -88,12 +103,12 @@ public class HollowLogBlockEntity extends BlockEntity implements Container {
     }
 
     @Override
-    public ItemStack getItem(int slot) {
+    public @NonNull ItemStack getItem(int slot) {
         return this.getHeldStacks().get(slot);
     }
 
     @Override
-    public ItemStack removeItem(int slot, int amount) {
+    public @NonNull ItemStack removeItem(int slot, int amount) {
         ItemStack itemStack = ContainerHelper.removeItem(this.getHeldStacks(), slot, amount);
         if (!itemStack.isEmpty()) {
             this.setChanged();
@@ -103,19 +118,19 @@ public class HollowLogBlockEntity extends BlockEntity implements Container {
     }
 
     @Override
-    public ItemStack removeItemNoUpdate(int slot) {
+    public @NonNull ItemStack removeItemNoUpdate(int slot) {
         return ContainerHelper.takeItem(this.getHeldStacks(), slot);
     }
 
     @Override
-    public void setItem(int slot, ItemStack stack) {
+    public void setItem(int slot, @NonNull ItemStack stack) {
         this.getHeldStacks().set(slot, stack);
         stack.limitSize(this.getMaxStackSize(stack));
         this.setChanged();
     }
 
     @Override
-    public boolean stillValid(Player player) {
+    public boolean stillValid(@NonNull Player player) {
         return Container.stillValidBlockEntity(this, player);
     }
 
@@ -123,29 +138,21 @@ public class HollowLogBlockEntity extends BlockEntity implements Container {
     public void clearContent() {
         this.getHeldStacks().clear();
     }
+
     public NonNullList<ItemStack> getHeldStacks() {
         return this.storedStack;
     }
-    public void setHeldStack(ItemStack itemStack) {
-        this.storedStack.set(0, itemStack);
-    }
+
     public ItemStack getHeldStack() {
         return this.storedStack.getFirst();
+    }
+
+    public void setHeldStack(ItemStack itemStack) {
+        this.storedStack.set(0, itemStack);
     }
 
     @Override
     public Packet<ClientGamePacketListener> getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
-    }
-
-    public static boolean canStoreBlock(HollowLogBlockEntity logBE, BlockItem blockItem, boolean vertical){
-        BlockState blockItemState = blockItem.getBlock().defaultBlockState();
-        if (!logBE.getStoredBlock().isAir()) return false;
-        if (blockItem.getBlock().defaultBlockState().is(BlockTags.SHULKER_BOXES)) return false;
-        if (blockItemState.getShape(EmptyBlockGetter.INSTANCE, BlockPos.ZERO)==Shapes.block()) return true;
-        if (!vertical) return blockItemState.is(BlockTags.SMALL_FLOWERS) || blockItemState.is(Blocks.FLOWER_POT)||
-                blockItemState.is(Blocks.TORCH) || blockItemState.is(Blocks.SOUL_TORCH) ||
-                blockItemState.is(Blocks.LANTERN) || blockItemState.is(Blocks.SOUL_LANTERN);
-        return false;
     }
 }

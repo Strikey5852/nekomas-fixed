@@ -48,6 +48,14 @@ public class BlockRegistry {
             .sound(SoundType.WOOD)
             .pushReaction(PushReaction.DESTROY)
     );
+    public static final Block GEYSER = register(
+        "geyser",
+        GeyserBlock::new,
+        BlockBehaviour.Properties.of()
+            .randomTicks()
+            .strength(0.5f, 0.5f)
+            .lightLevel(state -> 15)
+    );
     public static final Block BAOBAB_LOG = register(
         "baobab_log",
         RotatedPillarBlock::new,
