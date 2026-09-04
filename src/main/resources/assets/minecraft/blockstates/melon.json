@@ -1,0 +1,68 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "nekomasfixed:block/melon/1"
+      },
+      "when": {
+        "corner_1": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "nekomasfixed:block/melon/2"
+      },
+      "when": {
+        "corner_2": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "nekomasfixed:block/melon/3"
+      },
+      "when": {
+        "corner_3": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "nekomasfixed:block/melon/4"
+      },
+      "when": {
+        "corner_4": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "nekomasfixed:block/melon/5"
+      },
+      "when": {
+        "corner_5": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "nekomasfixed:block/melon/6"
+      },
+      "when": {
+        "corner_6": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "nekomasfixed:block/melon/7"
+      },
+      "when": {
+        "corner_7": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "nekomasfixed:block/melon/8"
+      },
+      "when": {
+        "corner_8": "true"
+      }
+    }
+  ]
+}

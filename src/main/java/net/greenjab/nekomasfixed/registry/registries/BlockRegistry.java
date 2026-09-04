@@ -56,6 +56,15 @@ public class BlockRegistry {
                     .strength(0.5f, 0.5f)
                     .lightLevel(state -> 15)
     );
+    public static final Block GLISTERING_MELON = register(
+            "glistering_melon",
+            settings -> new MelonBlock(true, settings),
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_PURPLE)
+                    .strength(1F)
+                    .sound(SoundType.WOOD)
+                    .pushReaction(PushReaction.DESTROY)
+    );
     public static final Block BAOBAB_LOG = register(
             "baobab_log",
             RotatedPillarBlock::new,

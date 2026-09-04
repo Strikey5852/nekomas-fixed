@@ -71,6 +71,7 @@ public class ItemRegistry {
             new Item.Properties());
     public static final Item PEARL_BLOCK = register(BlockRegistry.PEARL_BLOCK);
     public static final Item GEYSER = register(BlockRegistry.GEYSER);
+    public static final Item GLISTERING_MELON = register(BlockRegistry.GLISTERING_MELON);
     public static final Item CLAM = register(BlockRegistry.CLAM,
             new Item.Properties().stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
     public static final Item CLAM_BLUE = register(BlockRegistry.CLAM_BLUE,

@@ -5,7 +5,9 @@
   "mixins": [
     "BlockEntityTypeAccessor",
     "ItemStackMixin",
-    "accessor.FlowerPotBlockAccessor"
+    "accessor.FlowerPotBlockAccessor",
+    "accessor.BlockBehaviourAccessor",
+    "BlocksMixin"
   ],
   "injectors": {
     "defaultRequire": 1
