@@ -2,6 +2,7 @@ package net.greenjab.nekomasfixed.registry.registries;
 
 import net.greenjab.nekomasfixed.NekomasFixed;
 import net.greenjab.nekomasfixed.registry.block.entity.ClamBlockEntity;
+import net.greenjab.nekomasfixed.registry.block.entity.EndermanHeadBlockEntity;
 import net.greenjab.nekomasfixed.registry.block.entity.HollowLogBlockEntity;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -31,6 +32,14 @@ public class BlockEntityTypeRegistry {
                                     BlockRegistry.HOLLOW_BAMBOO_BLOCK,
                                     BlockRegistry.HOLLOW_CRIMSON_STEM, BlockRegistry.HOLLOW_WARPED_STEM,
                                     BlockRegistry.HOLLOW_BAOBAB_LOG),
+                            null));
+
+    @SuppressWarnings("DataFlowIssue")
+    public static final BlockEntityType<EndermanHeadBlockEntity> ENDERMAN_HEAD_BLOCK_ENTITY =
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, NekomasFixed.id("enderman_head"),
+                    new BlockEntityType<>(
+                            EndermanHeadBlockEntity::new,
+                            Set.of(BlockRegistry.ENDERMAN_HEAD, BlockRegistry.WALL_ENDERMAN_HEAD),
                             null));
 
     public static void registerBlockEntityTypes() {

@@ -56,6 +56,25 @@ public class BlockRegistry {
                     .strength(0.5f, 0.5f)
                     .lightLevel(state -> 15)
     );
+    public static final Block ENDERMAN_HEAD = register(
+            "enderman_head",
+            FloorEndermanHeadHead::new,
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_BLACK)
+                    .strength(1F)
+                    .sound(SoundType.METAL)
+                    .pushReaction(PushReaction.DESTROY)
+                    .instrument(NoteBlockInstrument.CUSTOM_HEAD)
+    );
+    public static final Block WALL_ENDERMAN_HEAD = register(
+            "wall_enderman_head",
+            WallEndermanHeadHead::new,
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_BLACK)
+                    .strength(1F)
+                    .sound(SoundType.METAL)
+                    .pushReaction(PushReaction.DESTROY)
+    );
     public static final Block GLISTERING_MELON = register(
             "glistering_melon",
             settings -> new MelonBlock(true, settings),

@@ -25,6 +25,10 @@ public class ItemRegistry {
             BlockRegistry.GLOW_TORCH,
             (block, settings) -> new StandingAndWallBlockItem(block, BlockRegistry.GLOW_WALL_TORCH, settings, Direction.DOWN),
             new Item.Properties());
+    public static final Item ENDERMAN_HEAD = register(
+            BlockRegistry.ENDERMAN_HEAD,
+            (block, settings) -> new StandingAndWallBlockItem(block, BlockRegistry.WALL_ENDERMAN_HEAD, settings, Direction.DOWN),
+            new Item.Properties());
     public static final Item BAOBAB_LOG = register(BlockRegistry.BAOBAB_LOG);
     public static final Item BAOBAB_WOOD = register(BlockRegistry.BAOBAB_WOOD);
     public static final Item STRIPPED_BAOBAB_LOG = register(BlockRegistry.STRIPPED_BAOBAB_LOG);

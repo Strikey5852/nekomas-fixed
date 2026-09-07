@@ -5,6 +5,7 @@
   "mixins": [
     "BlockEntityTypeAccessor",
     "ItemStackMixin",
+    "NoteBlockMixin",
     "accessor.FlowerPotBlockAccessor",
     "accessor.BlockBehaviourAccessor",
     "BlocksMixin"

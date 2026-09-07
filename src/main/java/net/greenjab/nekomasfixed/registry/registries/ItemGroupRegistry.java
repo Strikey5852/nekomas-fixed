@@ -53,6 +53,7 @@ public class ItemGroupRegistry {
                         entries.accept(ItemRegistry.PEARL_BLOCK);
                         entries.accept(ItemRegistry.GEYSER);
                         entries.accept(ItemRegistry.GLISTERING_MELON);
+                        entries.accept(ItemRegistry.ENDERMAN_HEAD);
                         entries.accept(ItemRegistry.HOLLOW_OAK_LOG);
                         entries.accept(ItemRegistry.HOLLOW_SPRUCE_LOG);
                         entries.accept(ItemRegistry.HOLLOW_BIRCH_LOG);
