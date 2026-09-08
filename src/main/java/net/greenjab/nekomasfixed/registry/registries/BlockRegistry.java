@@ -75,6 +75,46 @@ public class BlockRegistry {
                     .sound(SoundType.METAL)
                     .pushReaction(PushReaction.DESTROY)
     );
+    public static final Block SWEETBERRY_CAKE = register(
+            "sweetberry_cake",
+            StackedCakeBlock::new,
+            cakeProperties()
+    );
+    public static final Block PAN_CAKE = register(
+            "pan_cake",
+            StackedCakeBlock::new,
+            cakeProperties()
+    );
+    public static final Block GLOWBERRY_CAKE = register(
+            "glowberry_cake",
+            StackedCakeBlock::new,
+            cakeProperties()
+    );
+    public static final Block APPLE_CAKE = register(
+            "apple_cake",
+            StackedCakeBlock::new,
+            cakeProperties()
+    );
+    public static final Block VANILLA_CAKE = register(
+            "vanilla_cake",
+            StackedCakeBlock::new,
+            cakeProperties()
+    );
+    public static final Block COOKIE_CAKE = register(
+            "cookie_cake",
+            StackedCakeBlock::new,
+            cakeProperties()
+    );
+    public static final Block CHOCOLATE_CAKE = register(
+            "chocolate_cake",
+            StackedCakeBlock::new,
+            cakeProperties()
+    );
+    public static final Block BEETROOT_CAKE = register(
+            "beetroot_cake",
+            StackedCakeBlock::new,
+            cakeProperties()
+    );
     public static final Block GOAT_HORN = register(
             "horn",
             GoatHornBlock::new,
@@ -301,6 +341,13 @@ public class BlockRegistry {
                 .instrument(NoteBlockInstrument.BASS)
                 .sound(SoundType.WOOD)
                 .ignitedByLava();
+    }
+
+    private static BlockBehaviour.Properties cakeProperties() {
+        return BlockBehaviour.Properties.of()
+                .strength(0.5F)
+                .sound(SoundType.WOOL)
+                .lightLevel(state -> state.getValue(StackedCakeBlock.LIT) ? 3 : 0);
     }
 
     private static Block register(String id, BlockBehaviour.Properties settings) {

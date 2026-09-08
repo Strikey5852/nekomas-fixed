@@ -53,6 +53,14 @@ public class ItemGroupRegistry {
                         entries.accept(ItemRegistry.PEARL_BLOCK);
                         entries.accept(ItemRegistry.GEYSER);
                         entries.accept(ItemRegistry.GLISTERING_MELON);
+                        entries.accept(ItemRegistry.SWEETBERRY_CAKE);
+                        entries.accept(ItemRegistry.PAN_CAKE);
+                        entries.accept(ItemRegistry.GLOWBERRY_CAKE);
+                        entries.accept(ItemRegistry.APPLE_CAKE);
+                        entries.accept(ItemRegistry.VANILLA_CAKE);
+                        entries.accept(ItemRegistry.COOKIE_CAKE);
+                        entries.accept(ItemRegistry.CHOCOLATE_CAKE);
+                        entries.accept(ItemRegistry.BEETROOT_CAKE);
                         entries.accept(ItemRegistry.ENDERMAN_HEAD);
                         entries.accept(ItemRegistry.HOLLOW_OAK_LOG);
                         entries.accept(ItemRegistry.HOLLOW_SPRUCE_LOG);

@@ -4,6 +4,7 @@ import net.greenjab.nekomasfixed.NekomasFixed;
 import net.greenjab.nekomasfixed.registry.block.entity.ClamBlockEntity;
 import net.greenjab.nekomasfixed.registry.block.entity.EndermanHeadBlockEntity;
 import net.greenjab.nekomasfixed.registry.block.entity.HollowLogBlockEntity;
+import net.greenjab.nekomasfixed.registry.block.entity.StackedCakeBlockEntity;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -40,6 +41,16 @@ public class BlockEntityTypeRegistry {
                     new BlockEntityType<>(
                             EndermanHeadBlockEntity::new,
                             Set.of(BlockRegistry.ENDERMAN_HEAD, BlockRegistry.WALL_ENDERMAN_HEAD),
+                            null));
+
+    @SuppressWarnings("DataFlowIssue")
+    public static final BlockEntityType<StackedCakeBlockEntity> STACKED_CAKE_BLOCK_ENTITY =
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, NekomasFixed.id("stacked_cake"),
+                    new BlockEntityType<>(
+                            StackedCakeBlockEntity::new,
+                            Set.of(BlockRegistry.SWEETBERRY_CAKE, BlockRegistry.PAN_CAKE, BlockRegistry.GLOWBERRY_CAKE,
+                                    BlockRegistry.APPLE_CAKE, BlockRegistry.VANILLA_CAKE, BlockRegistry.COOKIE_CAKE,
+                                    BlockRegistry.CHOCOLATE_CAKE, BlockRegistry.BEETROOT_CAKE),
                             null));
 
     public static void registerBlockEntityTypes() {

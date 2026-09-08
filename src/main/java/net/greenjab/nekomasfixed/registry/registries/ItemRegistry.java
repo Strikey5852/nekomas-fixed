@@ -76,6 +76,14 @@ public class ItemRegistry {
     public static final Item PEARL_BLOCK = register(BlockRegistry.PEARL_BLOCK);
     public static final Item GEYSER = register(BlockRegistry.GEYSER);
     public static final Item GLISTERING_MELON = register(BlockRegistry.GLISTERING_MELON);
+    public static final Item SWEETBERRY_CAKE = register(BlockRegistry.SWEETBERRY_CAKE, new Item.Properties().stacksTo(1));
+    public static final Item PAN_CAKE = register(BlockRegistry.PAN_CAKE, new Item.Properties().stacksTo(1));
+    public static final Item GLOWBERRY_CAKE = register(BlockRegistry.GLOWBERRY_CAKE, new Item.Properties().stacksTo(1));
+    public static final Item APPLE_CAKE = register(BlockRegistry.APPLE_CAKE, new Item.Properties().stacksTo(1));
+    public static final Item VANILLA_CAKE = register(BlockRegistry.VANILLA_CAKE, new Item.Properties().stacksTo(1));
+    public static final Item COOKIE_CAKE = register(BlockRegistry.COOKIE_CAKE, new Item.Properties().stacksTo(1));
+    public static final Item CHOCOLATE_CAKE = register(BlockRegistry.CHOCOLATE_CAKE, new Item.Properties().stacksTo(1));
+    public static final Item BEETROOT_CAKE = register(BlockRegistry.BEETROOT_CAKE, new Item.Properties().stacksTo(1));
     public static final Item CLAM = register(BlockRegistry.CLAM,
             new Item.Properties().stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
     public static final Item CLAM_BLUE = register(BlockRegistry.CLAM_BLUE,

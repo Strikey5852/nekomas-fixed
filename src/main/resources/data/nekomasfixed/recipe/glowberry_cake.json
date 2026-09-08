@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": { "item": "minecraft:milk_bucket" },
+    "B": { "item": "minecraft:sugar" },
+    "C": { "item": "minecraft:wheat" },
+    "D": { "item": "minecraft:glow_berries" },
+    "E": { "item": "minecraft:egg" }
+  },
+  "pattern": [
+    "ADA",
+    "BEB",
+    "CCC"
+  ],
+  "result": { "count": 1, "id": "nekomasfixed:glowberry_cake" }
+}
