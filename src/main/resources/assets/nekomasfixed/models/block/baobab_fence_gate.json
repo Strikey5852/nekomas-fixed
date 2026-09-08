@@ -1,6 +1,5 @@
 {
-  "parent": "minecraft:block/template_fence_gate",
-  "textures": {
-    "texture": "nekomasfixed:block/baobab_planks"
-  }
+  "parent": "minecraft:block/template_fence_gate", "textures": {
+  "texture": "nekomasfixed:block/baobab_planks"
+}
 }

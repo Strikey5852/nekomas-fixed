@@ -1,6 +1,5 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "nekomasfixed:block/baobab_sapling"
-  }
+  "parent": "minecraft:item/generated", "textures": {
+  "layer0": "nekomasfixed:block/baobab_sapling"
+}
 }

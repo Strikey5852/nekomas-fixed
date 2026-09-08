@@ -1,12 +1,9 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "building",
-  "ingredients": [
-    {
-      "item": "nekomasfixed:hollow_jungle_log"
-    }
-  ],
-  "result": {
-    "id": "minecraft:jungle_planks"
+  "type": "minecraft:crafting_shapeless", "category": "building", "ingredients": [
+  {
+    "item": "nekomasfixed:hollow_jungle_log"
   }
+], "result": {
+  "id": "minecraft:jungle_planks"
+}
 }

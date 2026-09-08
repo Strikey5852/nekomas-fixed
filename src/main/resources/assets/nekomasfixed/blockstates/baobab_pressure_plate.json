@@ -2,8 +2,7 @@
   "variants": {
     "powered=false": {
       "model": "nekomasfixed:block/baobab_pressure_plate"
-    },
-    "powered=true": {
+    }, "powered=true": {
       "model": "nekomasfixed:block/baobab_pressure_plate_down"
     }
   }

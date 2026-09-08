@@ -21,11 +21,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.AbstractCandleBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CandleBlock;
-import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -51,6 +47,25 @@ public class StackedCakeBlock extends AbstractCandleBlock implements EntityBlock
     public static final MapCodec<StackedCakeBlock> CODEC = simpleCodec(StackedCakeBlock::new);
     private static final Map<Integer, VoxelShape[]> SHAPES_BY_BITES_AND_LAYER = new HashMap<>();
     private static final Map<Integer, VoxelShape> CANDLE_SHAPES = new HashMap<>();
+
+    static {
+        for (int height = 0; height < 3; height++) {
+            double scale = 1 - 0.2 * height;
+            double yMinT = 0;
+            if (height == 1) yMinT = 8;
+            if (height == 2) yMinT = 8 + 8 * (1 - 0.2);
+            final double yMin = yMinT;
+            final double yMax = yMin + 8 * scale;
+            VoxelShape[] shapes = new VoxelShape[7];
+            for (int slice = 0; slice < 7; slice++) {
+                shapes[slice] = Block.box(
+                        8 + (7 - (slice + 1) * 2) * scale, yMin, 8 - 7 * scale,
+                        8 + 7 * scale, yMax, 8 + 7 * scale);
+            }
+            SHAPES_BY_BITES_AND_LAYER.put(height, shapes);
+            CANDLE_SHAPES.put(height, Block.box(7, yMax, 7, 9, yMax + 6, 9));
+        }
+    }
 
     public StackedCakeBlock(Properties settings) {
         super(settings);
@@ -83,24 +98,6 @@ public class StackedCakeBlock extends AbstractCandleBlock implements EntityBlock
         return CODEC;
     }
 
-    static {
-        for (int height = 0; height < 3; height++) {
-            double scale = 1 - 0.2 * height;
-            double yMinT = 0;
-            if (height == 1) yMinT = 8;
-            if (height == 2) yMinT = 8 + 8 * (1 - 0.2);
-            final double yMin = yMinT;
-            final double yMax = yMin + 8 * scale;
-            VoxelShape[] shapes = new VoxelShape[7];
-            for (int slice = 0; slice < 7; slice++) {
-                shapes[slice] = Block.box(
-                        8 + (7 - (slice + 1) * 2) * scale, yMin, 8 - 7 * scale,
-                        8 + 7 * scale, yMax, 8 + 7 * scale);
-            }
-            SHAPES_BY_BITES_AND_LAYER.put(height, shapes);
-            CANDLE_SHAPES.put(height, Block.box(7, yMax, 7, 9, yMax + 6, 9));
-        }
-    }
     protected ItemInteractionResult tryEat(Level level, BlockPos pos, BlockState state, Player player) {
         if (!player.canEat(false)) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
@@ -149,12 +146,16 @@ public class StackedCakeBlock extends AbstractCandleBlock implements EntityBlock
         int slice = (state.getValue(SLICES) - 1) % 7;
         if (state.getValue(CANDLE)) {
             if (height == 0) return Shapes.or(SHAPES_BY_BITES_AND_LAYER.get(0)[slice], CANDLE_SHAPES.get(0));
-            else if (height == 1) return Shapes.or(SHAPES_BY_BITES_AND_LAYER.get(0)[6], SHAPES_BY_BITES_AND_LAYER.get(1)[slice], CANDLE_SHAPES.get(1));
-            else if (height == 2) return Shapes.or(SHAPES_BY_BITES_AND_LAYER.get(0)[6], SHAPES_BY_BITES_AND_LAYER.get(1)[6], SHAPES_BY_BITES_AND_LAYER.get(2)[slice], CANDLE_SHAPES.get(2));
+            else if (height == 1)
+                return Shapes.or(SHAPES_BY_BITES_AND_LAYER.get(0)[6], SHAPES_BY_BITES_AND_LAYER.get(1)[slice], CANDLE_SHAPES.get(1));
+            else if (height == 2)
+                return Shapes.or(SHAPES_BY_BITES_AND_LAYER.get(0)[6], SHAPES_BY_BITES_AND_LAYER.get(1)[6], SHAPES_BY_BITES_AND_LAYER.get(2)[slice], CANDLE_SHAPES.get(2));
         } else {
             if (height == 0) return SHAPES_BY_BITES_AND_LAYER.get(0)[slice];
-            else if (height == 1) return Shapes.or(SHAPES_BY_BITES_AND_LAYER.get(0)[6], SHAPES_BY_BITES_AND_LAYER.get(1)[slice]);
-            else if (height == 2) return Shapes.or(SHAPES_BY_BITES_AND_LAYER.get(0)[6], SHAPES_BY_BITES_AND_LAYER.get(1)[6], SHAPES_BY_BITES_AND_LAYER.get(2)[slice]);
+            else if (height == 1)
+                return Shapes.or(SHAPES_BY_BITES_AND_LAYER.get(0)[6], SHAPES_BY_BITES_AND_LAYER.get(1)[slice]);
+            else if (height == 2)
+                return Shapes.or(SHAPES_BY_BITES_AND_LAYER.get(0)[6], SHAPES_BY_BITES_AND_LAYER.get(1)[6], SHAPES_BY_BITES_AND_LAYER.get(2)[slice]);
         }
         return SHAPES_BY_BITES_AND_LAYER.get(0)[slice];
     }

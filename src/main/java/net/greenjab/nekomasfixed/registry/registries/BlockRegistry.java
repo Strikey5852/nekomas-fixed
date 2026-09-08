@@ -291,6 +291,23 @@ public class BlockRegistry {
                     .strength(0.5F)
                     .sound(SoundType.STONE)
     );
+    public static final Block CLEAR_FROGLIGHT = register("clear_froglight", RotatedPillarBlock::new, froglightProperties(MapColor.SNOW, 15));
+    public static final Block CLOUDY_FROGLIGHT = register("cloudy_froglight", RotatedPillarBlock::new, froglightProperties(MapColor.COLOR_LIGHT_GRAY, 15));
+    public static final Block CASCADING_FROGLIGHT = register("cascading_froglight", RotatedPillarBlock::new, froglightProperties(MapColor.COLOR_GRAY, 15));
+    public static final Block CLOUDBURST_FROGLIGHT = register("cloudburst_froglight", RotatedPillarBlock::new, froglightProperties(MapColor.COLOR_BLACK, 10));
+    public static final Block CHAMOISEE_FROGLIGHT = register("chamoisee_froglight", RotatedPillarBlock::new, froglightProperties(MapColor.COLOR_BROWN, 15));
+    public static final Block SANGUINE_FROGLIGHT = register("sanguine_froglight", RotatedPillarBlock::new, froglightProperties(MapColor.NETHER, 15));
+    public static final Block VERMILION_FROGLIGHT = register("vermilion_froglight", RotatedPillarBlock::new, froglightProperties(MapColor.COLOR_RED, 15));
+    public static final Block MANDARIN_FROGLIGHT = register("mandarin_froglight", RotatedPillarBlock::new, froglightProperties(MapColor.COLOR_ORANGE, 15));
+    public static final Block LEMON_FROGLIGHT = register("lemon_froglight", RotatedPillarBlock::new, froglightProperties(MapColor.COLOR_YELLOW, 15));
+    public static final Block KIWI_FROGLIGHT = register("kiwi_froglight", RotatedPillarBlock::new, froglightProperties(MapColor.COLOR_LIGHT_GREEN, 15));
+    public static final Block SEAFOAM_FROGLIGHT = register("seafoam_froglight", RotatedPillarBlock::new, froglightProperties(MapColor.WARPED_NYLIUM, 15));
+    public static final Block TEAL_FROGLIGHT = register("teal_froglight", RotatedPillarBlock::new, froglightProperties(MapColor.COLOR_CYAN, 15));
+    public static final Block CERULEAN_FROGLIGHT = register("cerulean_froglight", RotatedPillarBlock::new, froglightProperties(MapColor.COLOR_LIGHT_BLUE, 15));
+    public static final Block NAVY_FROGLIGHT = register("navy_froglight", RotatedPillarBlock::new, froglightProperties(MapColor.COLOR_BLUE, 15));
+    public static final Block LAVENDER_FROGLIGHT = register("lavender_froglight", RotatedPillarBlock::new, froglightProperties(MapColor.WARPED_HYPHAE, 15));
+    public static final Block THULIAN_FROGLIGHT = register("thulian_froglight", RotatedPillarBlock::new, froglightProperties(MapColor.COLOR_MAGENTA, 15));
+    public static final Block SAKURA_FROGLIGHT = register("sakura_froglight", RotatedPillarBlock::new, froglightProperties(MapColor.COLOR_PINK, 15));
     public static final Block HOLLOW_OAK_LOG = register("hollow_oak_log", HollowLogBlock::new,
             hollowLogProperties(Blocks.OAK_LOG));
     public static final Block HOLLOW_SPRUCE_LOG = register("hollow_spruce_log", HollowLogBlock::new,
@@ -348,6 +365,14 @@ public class BlockRegistry {
                 .strength(0.5F)
                 .sound(SoundType.WOOL)
                 .lightLevel(state -> state.getValue(StackedCakeBlock.LIT) ? 3 : 0);
+    }
+
+    private static BlockBehaviour.Properties froglightProperties(MapColor colour, int lightLevel) {
+        return BlockBehaviour.Properties.of()
+                .mapColor(colour)
+                .strength(0.3F)
+                .lightLevel(state -> lightLevel)
+                .sound(SoundType.FROGLIGHT);
     }
 
     private static Block register(String id, BlockBehaviour.Properties settings) {

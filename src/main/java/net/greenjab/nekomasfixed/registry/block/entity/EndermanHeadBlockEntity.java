@@ -32,16 +32,6 @@ public class EndermanHeadBlockEntity extends BlockEntity {
         super(blockEntityType, blockPos, blockState);
     }
 
-    @Override
-    protected void loadAdditional(@NonNull CompoundTag tag, HolderLookup.@NonNull Provider registries) {
-        super.loadAdditional(tag, registries);
-    }
-
-    @Override
-    protected void saveAdditional(@NonNull CompoundTag tag, HolderLookup.@NonNull Provider registries) {
-        super.saveAdditional(tag, registries);
-    }
-
     public static void tick(Level level, BlockPos pos, BlockState state, EndermanHeadBlockEntity blockEntity) {
         int power = state.getValue(AbstractEndermanHeadBlock.POWER);
         int newPower = 0;
@@ -87,5 +77,15 @@ public class EndermanHeadBlockEntity extends BlockEntity {
         Vec3 eyePos = player.getEyePosition();
         Vec3 lookTarget = eyePos.add(player.calculateViewVector(player.getXRot(), player.getYRot()).scale(45));
         return level.clip(new ClipContext(eyePos, lookTarget, ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, player));
+    }
+
+    @Override
+    protected void loadAdditional(@NonNull CompoundTag tag, HolderLookup.@NonNull Provider registries) {
+        super.loadAdditional(tag, registries);
+    }
+
+    @Override
+    protected void saveAdditional(@NonNull CompoundTag tag, HolderLookup.@NonNull Provider registries) {
+        super.saveAdditional(tag, registries);
     }
 }

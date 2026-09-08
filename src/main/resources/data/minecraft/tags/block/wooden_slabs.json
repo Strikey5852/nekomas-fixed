@@ -1,6 +1,5 @@
 {
-  "replace": false,
-  "values": [
-    "nekomasfixed:baobab_slab"
-  ]
+  "replace": false, "values": [
+  "nekomasfixed:baobab_slab"
+]
 }

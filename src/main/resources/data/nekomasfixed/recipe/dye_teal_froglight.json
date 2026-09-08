@@ -1,0 +1,9 @@
+{
+  "type": "nekomasfixed:recolour", "category": "misc", "group": "froglight", "input": {
+  "tag": "nekomasfixed:froglights"
+}, "material": {
+  "item": "minecraft:cyan_dye"
+}, "result": {
+  "id": "nekomasfixed:teal_froglight"
+}
+}

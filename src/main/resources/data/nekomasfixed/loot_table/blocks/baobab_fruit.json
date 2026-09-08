@@ -1,69 +1,46 @@
 {
-  "type": "minecraft:block",
-  "functions": [
+  "type": "minecraft:block", "functions": [
+  {
+    "function": "minecraft:explosion_decay"
+  }
+], "pools": [
+  {
+    "bonus_rolls": 0, "entries": [
     {
-      "function": "minecraft:explosion_decay"
+      "type": "minecraft:alternatives", "children": [
+      {
+        "type": "minecraft:item", "conditions": [
+        {
+          "block": "nekomasfixed:baobab_fruit", "condition": "minecraft:block_state_property", "properties": {
+          "age": "1"
+        }
+        }
+      ], "name": "nekomasfixed:baobab_fruit"
+      }, {
+        "type": "minecraft:item", "name": "nekomasfixed:baobab_seeds"
+      }
+    ]
     }
-  ],
-  "pools": [
-    {
-      "bonus_rolls": 0,
-      "entries": [
+  ], "rolls": 1
+  }, {
+    "bonus_rolls": 0, "conditions": [
+      {
+        "block": "nekomasfixed:baobab_fruit", "condition": "minecraft:block_state_property", "properties": {
+        "age": "1"
+      }
+      }
+    ], "entries": [
+      {
+        "type": "minecraft:item", "functions": [
         {
-          "type": "minecraft:alternatives",
-          "children": [
-            {
-              "type": "minecraft:item",
-              "conditions": [
-                {
-                  "block": "nekomasfixed:baobab_fruit",
-                  "condition": "minecraft:block_state_property",
-                  "properties": {
-                    "age": "1"
-                  }
-                }
-              ],
-              "name": "nekomasfixed:baobab_fruit"
-            },
-            {
-              "type": "minecraft:item",
-              "name": "nekomasfixed:baobab_seeds"
-            }
-          ]
+          "enchantment": "minecraft:fortune", "formula": "minecraft:binomial_with_bonus_count",
+          "function": "minecraft:apply_bonus", "parameters": {
+          "extra": 2, "probability": 0.5714286
         }
-      ],
-      "rolls": 1
-    },
-    {
-      "bonus_rolls": 0,
-      "conditions": [
-        {
-          "block": "nekomasfixed:baobab_fruit",
-          "condition": "minecraft:block_state_property",
-          "properties": {
-            "age": "1"
-          }
         }
-      ],
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "enchantment": "minecraft:fortune",
-              "formula": "minecraft:binomial_with_bonus_count",
-              "function": "minecraft:apply_bonus",
-              "parameters": {
-                "extra": 2,
-                "probability": 0.5714286
-              }
-            }
-          ],
-          "name": "nekomasfixed:baobab_seeds"
-        }
-      ],
-      "rolls": 1
-    }
-  ],
-  "random_sequence": "nekomasfixed:blocks/baobab_fruit"
+      ], "name": "nekomasfixed:baobab_seeds"
+      }
+    ], "rolls": 1
+  }
+], "random_sequence": "nekomasfixed:blocks/baobab_fruit"
 }

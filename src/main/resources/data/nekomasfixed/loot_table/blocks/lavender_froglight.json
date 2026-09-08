@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:block", "pools": [
+  {
+    "rolls": 1, "entries": [
+    {
+      "type": "minecraft:item", "name": "nekomasfixed:lavender_froglight"
+    }
+  ]
+  }
+], "random_sequence": "nekomasfixed:blocks/lavender_froglight"
+}

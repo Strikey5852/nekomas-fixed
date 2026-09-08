@@ -1,10 +1,10 @@
 package net.greenjab.nekomasfixed.registry.block;
 
 import com.mojang.serialization.MapCodec;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.Util;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -34,182 +34,179 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 
 public class MelonBlock extends Block {
-	boolean glistering;
-	public static final BooleanProperty CORNER_1 = BooleanProperty.create("corner_1");
-	public static final BooleanProperty CORNER_2 = BooleanProperty.create("corner_2");
-	public static final BooleanProperty CORNER_3 = BooleanProperty.create("corner_3");
-	public static final BooleanProperty CORNER_4 = BooleanProperty.create("corner_4");
-	public static final BooleanProperty CORNER_5 = BooleanProperty.create("corner_5");
-	public static final BooleanProperty CORNER_6 = BooleanProperty.create("corner_6");
-	public static final BooleanProperty CORNER_7 = BooleanProperty.create("corner_7");
-	public static final BooleanProperty CORNER_8 = BooleanProperty.create("corner_8");
-	public static final VoxelShape[] CORNER_SHAPES = Util.make(new VoxelShape[8], cornerShapes -> {
-		cornerShapes[0] = Shapes.box(0.0, 0.0, 0.0, 0.5, 0.5, 0.5);
-		cornerShapes[1] = Shapes.box(0.5, 0.0, 0.0, 1.0, 0.5, 0.5);
-		cornerShapes[2] = Shapes.box(0.0, 0.0, 0.5, 0.5, 0.5, 1.0);
-		cornerShapes[3] = Shapes.box(0.5, 0.0, 0.5, 1.0, 0.5, 1.0);
-		cornerShapes[4] = Shapes.box(0.0, 0.5, 0.0, 0.5, 1.0, 0.5);
-		cornerShapes[5] = Shapes.box(0.5, 0.5, 0.0, 1.0, 1.0, 0.5);
-		cornerShapes[6] = Shapes.box(0.0, 0.5, 0.5, 0.5, 1.0, 1.0);
-		cornerShapes[7] = Shapes.box(0.5, 0.5, 0.5, 1.0, 1.0, 1.0);
-	});
-	public static final BooleanProperty[] CORNERS = {CORNER_1, CORNER_2, CORNER_3, CORNER_4, CORNER_5, CORNER_6, CORNER_7, CORNER_8};
-	public static final VoxelShape[] SHAPES = Util.make(new VoxelShape[256], voxelShapes -> {
-		for (int i = 0; i < voxelShapes.length; i++) {
-			VoxelShape voxelShape = Shapes.empty();
+    public static final BooleanProperty CORNER_1 = BooleanProperty.create("corner_1");
+    public static final BooleanProperty CORNER_2 = BooleanProperty.create("corner_2");
+    public static final BooleanProperty CORNER_3 = BooleanProperty.create("corner_3");
+    public static final BooleanProperty CORNER_4 = BooleanProperty.create("corner_4");
+    public static final BooleanProperty CORNER_5 = BooleanProperty.create("corner_5");
+    public static final BooleanProperty CORNER_6 = BooleanProperty.create("corner_6");
+    public static final BooleanProperty CORNER_7 = BooleanProperty.create("corner_7");
+    public static final BooleanProperty CORNER_8 = BooleanProperty.create("corner_8");
+    public static final VoxelShape[] CORNER_SHAPES = Util.make(new VoxelShape[8], cornerShapes -> {
+        cornerShapes[0] = Shapes.box(0.0, 0.0, 0.0, 0.5, 0.5, 0.5);
+        cornerShapes[1] = Shapes.box(0.5, 0.0, 0.0, 1.0, 0.5, 0.5);
+        cornerShapes[2] = Shapes.box(0.0, 0.0, 0.5, 0.5, 0.5, 1.0);
+        cornerShapes[3] = Shapes.box(0.5, 0.0, 0.5, 1.0, 0.5, 1.0);
+        cornerShapes[4] = Shapes.box(0.0, 0.5, 0.0, 0.5, 1.0, 0.5);
+        cornerShapes[5] = Shapes.box(0.5, 0.5, 0.0, 1.0, 1.0, 0.5);
+        cornerShapes[6] = Shapes.box(0.0, 0.5, 0.5, 0.5, 1.0, 1.0);
+        cornerShapes[7] = Shapes.box(0.5, 0.5, 0.5, 1.0, 1.0, 1.0);
+    });
+    public static final BooleanProperty[] CORNERS = {CORNER_1, CORNER_2, CORNER_3, CORNER_4, CORNER_5, CORNER_6, CORNER_7, CORNER_8};
+    public static final VoxelShape[] SHAPES = Util.make(new VoxelShape[256], voxelShapes -> {
+        for (int i = 0; i < voxelShapes.length; i++) {
+            VoxelShape voxelShape = Shapes.empty();
 
-			for (int j = 0; j < 8; j++) {
-				if (oldHasCorner(i, j)) {
-					voxelShape = Shapes.or(voxelShape, CORNER_SHAPES[j]);
-				}
-			}
+            for (int j = 0; j < 8; j++) {
+                if (oldHasCorner(i, j)) {
+                    voxelShape = Shapes.or(voxelShape, CORNER_SHAPES[j]);
+                }
+            }
 
-			voxelShapes[i] = voxelShape.optimize();
-		}
-	});
+            voxelShapes[i] = voxelShape.optimize();
+        }
+    });
+    public static final MapCodec<MelonBlock> CODEC = simpleCodec(MelonBlock::new);
+    final boolean glistering;
 
-	private static boolean oldHasCorner(int flags, int corner) {
-		return (flags & createFlag(corner)) != 0;
-	}
+    public MelonBlock(Properties settings) {
+        this(false, settings);
+    }
 
-	public static final MapCodec<MelonBlock> CODEC = simpleCodec(MelonBlock::new);
+    public MelonBlock(boolean glistering, Properties settings) {
+        super(settings);
+        this.glistering = glistering;
+        this.registerDefaultState(this.stateDefinition.any().setValue(CORNER_1, true).setValue(CORNER_2, true).setValue(CORNER_3, true).setValue(CORNER_4, true).setValue(CORNER_5, true).setValue(CORNER_6, true).setValue(CORNER_7, true).setValue(CORNER_8, true));
+    }
 
-	public MelonBlock(Properties settings) {
-		this(false, settings);
-	}
+    private static boolean oldHasCorner(int flags, int corner) {
+        return (flags & createFlag(corner)) != 0;
+    }
 
-	public MelonBlock(boolean glistering, Properties settings) {
-		super(settings);
-		this.glistering = glistering;
-		this.registerDefaultState(this.stateDefinition.any().setValue(CORNER_1, true).setValue(CORNER_2, true).setValue(CORNER_3, true).setValue(CORNER_4, true).setValue(CORNER_5, true).setValue(CORNER_6, true).setValue(CORNER_7, true).setValue(CORNER_8, true));
-	}
+    private static int toInt(BlockState state) {
+        int Int = 0;
+        for (int i = 0; i < 8; i++) {
+            if (state.getValue(CORNERS[i])) Int += (int) Math.pow(2, i);
+        }
+        return Int;
+    }
 
-	@Override
-	public @NonNull MapCodec<? extends MelonBlock> codec() {
-		return CODEC;
-	}
+    private static int slices(BlockState state) {
+        int Int = 0;
+        for (int i = 0; i < 8; i++) {
+            if (state.getValue(CORNERS[i])) Int++;
+        }
+        return Int;
+    }
 
-	private static int toInt(BlockState state){
-		int Int = 0;
-		for (int i = 0;i<8;i++){
-			if (state.getValue(CORNERS[i])) Int+= (int) Math.pow(2, i);
-		}
-		return Int;
-	}
+    private static boolean hasCorner(BlockState state, int corner) {
+        return state.getValue(CORNERS[corner]);
+    }
 
-	private static int slices(BlockState state){
-		int Int = 0;
-		for (int i = 0;i<8;i++){
-			if (state.getValue(CORNERS[i])) Int++;
-		}
-		return Int;
-	}
+    private static int createFlag(int corner) {
+        return 1 << corner;
+    }
 
-	private static boolean hasCorner(BlockState state, int corner) {
-		return state.getValue(CORNERS[corner]);
-	}
+    private static boolean isFull(BlockState state) {
+        return slices(state) == 8;
+    }
 
-	private static int createFlag(int corner) {
-		return 1 << corner;
-	}
+    private static int getClosestSlice(BlockState state, Vec3 pos) {
+        double d = Double.MAX_VALUE;
+        int j = -1;
 
+        for (int k = 0; k < CORNER_SHAPES.length; k++) {
+            if (hasCorner(state, k)) {
+                VoxelShape voxelShape = CORNER_SHAPES[k];
+                Optional<Vec3> optional = voxelShape.closestPointTo(pos);
+                if (optional.isPresent()) {
+                    double e = (optional.get()).distanceToSqr(pos);
+                    if (e < d) {
+                        d = e;
+                        j = k;
+                    }
+                }
+            }
+        }
 
-	private static boolean isFull(BlockState state) {
-		return slices(state)==8;
-	}
+        return j;
+    }
 
-	@Override
-	public @NonNull ItemInteractionResult useItemOn(@NonNull ItemStack stack, @NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, Player player, @NonNull InteractionHand hand, @NonNull BlockHitResult hit) {
+    @Override
+    public @NonNull MapCodec<? extends MelonBlock> codec() {
+        return CODEC;
+    }
 
-		if (!player.getItemInHand(hand).isEmpty()) {
-			return ItemInteractionResult.FAIL;
-		} else if (!player.getFoodData().needsFood() && !player.isCreative()) {
-			return ItemInteractionResult.FAIL;
-		} else {
-			Vec3 vec3d = hit.getLocation().subtract(pos.getX(), pos.getY(), pos.getZ());
-			int i = getClosestSlice(state, vec3d);
-			if (i == -1) {
-				return ItemInteractionResult.FAIL;
-			} else {
-				if (slices(state)==1) {
-					level.removeBlock(pos, false);
-					level.gameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Context.of(player, state));
-				} else {
-					level.setBlockAndUpdate(pos, state.setValue(CORNERS[i], false));
-				}
+    @Override
+    public @NonNull ItemInteractionResult useItemOn(@NonNull ItemStack stack, @NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, Player player, @NonNull InteractionHand hand, @NonNull BlockHitResult hit) {
 
-				if (!level.isClientSide()) {
-					player.getFoodData().eat(1, 0.1F);
-					if (glistering) player.heal(0.5f);
-					level.gameEvent(GameEvent.EAT, pos, GameEvent.Context.of(player, state));
-				}
+        if (!player.getItemInHand(hand).isEmpty()) {
+            return ItemInteractionResult.FAIL;
+        } else if (!player.getFoodData().needsFood() && !player.isCreative()) {
+            return ItemInteractionResult.FAIL;
+        } else {
+            Vec3 vec3d = hit.getLocation().subtract(pos.getX(), pos.getY(), pos.getZ());
+            int i = getClosestSlice(state, vec3d);
+            if (i == -1) {
+                return ItemInteractionResult.FAIL;
+            } else {
+                if (slices(state) == 1) {
+                    level.removeBlock(pos, false);
+                    level.gameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Context.of(player, state));
+                } else {
+                    level.setBlockAndUpdate(pos, state.setValue(CORNERS[i], false));
+                }
 
-				return ItemInteractionResult.SUCCESS;
-			}
-		}
-	}
+                if (!level.isClientSide()) {
+                    player.getFoodData().eat(1, 0.1F);
+                    if (glistering) player.heal(0.5f);
+                    level.gameEvent(GameEvent.EAT, pos, GameEvent.Context.of(player, state));
+                }
 
-	private static int getClosestSlice(BlockState state, Vec3 pos) {
-		double d = Double.MAX_VALUE;
-		int j = -1;
+                return ItemInteractionResult.SUCCESS;
+            }
+        }
+    }
 
-		for (int k = 0; k < CORNER_SHAPES.length; k++) {
-			if (hasCorner(state, k)) {
-				VoxelShape voxelShape = CORNER_SHAPES[k];
-				Optional<Vec3> optional = voxelShape.closestPointTo(pos);
-				if (optional.isPresent()) {
-					double e = (optional.get()).distanceToSqr(pos);
-					if (e < d) {
-						d = e;
-						j = k;
-					}
-				}
-			}
-		}
+    @Override
+    protected @NonNull List<ItemStack> getDrops(@NonNull BlockState state, LootParams.@NonNull Builder builder) {
+        List<ItemStack> stacks = super.getDrops(state, builder);
+        int slices = (int) IntStream.range(0, 8).filter(j -> hasCorner(state, j)).count();
+        ArrayList<ItemStack> newstacks = new ArrayList<>(List.of());
+        stacks.forEach(stack -> {
+            if (stack.is(Items.MELON_SLICE) || stack.is(Items.GLISTERING_MELON_SLICE))
+                newstacks.add(stack.getItem().getDefaultInstance().copyWithCount(Math.min(stack.getCount(), slices)));
+            else newstacks.add(stack);
+        });
+        return newstacks;
+    }
 
-		return j;
-	}
+    @Override
+    public @NonNull VoxelShape getShape(@NonNull BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
+        return SHAPES[toInt(state)];
+    }
 
+    @Override
+    public boolean useShapeForLightOcclusion(@NonNull BlockState state) {
+        return true;
+    }
 
-	@Override
-	protected @NonNull List<ItemStack> getDrops(@NonNull BlockState state, LootParams.@NonNull Builder builder) {
-		List<ItemStack> stacks = super.getDrops(state, builder);
-		int slices = (int) IntStream.range(0, 8).filter(j -> hasCorner(state, j)).count();
-		ArrayList<ItemStack> newstacks = new ArrayList<>(List.of());
-		stacks.forEach(stack -> {
-			if (stack.is(Items.MELON_SLICE) || stack.is(Items.GLISTERING_MELON_SLICE))
-				newstacks.add(stack.getItem().getDefaultInstance().copyWithCount(Math.min(stack.getCount(), slices)));
-			else newstacks.add(stack);
-		});
-		return newstacks;
-	}
+    @Override
+    public float getShadeBrightness(@NonNull BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos) {
+        return isFull(state) ? 0.2F : 1.0F;
+    }
 
-	@Override
-	public @NonNull VoxelShape getShape(@NonNull BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
-		return SHAPES[toInt(state)];
-	}
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.@NonNull Builder<Block, BlockState> builder) {
+        for (int i = 0; i < 8; i++) {
+            builder.add(CORNERS[i]);
+        }
+    }
 
-	@Override
-	public boolean useShapeForLightOcclusion(@NonNull BlockState state) {
-		return true;
-	}
-
-	@Override
-	public float getShadeBrightness(@NonNull BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos) {
-		return isFull(state) ? 0.2F : 1.0F;
-	}
-
-	@Override
-	protected void createBlockStateDefinition(StateDefinition.@NonNull Builder<Block, BlockState> builder) {
-		for (int i = 0;i<8;i++){
-			builder.add(CORNERS[i]);
-		}
-	}
-
-	@Override
-	public void animateTick(@NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull RandomSource random) {
-		if (!glistering)return;
-		if (level.getRandom().nextInt(2)!=0) return;
-		ParticleUtils.spawnParticlesOnBlockFace(level, pos, ParticleTypes.END_ROD, UniformInt.of(1, 1), Direction.getRandom(level.getRandom()), () -> new Vec3(0, 0, 0), 0.55);
-	}
+    @Override
+    public void animateTick(@NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull RandomSource random) {
+        if (!glistering) return;
+        if (level.getRandom().nextInt(2) != 0) return;
+        ParticleUtils.spawnParticlesOnBlockFace(level, pos, ParticleTypes.END_ROD, UniformInt.of(1, 1), Direction.getRandom(level.getRandom()), () -> new Vec3(0, 0, 0), 0.55);
+    }
 }

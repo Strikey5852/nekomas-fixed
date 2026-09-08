@@ -1,12 +1,9 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "building",
-  "ingredients": [
-    {
-      "item": "nekomasfixed:hollow_acacia_log"
-    }
-  ],
-  "result": {
-    "id": "minecraft:acacia_planks"
+  "type": "minecraft:crafting_shapeless", "category": "building", "ingredients": [
+  {
+    "item": "nekomasfixed:hollow_acacia_log"
   }
+], "result": {
+  "id": "minecraft:acacia_planks"
+}
 }

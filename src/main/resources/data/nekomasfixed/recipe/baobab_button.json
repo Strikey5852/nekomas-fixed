@@ -1,12 +1,9 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "redstone",
-  "ingredients": [
-    {
-      "item": "nekomasfixed:baobab_planks"
-    }
-  ],
-  "result": {
-    "id": "nekomasfixed:baobab_button"
+  "type": "minecraft:crafting_shapeless", "category": "redstone", "ingredients": [
+  {
+    "item": "nekomasfixed:baobab_planks"
   }
+], "result": {
+  "id": "nekomasfixed:baobab_button"
+}
 }

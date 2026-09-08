@@ -1,6 +1,5 @@
 {
-  "replace": false,
-  "values": [
-    "#nekomasfixed:baobab_logs"
-  ]
+  "replace": false, "values": [
+  "#nekomasfixed:baobab_logs"
+]
 }

@@ -1,21 +1,13 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "group": "hanging_sign",
-  "key": {
-    "#": {
-      "item": "nekomasfixed:baobab_log"
-    },
-    "X": {
-      "item": "minecraft:iron_chain"
-    }
-  },
-  "pattern": [
-    "X X",
-    "###",
-    "###"
-  ],
-  "result": {
-    "count": 6,
-    "id": "nekomasfixed:baobab_hanging_sign"
+  "type": "minecraft:crafting_shaped", "group": "hanging_sign", "key": {
+  "#": {
+    "item": "nekomasfixed:baobab_log"
+  }, "X": {
+    "item": "minecraft:chain"
   }
+}, "pattern": [
+  "X X", "###", "###"
+], "result": {
+  "count": 6, "id": "nekomasfixed:baobab_hanging_sign"
+}
 }

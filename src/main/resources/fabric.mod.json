@@ -1,33 +1,18 @@
 {
-  "schemaVersion": 1,
-  "id": "nekomasfixed",
-  "version": "${version}",
-  "name": "Nekomas Fixed Minecraft",
-  "description": "NEKOMA FIXED MINECRAFT!",
-  "authors": [
-    "Green_Jab"
-  ],
-  "license": "MIT",
-  "icon": "assets/nekomasfixed/icon.png",
-  "environment": "*",
-  "entrypoints": {
-    "client": [
-      "net.greenjab.nekomasfixed.NekomasFixedClient"
-    ],
-    "main": [
-      "net.greenjab.nekomasfixed.NekomasFixed"
-    ],
-    "fabric-datagen": [
-      "net.greenjab.nekomasfixed.NekomasFixedDataGenerator"
-    ]
-  },
-  "mixins": [
-    "nekomasfixed.mixins.json",
-    "nekomasfixed.client.mixins.json"
-  ],
-  "depends": {
-    "java": ">=21",
-    "minecraft": ">=${minecraft}",
-    "fabric-api": ">=${fabric_api}"
-  }
+  "schemaVersion": 1, "id": "nekomasfixed", "version": "${version}", "name": "Nekomas Fixed Minecraft",
+  "description": "NEKOMA FIXED MINECRAFT!", "authors": [
+  "Green_Jab"
+], "license": "MIT", "icon": "assets/nekomasfixed/icon.png", "environment": "*", "entrypoints": {
+  "client": [
+    "net.greenjab.nekomasfixed.NekomasFixedClient"
+  ], "main": [
+    "net.greenjab.nekomasfixed.NekomasFixed"
+  ], "fabric-datagen": [
+    "net.greenjab.nekomasfixed.NekomasFixedDataGenerator"
+  ]
+}, "mixins": [
+  "nekomasfixed.mixins.json", "nekomasfixed.client.mixins.json"
+], "depends": {
+  "java": ">=21", "minecraft": ">=${minecraft}", "fabric-api": ">=${fabric_api}"
+}
 }

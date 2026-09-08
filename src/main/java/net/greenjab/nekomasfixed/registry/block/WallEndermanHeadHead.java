@@ -19,6 +19,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jspecify.annotations.NonNull;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class WallEndermanHeadHead extends AbstractEndermanHeadBlock {
     public static final MapCodec<WallEndermanHeadHead> CODEC = RecordCodecBuilder.mapCodec(
@@ -49,14 +50,14 @@ public class WallEndermanHeadHead extends AbstractEndermanHeadBlock {
             Direction.EAST, SHAPE_EAST_POWERED,
             Direction.WEST, SHAPE_WEST_POWERED);
 
-    @Override
-    public @NonNull MapCodec<? extends WallEndermanHeadHead> codec() {
-        return CODEC;
-    }
-
     public WallEndermanHeadHead(Properties settings) {
         super(settings);
         this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
+    }
+
+    @Override
+    public @NonNull MapCodec<? extends WallEndermanHeadHead> codec() {
+        return CODEC;
     }
 
     @Override
@@ -88,7 +89,7 @@ public class WallEndermanHeadHead extends AbstractEndermanHeadBlock {
         for (Direction direction : directions) {
             if (direction.getAxis().isHorizontal()) {
                 Direction direction2 = direction.getOpposite();
-                blockState = blockState.setValue(FACING, direction2);
+                blockState = Objects.requireNonNull(blockState).setValue(FACING, direction2);
                 if (!blockView.getBlockState(blockPos.relative(direction)).canBeReplaced(ctx)) {
                     return blockState;
                 }

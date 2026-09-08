@@ -25,6 +25,14 @@ public enum GoatHornTorchType implements StringRepresentable {
         this.particle = particle;
     }
 
+    public static GoatHornTorchType fromItem(Item item, boolean waterLogged) {
+        if (item == Items.TORCH) return NORMAL_TORCH;
+        if (item == Items.SOUL_TORCH) return SOUL_TORCH;
+        if (item == Items.REDSTONE_TORCH) return REDSTONE_TORCH;
+        if (item == ItemRegistry.GLOW_TORCH) return waterLogged ? GLOW_TORCH : GLOW_TORCH_OFF;
+        return NONE;
+    }
+
     public int getLight() {
         return this.light;
     }
@@ -36,14 +44,6 @@ public enum GoatHornTorchType implements StringRepresentable {
     @Override
     public @NonNull String getSerializedName() {
         return this.name().toLowerCase();
-    }
-
-    public static GoatHornTorchType fromItem(Item item, boolean waterLogged) {
-        if (item == Items.TORCH) return NORMAL_TORCH;
-        if (item == Items.SOUL_TORCH) return SOUL_TORCH;
-        if (item == Items.REDSTONE_TORCH) return REDSTONE_TORCH;
-        if (item == ItemRegistry.GLOW_TORCH) return waterLogged ? GLOW_TORCH : GLOW_TORCH_OFF;
-        return NONE;
     }
 
     public Item toItem() {

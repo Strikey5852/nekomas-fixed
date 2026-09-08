@@ -1,6 +1,5 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "nekomasfixed:item/clam_blue_item"
-  }
+  "parent": "minecraft:item/generated", "textures": {
+  "layer0": "nekomasfixed:item/clam_blue_item"
+}
 }

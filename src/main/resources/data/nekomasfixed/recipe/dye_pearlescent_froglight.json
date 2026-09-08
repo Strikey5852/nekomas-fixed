@@ -1,0 +1,9 @@
+{
+  "type": "nekomasfixed:recolour", "category": "misc", "group": "froglight", "input": {
+  "tag": "nekomasfixed:froglights"
+}, "material": {
+  "item": "minecraft:purple_dye"
+}, "result": {
+  "id": "minecraft:pearlescent_froglight"
+}
+}

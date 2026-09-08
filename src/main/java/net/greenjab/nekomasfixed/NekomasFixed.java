@@ -28,6 +28,7 @@ public class NekomasFixed implements ModInitializer {
         ItemRegistry.registerItems();
         EntityTypeRegistry.registerEntityType();
         BlockEntityTypeRegistry.registerBlockEntityTypes();
+        RecipeRegistry.registerRecipes();
         ItemGroupRegistry.registerItemGroup();
         BlockEntityRegistry.attachBlockEntities();
         ModWorldGeneration.generateModWorldGen();

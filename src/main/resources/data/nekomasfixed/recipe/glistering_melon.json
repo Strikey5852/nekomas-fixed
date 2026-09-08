@@ -1,18 +1,11 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
-    "#": {
-      "item": "minecraft:glistering_melon_slice"
-    }
-  },
-  "pattern": [
-    "###",
-    "###",
-    "###"
-  ],
-  "result": {
-    "count": 1,
-    "id": "nekomasfixed:glistering_melon"
+  "type": "minecraft:crafting_shaped", "category": "misc", "key": {
+  "#": {
+    "item": "minecraft:glistering_melon_slice"
   }
+}, "pattern": [
+  "###", "###", "###"
+], "result": {
+  "count": 1, "id": "nekomasfixed:glistering_melon"
+}
 }

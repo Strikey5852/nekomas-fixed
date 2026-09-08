@@ -27,14 +27,6 @@ public enum GoatHornType implements StringRepresentable {
         this.effect = effect;
     }
 
-    public ResourceKey<Instrument> getInstrument() {
-        return this.instrument;
-    }
-
-    public MobEffectInstance getStatusEffect() {
-        return this.effect;
-    }
-
     public static GoatHornType fromInstrument(Holder<Instrument> instrument) {
         ResourceKey<Instrument> key = instrument.unwrapKey().orElse(Instruments.CALL_GOAT_HORN);
         if (key == Instruments.CALL_GOAT_HORN) return CALL;
@@ -46,6 +38,14 @@ public enum GoatHornType implements StringRepresentable {
         if (key == Instruments.DREAM_GOAT_HORN) return DREAM;
         if (key == Instruments.YEARN_GOAT_HORN) return YEARN;
         return CALL;
+    }
+
+    public ResourceKey<Instrument> getInstrument() {
+        return this.instrument;
+    }
+
+    public MobEffectInstance getStatusEffect() {
+        return this.effect;
     }
 
     @Override

@@ -3,6 +3,7 @@ package net.greenjab.nekomasfixed.registry.registries;
 import net.greenjab.nekomasfixed.NekomasFixed;
 import net.greenjab.nekomasfixed.registry.item.BaobabBoatItem;
 import net.greenjab.nekomasfixed.registry.item.BaobabSeedsItem;
+import net.greenjab.nekomasfixed.registry.item.ModDyeItems;
 import net.greenjab.nekomasfixed.registry.item.RopeItem;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
@@ -106,6 +107,29 @@ public class ItemRegistry {
     public static final Item HOLLOW_WARPED_STEM = register(BlockRegistry.HOLLOW_WARPED_STEM);
     public static final Item HOLLOW_BAOBAB_LOG = register(BlockRegistry.HOLLOW_BAOBAB_LOG);
 
+    public static final Item CLEAR_FROGLIGHT = register(BlockRegistry.CLEAR_FROGLIGHT);
+    public static final Item CLOUDY_FROGLIGHT = register(BlockRegistry.CLOUDY_FROGLIGHT);
+    public static final Item CASCADING_FROGLIGHT = register(BlockRegistry.CASCADING_FROGLIGHT);
+    public static final Item CLOUDBURST_FROGLIGHT = register(BlockRegistry.CLOUDBURST_FROGLIGHT);
+    public static final Item CHAMOISEE_FROGLIGHT = register(BlockRegistry.CHAMOISEE_FROGLIGHT);
+    public static final Item SANGUINE_FROGLIGHT = register(BlockRegistry.SANGUINE_FROGLIGHT);
+    public static final Item VERMILION_FROGLIGHT = register(BlockRegistry.VERMILION_FROGLIGHT);
+    public static final Item MANDARIN_FROGLIGHT = register(BlockRegistry.MANDARIN_FROGLIGHT);
+    public static final Item LEMON_FROGLIGHT = register(BlockRegistry.LEMON_FROGLIGHT);
+    public static final Item KIWI_FROGLIGHT = register(BlockRegistry.KIWI_FROGLIGHT);
+    public static final Item SEAFOAM_FROGLIGHT = register(BlockRegistry.SEAFOAM_FROGLIGHT);
+    public static final Item TEAL_FROGLIGHT = register(BlockRegistry.TEAL_FROGLIGHT);
+    public static final Item CERULEAN_FROGLIGHT = register(BlockRegistry.CERULEAN_FROGLIGHT);
+    public static final Item NAVY_FROGLIGHT = register(BlockRegistry.NAVY_FROGLIGHT);
+    public static final Item LAVENDER_FROGLIGHT = register(BlockRegistry.LAVENDER_FROGLIGHT);
+    public static final Item THULIAN_FROGLIGHT = register(BlockRegistry.THULIAN_FROGLIGHT);
+    public static final Item SAKURA_FROGLIGHT = register(BlockRegistry.SAKURA_FROGLIGHT);
+
+    public static final Item AMBER_DYE = registerDye("amber_dye");
+    public static final Item AQUA_DYE = registerDye("aqua_dye");
+    public static final Item INDIGO_DYE = registerDye("indigo_dye");
+    public static final Item MAROON_DYE = registerDye("maroon_dye");
+
     private static Item register(Block block) {
         return Registry.register(BuiltInRegistries.ITEM,
                 ResourceKey.create(Registries.ITEM, blockKeyOf(block)),
@@ -138,6 +162,10 @@ public class ItemRegistry {
         return Registry.register(BuiltInRegistries.ITEM,
                 ResourceKey.create(Registries.ITEM, blockKeyOf(block)),
                 factory.apply(block, settings));
+    }
+
+    private static Item registerDye(String id) {
+        return Registry.register(BuiltInRegistries.ITEM, NekomasFixed.id(id), new ModDyeItems(new Item.Properties()));
     }
 
     public static void registerItems() {

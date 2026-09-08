@@ -1,6 +1,5 @@
 {
-  "type": "nekomasfixed:clam",
-  "config": {
-    "count": 3
-  }
+  "type": "nekomasfixed:clam", "config": {
+  "count": 3
+}
 }

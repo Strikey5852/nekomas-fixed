@@ -78,7 +78,43 @@ public class ItemGroupRegistry {
                     .build()
     );
 
+    public static final ResourceKey<CreativeModeTab> NEKOMASFIXEDCOLOURS_KEY =
+            ResourceKey.create(net.minecraft.core.registries.Registries.CREATIVE_MODE_TAB,
+                    NekomasFixed.id("nekomasfixedcolours"));
+
+    public static final CreativeModeTab NEKOMASFIXEDCOLOURS = Registry.register(
+            BuiltInRegistries.CREATIVE_MODE_TAB,
+            NEKOMASFIXEDCOLOURS_KEY,
+            FabricItemGroup.builder()
+                    .title(Component.translatable("itemgroup.nekomasfixedcolours"))
+                    .icon(() -> new ItemStack(ItemRegistry.AMBER_DYE))
+                    .displayItems((parameters, entries) -> {
+                        entries.accept(ItemRegistry.AMBER_DYE);
+                        entries.accept(ItemRegistry.AQUA_DYE);
+                        entries.accept(ItemRegistry.INDIGO_DYE);
+                        entries.accept(ItemRegistry.MAROON_DYE);
+                        entries.accept(ItemRegistry.CLEAR_FROGLIGHT);
+                        entries.accept(ItemRegistry.CLOUDY_FROGLIGHT);
+                        entries.accept(ItemRegistry.CASCADING_FROGLIGHT);
+                        entries.accept(ItemRegistry.CLOUDBURST_FROGLIGHT);
+                        entries.accept(ItemRegistry.CHAMOISEE_FROGLIGHT);
+                        entries.accept(ItemRegistry.SANGUINE_FROGLIGHT);
+                        entries.accept(ItemRegistry.VERMILION_FROGLIGHT);
+                        entries.accept(ItemRegistry.MANDARIN_FROGLIGHT);
+                        entries.accept(ItemRegistry.LEMON_FROGLIGHT);
+                        entries.accept(ItemRegistry.KIWI_FROGLIGHT);
+                        entries.accept(ItemRegistry.SEAFOAM_FROGLIGHT);
+                        entries.accept(ItemRegistry.TEAL_FROGLIGHT);
+                        entries.accept(ItemRegistry.CERULEAN_FROGLIGHT);
+                        entries.accept(ItemRegistry.NAVY_FROGLIGHT);
+                        entries.accept(ItemRegistry.LAVENDER_FROGLIGHT);
+                        entries.accept(ItemRegistry.THULIAN_FROGLIGHT);
+                        entries.accept(ItemRegistry.SAKURA_FROGLIGHT);
+                    })
+                    .build()
+    );
+
     public static void registerItemGroup() {
-        NekomasFixed.LOGGER.info("Registered item group: {}", NEKOMASFIXED);
+        NekomasFixed.LOGGER.info("Registered item groups: {}, {}", NEKOMASFIXED, NEKOMASFIXEDCOLOURS);
     }
 }

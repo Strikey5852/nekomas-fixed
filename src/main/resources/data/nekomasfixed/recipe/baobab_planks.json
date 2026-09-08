@@ -1,13 +1,9 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "building",
-  "ingredients": [
-    {
-      "tag": "nekomasfixed:baobab_logs"
-    }
-  ],
-  "result": {
-    "count": 4,
-    "id": "nekomasfixed:baobab_planks"
+  "type": "minecraft:crafting_shapeless", "category": "building", "ingredients": [
+  {
+    "tag": "nekomasfixed:baobab_logs"
   }
+], "result": {
+  "count": 4, "id": "nekomasfixed:baobab_planks"
+}
 }

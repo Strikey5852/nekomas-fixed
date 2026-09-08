@@ -25,13 +25,13 @@ import org.jspecify.annotations.Nullable;
 public abstract class AbstractEndermanHeadBlock extends BaseEntityBlock {
     public static final IntegerProperty POWER = BlockStateProperties.POWER;
 
-    @Override
-    public abstract @NonNull MapCodec<? extends AbstractEndermanHeadBlock> codec();
-
     public AbstractEndermanHeadBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any().setValue(POWER, 0));
     }
+
+    @Override
+    public abstract @NonNull MapCodec<? extends AbstractEndermanHeadBlock> codec();
 
     @Override
     public BlockState getStateForPlacement(@NonNull BlockPlaceContext ctx) {
@@ -72,7 +72,7 @@ public abstract class AbstractEndermanHeadBlock extends BaseEntityBlock {
     // The block is drawn entirely by the block-entity renderer, so the empty
     // block model must not render (vanilla chests do the same).
     @Override
-    protected RenderShape getRenderShape(BlockState state) {
+    protected @NonNull RenderShape getRenderShape(@NonNull BlockState state) {
         return RenderShape.ENTITYBLOCK_ANIMATED;
     }
 
@@ -89,7 +89,7 @@ public abstract class AbstractEndermanHeadBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected void onRemove(BlockState state, @NonNull Level level, @NonNull BlockPos pos, BlockState newState, boolean movedByPiston) {
+    protected void onRemove(@NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull BlockState newState, boolean movedByPiston) {
         if (!movedByPiston && state.getBlock() != newState.getBlock() && state.getValue(POWER) > 0) {
             this.updateNeighbors(state.setValue(POWER, 0), level, pos);
         }

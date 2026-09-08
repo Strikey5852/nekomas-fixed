@@ -1,6 +1,5 @@
 {
-  "parent": "minecraft:block/pressure_plate_up",
-  "textures": {
-    "texture": "nekomasfixed:block/baobab_planks"
-  }
+  "parent": "minecraft:block/pressure_plate_up", "textures": {
+  "texture": "nekomasfixed:block/baobab_planks"
+}
 }

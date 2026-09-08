@@ -1,20 +1,13 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "X": {
-      "item": "minecraft:glow_ink_sac"
-    }
-  },
-  "pattern": [
-    "X",
-    "#"
-  ],
-  "result": {
-    "count": 4,
-    "id": "nekomasfixed:glow_torch"
+  "type": "minecraft:crafting_shaped", "category": "misc", "key": {
+  "#": {
+    "item": "minecraft:stick"
+  }, "X": {
+    "item": "minecraft:glow_ink_sac"
   }
+}, "pattern": [
+  "X", "#"
+], "result": {
+  "count": 4, "id": "nekomasfixed:glow_torch"
+}
 }

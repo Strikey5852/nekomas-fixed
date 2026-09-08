@@ -1,21 +1,13 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "group": "sign",
-  "key": {
-    "#": {
-      "item": "nekomasfixed:baobab_planks"
-    },
-    "X": {
-      "item": "minecraft:stick"
-    }
-  },
-  "pattern": [
-    "###",
-    "###",
-    " X "
-  ],
-  "result": {
-    "count": 3,
-    "id": "nekomasfixed:baobab_sign"
+  "type": "minecraft:crafting_shaped", "group": "sign", "key": {
+  "#": {
+    "item": "nekomasfixed:baobab_planks"
+  }, "X": {
+    "item": "minecraft:stick"
   }
+}, "pattern": [
+  "###", "###", " X "
+], "result": {
+  "count": 3, "id": "nekomasfixed:baobab_sign"
+}
 }

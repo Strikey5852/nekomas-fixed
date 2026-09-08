@@ -1,19 +1,13 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "redstone",
-  "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "W": {
-      "item": "nekomasfixed:baobab_planks"
-    }
-  },
-  "pattern": [
-    "#W#",
-    "#W#"
-  ],
-  "result": {
-    "id": "nekomasfixed:baobab_fence_gate"
+  "type": "minecraft:crafting_shaped", "category": "redstone", "key": {
+  "#": {
+    "item": "minecraft:stick"
+  }, "W": {
+    "item": "nekomasfixed:baobab_planks"
   }
+}, "pattern": [
+  "#W#", "#W#"
+], "result": {
+  "id": "nekomasfixed:baobab_fence_gate"
+}
 }

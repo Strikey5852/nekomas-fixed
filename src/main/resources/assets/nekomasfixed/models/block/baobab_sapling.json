@@ -1,6 +1,5 @@
 {
-  "parent": "minecraft:block/cross",
-  "textures": {
-    "cross": "nekomasfixed:block/baobab_sapling"
-  }
+  "parent": "minecraft:block/cross", "textures": {
+  "cross": "nekomasfixed:block/baobab_sapling"
+}
 }

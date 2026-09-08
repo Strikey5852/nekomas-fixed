@@ -1,0 +1,9 @@
+{
+  "type": "nekomasfixed:recolour", "category": "misc", "group": "froglight", "input": {
+  "tag": "nekomasfixed:froglights"
+}, "material": {
+  "item": "nekomasfixed:aqua_dye"
+}, "result": {
+  "id": "nekomasfixed:seafoam_froglight"
+}
+}

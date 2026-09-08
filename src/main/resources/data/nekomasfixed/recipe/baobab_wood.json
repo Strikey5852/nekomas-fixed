@@ -1,17 +1,11 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "building",
-  "key": {
-    "#": {
-      "item": "nekomasfixed:baobab_log"
-    }
-  },
-  "pattern": [
-    "##",
-    "##"
-  ],
-  "result": {
-    "count": 3,
-    "id": "nekomasfixed:baobab_wood"
+  "type": "minecraft:crafting_shaped", "category": "building", "key": {
+  "#": {
+    "item": "nekomasfixed:baobab_log"
   }
+}, "pattern": [
+  "##", "##"
+], "result": {
+  "count": 3, "id": "nekomasfixed:baobab_wood"
+}
 }

@@ -1,17 +1,11 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
-    "#": {
-      "item": "nekomasfixed:pearl"
-    }
-  },
-  "pattern": [
-    "##",
-    "##"
-  ],
-  "result": {
-    "count": 1,
-    "id": "nekomasfixed:pearl_block"
+  "type": "minecraft:crafting_shaped", "category": "misc", "key": {
+  "#": {
+    "item": "nekomasfixed:pearl"
   }
+}, "pattern": [
+  "##", "##"
+], "result": {
+  "count": 1, "id": "nekomasfixed:pearl_block"
+}
 }
