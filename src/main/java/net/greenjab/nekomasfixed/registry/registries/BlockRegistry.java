@@ -75,6 +75,16 @@ public class BlockRegistry {
                     .sound(SoundType.METAL)
                     .pushReaction(PushReaction.DESTROY)
     );
+    public static final Block GOAT_HORN = register(
+            "horn",
+            GoatHornBlock::new,
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_GRAY)
+                    .lightLevel(state -> state.getValue(GoatHornBlock.TORCH).getLight())
+                    .strength(0.2F)
+                    .sound(SoundType.TUFF)
+                    .pushReaction(PushReaction.DESTROY)
+    );
     public static final Block GLISTERING_MELON = register(
             "glistering_melon",
             settings -> new MelonBlock(true, settings),
