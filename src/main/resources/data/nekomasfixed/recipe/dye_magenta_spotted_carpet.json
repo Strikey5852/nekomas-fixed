@@ -1,0 +1,14 @@
+{
+  "type": "nekomasfixed:recolour",
+  "category": "building",
+  "group": "spotted_carpet",
+  "input": {
+    "tag": "nekomasfixed:spotted_carpet"
+  },
+  "material": {
+    "item": "minecraft:magenta_dye"
+  },
+  "result": {
+    "id": "nekomasfixed:magenta_spotted_carpet"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "nekomasfixed:recolour",
+  "category": "building",
+  "group": "spotted_wool",
+  "input": {
+    "tag": "nekomasfixed:spotted_wool"
+  },
+  "material": {
+    "item": "nekomasfixed:amber_dye"
+  },
+  "result": {
+    "id": "nekomasfixed:amber_spotted_wool"
+  }
+}

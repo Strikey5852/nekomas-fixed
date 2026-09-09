@@ -54,24 +54,31 @@ public class RecolourRecipe implements CraftingRecipe {
 
     @Override
     public boolean matches(CraftingInput input, @NonNull Level level) {
-        int inputCount = 0;
-        int materialCount = 0;
+        // Vanilla TransmuteRecipe is strict about the grid: exactly one input
+        // + one material, and any other populated slot invalidates the recipe.
+        if (input.ingredientCount() != 2) {
+            return false;
+        }
         ItemStack matchedInput = null;
-
+        int materialCount = 0;
         for (int i = 0; i < input.size(); i++) {
             ItemStack stack = input.getItem(i);
             if (stack.isEmpty()) {
                 continue;
             }
             if (this.input.test(stack)) {
-                inputCount++;
+                if (matchedInput != null) {
+                    return false;
+                }
                 matchedInput = stack;
             } else if (this.material.test(stack)) {
                 materialCount++;
+            } else {
+                return false;
             }
         }
 
-        return inputCount == 1 && materialCount >= 1
+        return matchedInput != null && materialCount == 1
                 && !ItemStack.isSameItemSameComponents(matchedInput, this.result);
     }
 

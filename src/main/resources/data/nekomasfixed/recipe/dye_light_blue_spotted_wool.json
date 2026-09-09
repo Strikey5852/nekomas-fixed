@@ -1,0 +1,14 @@
+{
+  "type": "nekomasfixed:recolour",
+  "category": "building",
+  "group": "spotted_wool",
+  "input": {
+    "tag": "nekomasfixed:spotted_wool"
+  },
+  "material": {
+    "item": "minecraft:light_blue_dye"
+  },
+  "result": {
+    "id": "nekomasfixed:light_blue_spotted_wool"
+  }
+}

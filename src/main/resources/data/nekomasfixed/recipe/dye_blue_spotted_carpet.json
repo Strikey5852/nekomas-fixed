@@ -1,0 +1,14 @@
+{
+  "type": "nekomasfixed:recolour",
+  "category": "building",
+  "group": "spotted_carpet",
+  "input": {
+    "tag": "nekomasfixed:spotted_carpet"
+  },
+  "material": {
+    "item": "minecraft:blue_dye"
+  },
+  "result": {
+    "id": "nekomasfixed:blue_spotted_carpet"
+  }
+}

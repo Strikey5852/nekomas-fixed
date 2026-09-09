@@ -41,3 +41,4 @@ replay_*.log
 
 # project tracking
 features.md
+/tools/

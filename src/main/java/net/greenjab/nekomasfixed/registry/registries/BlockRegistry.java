@@ -308,6 +308,46 @@ public class BlockRegistry {
     public static final Block LAVENDER_FROGLIGHT = register("lavender_froglight", RotatedPillarBlock::new, froglightProperties(MapColor.WARPED_HYPHAE, 15));
     public static final Block THULIAN_FROGLIGHT = register("thulian_froglight", RotatedPillarBlock::new, froglightProperties(MapColor.COLOR_MAGENTA, 15));
     public static final Block SAKURA_FROGLIGHT = register("sakura_froglight", RotatedPillarBlock::new, froglightProperties(MapColor.COLOR_PINK, 15));
+    public static final Block WHITE_SPOTTED_WOOL = register("white_spotted_wool", Block::new, spottedWoolProperties(MapColor.SNOW));
+    public static final Block LIGHT_GRAY_SPOTTED_WOOL = register("light_gray_spotted_wool", Block::new, spottedWoolProperties(MapColor.COLOR_LIGHT_GRAY));
+    public static final Block GRAY_SPOTTED_WOOL = register("gray_spotted_wool", Block::new, spottedWoolProperties(MapColor.COLOR_GRAY));
+    public static final Block BLACK_SPOTTED_WOOL = register("black_spotted_wool", Block::new, spottedWoolProperties(MapColor.COLOR_BLACK));
+    public static final Block BROWN_SPOTTED_WOOL = register("brown_spotted_wool", Block::new, spottedWoolProperties(MapColor.COLOR_BROWN));
+    public static final Block RED_SPOTTED_WOOL = register("red_spotted_wool", Block::new, spottedWoolProperties(MapColor.COLOR_RED));
+    public static final Block ORANGE_SPOTTED_WOOL = register("orange_spotted_wool", Block::new, spottedWoolProperties(MapColor.COLOR_ORANGE));
+    public static final Block YELLOW_SPOTTED_WOOL = register("yellow_spotted_wool", Block::new, spottedWoolProperties(MapColor.COLOR_YELLOW));
+    public static final Block LIME_SPOTTED_WOOL = register("lime_spotted_wool", Block::new, spottedWoolProperties(MapColor.COLOR_LIGHT_GREEN));
+    public static final Block GREEN_SPOTTED_WOOL = register("green_spotted_wool", Block::new, spottedWoolProperties(MapColor.COLOR_GREEN));
+    public static final Block CYAN_SPOTTED_WOOL = register("cyan_spotted_wool", Block::new, spottedWoolProperties(MapColor.COLOR_CYAN));
+    public static final Block LIGHT_BLUE_SPOTTED_WOOL = register("light_blue_spotted_wool", Block::new, spottedWoolProperties(MapColor.COLOR_LIGHT_BLUE));
+    public static final Block BLUE_SPOTTED_WOOL = register("blue_spotted_wool", Block::new, spottedWoolProperties(MapColor.COLOR_BLUE));
+    public static final Block PURPLE_SPOTTED_WOOL = register("purple_spotted_wool", Block::new, spottedWoolProperties(MapColor.COLOR_PURPLE));
+    public static final Block MAGENTA_SPOTTED_WOOL = register("magenta_spotted_wool", Block::new, spottedWoolProperties(MapColor.COLOR_MAGENTA));
+    public static final Block PINK_SPOTTED_WOOL = register("pink_spotted_wool", Block::new, spottedWoolProperties(MapColor.COLOR_PINK));
+    public static final Block AMBER_SPOTTED_WOOL = register("amber_spotted_wool", Block::new, spottedWoolProperties(MapColor.COLOR_YELLOW));
+    public static final Block AQUA_SPOTTED_WOOL = register("aqua_spotted_wool", Block::new, spottedWoolProperties(MapColor.COLOR_LIGHT_BLUE));
+    public static final Block INDIGO_SPOTTED_WOOL = register("indigo_spotted_wool", Block::new, spottedWoolProperties(MapColor.COLOR_MAGENTA));
+    public static final Block MAROON_SPOTTED_WOOL = register("maroon_spotted_wool", Block::new, spottedWoolProperties(MapColor.COLOR_RED));
+    public static final Block WHITE_SPOTTED_CARPET = register("white_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.SNOW));
+    public static final Block LIGHT_GRAY_SPOTTED_CARPET = register("light_gray_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_LIGHT_GRAY));
+    public static final Block GRAY_SPOTTED_CARPET = register("gray_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_GRAY));
+    public static final Block BLACK_SPOTTED_CARPET = register("black_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_BLACK));
+    public static final Block BROWN_SPOTTED_CARPET = register("brown_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_BROWN));
+    public static final Block RED_SPOTTED_CARPET = register("red_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_RED));
+    public static final Block ORANGE_SPOTTED_CARPET = register("orange_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_ORANGE));
+    public static final Block YELLOW_SPOTTED_CARPET = register("yellow_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_YELLOW));
+    public static final Block LIME_SPOTTED_CARPET = register("lime_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_LIGHT_GREEN));
+    public static final Block GREEN_SPOTTED_CARPET = register("green_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_GREEN));
+    public static final Block CYAN_SPOTTED_CARPET = register("cyan_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_CYAN));
+    public static final Block LIGHT_BLUE_SPOTTED_CARPET = register("light_blue_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_LIGHT_BLUE));
+    public static final Block BLUE_SPOTTED_CARPET = register("blue_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_BLUE));
+    public static final Block PURPLE_SPOTTED_CARPET = register("purple_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_PURPLE));
+    public static final Block MAGENTA_SPOTTED_CARPET = register("magenta_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_MAGENTA));
+    public static final Block PINK_SPOTTED_CARPET = register("pink_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_PINK));
+    public static final Block AMBER_SPOTTED_CARPET = register("amber_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_YELLOW));
+    public static final Block AQUA_SPOTTED_CARPET = register("aqua_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_LIGHT_BLUE));
+    public static final Block INDIGO_SPOTTED_CARPET = register("indigo_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_MAGENTA));
+    public static final Block MAROON_SPOTTED_CARPET = register("maroon_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_RED));
     public static final Block HOLLOW_OAK_LOG = register("hollow_oak_log", HollowLogBlock::new,
             hollowLogProperties(Blocks.OAK_LOG));
     public static final Block HOLLOW_SPRUCE_LOG = register("hollow_spruce_log", HollowLogBlock::new,
@@ -373,6 +413,25 @@ public class BlockRegistry {
                 .strength(0.3F)
                 .lightLevel(state -> lightLevel)
                 .sound(SoundType.FROGLIGHT);
+    }
+
+    private static BlockBehaviour.Properties spottedWoolProperties(MapColor colour) {
+        return BlockBehaviour.Properties.of()
+                .mapColor(colour)
+                .instrument(NoteBlockInstrument.GUITAR)
+                .strength(0.8F)
+                .sound(SoundType.WOOL)
+                .ignitedByLava();
+    }
+
+    // Carpet defaults to HARP (no instrument() call) to match vanilla carpet's
+    // note-block sound; main's spotted carpet GUITAR mismatch is being fixed.
+    private static BlockBehaviour.Properties spottedCarpetProperties(MapColor colour) {
+        return BlockBehaviour.Properties.of()
+                .mapColor(colour)
+                .strength(0.1F)
+                .sound(SoundType.WOOL)
+                .ignitedByLava();
     }
 
     private static Block register(String id, BlockBehaviour.Properties settings) {

@@ -1,0 +1,14 @@
+{
+  "type": "nekomasfixed:recolour",
+  "category": "building",
+  "group": "spotted_carpet",
+  "input": {
+    "tag": "nekomasfixed:spotted_carpet"
+  },
+  "material": {
+    "item": "minecraft:orange_dye"
+  },
+  "result": {
+    "id": "nekomasfixed:orange_spotted_carpet"
+  }
+}

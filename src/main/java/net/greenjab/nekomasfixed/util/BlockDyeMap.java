@@ -50,5 +50,47 @@ public class BlockDyeMap {
         FROGLIGHT.put(AllDyes.AQUA, BlockRegistry.SEAFOAM_FROGLIGHT);
         FROGLIGHT.put(AllDyes.INDIGO, BlockRegistry.LAVENDER_FROGLIGHT);
         FROGLIGHT.put(AllDyes.MAROON, BlockRegistry.SANGUINE_FROGLIGHT);
+
+        SPOTTED_WOOL.put(AllDyes.WHITE, BlockRegistry.WHITE_SPOTTED_WOOL);
+        SPOTTED_WOOL.put(AllDyes.ORANGE, BlockRegistry.ORANGE_SPOTTED_WOOL);
+        SPOTTED_WOOL.put(AllDyes.MAGENTA, BlockRegistry.MAGENTA_SPOTTED_WOOL);
+        SPOTTED_WOOL.put(AllDyes.LIGHT_BLUE, BlockRegistry.LIGHT_BLUE_SPOTTED_WOOL);
+        SPOTTED_WOOL.put(AllDyes.YELLOW, BlockRegistry.YELLOW_SPOTTED_WOOL);
+        SPOTTED_WOOL.put(AllDyes.LIME, BlockRegistry.LIME_SPOTTED_WOOL);
+        SPOTTED_WOOL.put(AllDyes.PINK, BlockRegistry.PINK_SPOTTED_WOOL);
+        SPOTTED_WOOL.put(AllDyes.GRAY, BlockRegistry.GRAY_SPOTTED_WOOL);
+        SPOTTED_WOOL.put(AllDyes.LIGHT_GRAY, BlockRegistry.LIGHT_GRAY_SPOTTED_WOOL);
+        SPOTTED_WOOL.put(AllDyes.CYAN, BlockRegistry.CYAN_SPOTTED_WOOL);
+        SPOTTED_WOOL.put(AllDyes.PURPLE, BlockRegistry.PURPLE_SPOTTED_WOOL);
+        SPOTTED_WOOL.put(AllDyes.BLUE, BlockRegistry.BLUE_SPOTTED_WOOL);
+        SPOTTED_WOOL.put(AllDyes.BROWN, BlockRegistry.BROWN_SPOTTED_WOOL);
+        SPOTTED_WOOL.put(AllDyes.GREEN, BlockRegistry.GREEN_SPOTTED_WOOL);
+        SPOTTED_WOOL.put(AllDyes.RED, BlockRegistry.RED_SPOTTED_WOOL);
+        SPOTTED_WOOL.put(AllDyes.BLACK, BlockRegistry.BLACK_SPOTTED_WOOL);
+        SPOTTED_WOOL.put(AllDyes.AMBER, BlockRegistry.AMBER_SPOTTED_WOOL);
+        SPOTTED_WOOL.put(AllDyes.AQUA, BlockRegistry.AQUA_SPOTTED_WOOL);
+        SPOTTED_WOOL.put(AllDyes.INDIGO, BlockRegistry.INDIGO_SPOTTED_WOOL);
+        SPOTTED_WOOL.put(AllDyes.MAROON, BlockRegistry.MAROON_SPOTTED_WOOL);
+
+        SPOTTED_CARPET.put(AllDyes.WHITE, BlockRegistry.WHITE_SPOTTED_CARPET);
+        SPOTTED_CARPET.put(AllDyes.ORANGE, BlockRegistry.ORANGE_SPOTTED_CARPET);
+        SPOTTED_CARPET.put(AllDyes.MAGENTA, BlockRegistry.MAGENTA_SPOTTED_CARPET);
+        SPOTTED_CARPET.put(AllDyes.LIGHT_BLUE, BlockRegistry.LIGHT_BLUE_SPOTTED_CARPET);
+        SPOTTED_CARPET.put(AllDyes.YELLOW, BlockRegistry.YELLOW_SPOTTED_CARPET);
+        SPOTTED_CARPET.put(AllDyes.LIME, BlockRegistry.LIME_SPOTTED_CARPET);
+        SPOTTED_CARPET.put(AllDyes.PINK, BlockRegistry.PINK_SPOTTED_CARPET);
+        SPOTTED_CARPET.put(AllDyes.GRAY, BlockRegistry.GRAY_SPOTTED_CARPET);
+        SPOTTED_CARPET.put(AllDyes.LIGHT_GRAY, BlockRegistry.LIGHT_GRAY_SPOTTED_CARPET);
+        SPOTTED_CARPET.put(AllDyes.CYAN, BlockRegistry.CYAN_SPOTTED_CARPET);
+        SPOTTED_CARPET.put(AllDyes.PURPLE, BlockRegistry.PURPLE_SPOTTED_CARPET);
+        SPOTTED_CARPET.put(AllDyes.BLUE, BlockRegistry.BLUE_SPOTTED_CARPET);
+        SPOTTED_CARPET.put(AllDyes.BROWN, BlockRegistry.BROWN_SPOTTED_CARPET);
+        SPOTTED_CARPET.put(AllDyes.GREEN, BlockRegistry.GREEN_SPOTTED_CARPET);
+        SPOTTED_CARPET.put(AllDyes.RED, BlockRegistry.RED_SPOTTED_CARPET);
+        SPOTTED_CARPET.put(AllDyes.BLACK, BlockRegistry.BLACK_SPOTTED_CARPET);
+        SPOTTED_CARPET.put(AllDyes.AMBER, BlockRegistry.AMBER_SPOTTED_CARPET);
+        SPOTTED_CARPET.put(AllDyes.AQUA, BlockRegistry.AQUA_SPOTTED_CARPET);
+        SPOTTED_CARPET.put(AllDyes.INDIGO, BlockRegistry.INDIGO_SPOTTED_CARPET);
+        SPOTTED_CARPET.put(AllDyes.MAROON, BlockRegistry.MAROON_SPOTTED_CARPET);
     }
 }
