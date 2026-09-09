@@ -1,14 +1,9 @@
 {
-  "type": "nekomasfixed:recolour",
-  "category": "building",
-  "group": "spotted_wool",
-  "input": {
-    "tag": "nekomasfixed:spotted_wool"
-  },
-  "material": {
-    "item": "minecraft:black_dye"
-  },
-  "result": {
-    "id": "nekomasfixed:black_spotted_wool"
-  }
+  "type": "nekomasfixed:recolour", "category": "building", "group": "spotted_wool", "input": {
+  "tag": "nekomasfixed:spotted_wool"
+}, "material": {
+  "item": "minecraft:black_dye"
+}, "result": {
+  "id": "nekomasfixed:black_spotted_wool"
+}
 }

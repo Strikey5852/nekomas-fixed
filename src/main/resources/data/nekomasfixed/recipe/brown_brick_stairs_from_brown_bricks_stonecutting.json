@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting", "ingredient": {
+  "item": "nekomasfixed:brown_bricks"
+}, "result": {
+  "id": "nekomasfixed:brown_brick_stairs"
+}
+}

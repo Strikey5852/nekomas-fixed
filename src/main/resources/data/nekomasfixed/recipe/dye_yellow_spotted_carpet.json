@@ -1,14 +1,9 @@
 {
-  "type": "nekomasfixed:recolour",
-  "category": "building",
-  "group": "spotted_carpet",
-  "input": {
-    "tag": "nekomasfixed:spotted_carpet"
-  },
-  "material": {
-    "item": "minecraft:yellow_dye"
-  },
-  "result": {
-    "id": "nekomasfixed:yellow_spotted_carpet"
-  }
+  "type": "nekomasfixed:recolour", "category": "building", "group": "spotted_carpet", "input": {
+  "tag": "nekomasfixed:spotted_carpet"
+}, "material": {
+  "item": "minecraft:yellow_dye"
+}, "result": {
+  "id": "nekomasfixed:yellow_spotted_carpet"
+}
 }

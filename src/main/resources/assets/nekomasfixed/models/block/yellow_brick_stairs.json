@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/stairs", "textures": {
+  "bottom": "nekomasfixed:block/yellow_bricks", "side": "nekomasfixed:block/yellow_bricks",
+  "top": "nekomasfixed:block/yellow_bricks"
+}
+}

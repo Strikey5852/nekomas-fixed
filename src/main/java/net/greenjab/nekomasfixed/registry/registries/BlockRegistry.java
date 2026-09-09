@@ -348,6 +348,86 @@ public class BlockRegistry {
     public static final Block AQUA_SPOTTED_CARPET = register("aqua_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_LIGHT_BLUE));
     public static final Block INDIGO_SPOTTED_CARPET = register("indigo_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_MAGENTA));
     public static final Block MAROON_SPOTTED_CARPET = register("maroon_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_RED));
+    public static final Block WHITE_BRICKS = register("white_bricks", brickProperties(MapColor.SNOW));
+    public static final Block ORANGE_BRICKS = register("orange_bricks", brickProperties(MapColor.COLOR_ORANGE));
+    public static final Block MAGENTA_BRICKS = register("magenta_bricks", brickProperties(MapColor.COLOR_MAGENTA));
+    public static final Block LIGHT_BLUE_BRICKS = register("light_blue_bricks", brickProperties(MapColor.COLOR_LIGHT_BLUE));
+    public static final Block YELLOW_BRICKS = register("yellow_bricks", brickProperties(MapColor.COLOR_YELLOW));
+    public static final Block LIME_BRICKS = register("lime_bricks", brickProperties(MapColor.COLOR_LIGHT_GREEN));
+    public static final Block PINK_BRICKS = register("pink_bricks", brickProperties(MapColor.COLOR_PINK));
+    public static final Block GRAY_BRICKS = register("gray_bricks", brickProperties(MapColor.COLOR_GRAY));
+    public static final Block LIGHT_GRAY_BRICKS = register("light_gray_bricks", brickProperties(MapColor.COLOR_LIGHT_GRAY));
+    public static final Block CYAN_BRICKS = register("cyan_bricks", brickProperties(MapColor.COLOR_CYAN));
+    public static final Block PURPLE_BRICKS = register("purple_bricks", brickProperties(MapColor.COLOR_PURPLE));
+    public static final Block BLUE_BRICKS = register("blue_bricks", brickProperties(MapColor.COLOR_BLUE));
+    public static final Block BROWN_BRICKS = register("brown_bricks", brickProperties(MapColor.COLOR_BROWN));
+    public static final Block GREEN_BRICKS = register("green_bricks", brickProperties(MapColor.COLOR_GREEN));
+    public static final Block RED_BRICKS = register("red_bricks", brickProperties(MapColor.COLOR_RED));
+    public static final Block BLACK_BRICKS = register("black_bricks", brickProperties(MapColor.COLOR_BLACK));
+    public static final Block AMBER_BRICKS = register("amber_bricks", brickProperties(MapColor.COLOR_YELLOW));
+    public static final Block AQUA_BRICKS = register("aqua_bricks", brickProperties(MapColor.COLOR_LIGHT_BLUE));
+    public static final Block INDIGO_BRICKS = register("indigo_bricks", brickProperties(MapColor.COLOR_MAGENTA));
+    public static final Block MAROON_BRICKS = register("maroon_bricks", brickProperties(MapColor.COLOR_RED));
+    public static final Block WHITE_BRICK_SLAB = register("white_brick_slab", SlabBlock::new, brickSlabProperties(MapColor.SNOW));
+    public static final Block ORANGE_BRICK_SLAB = register("orange_brick_slab", SlabBlock::new, brickSlabProperties(MapColor.COLOR_ORANGE));
+    public static final Block MAGENTA_BRICK_SLAB = register("magenta_brick_slab", SlabBlock::new, brickSlabProperties(MapColor.COLOR_MAGENTA));
+    public static final Block LIGHT_BLUE_BRICK_SLAB = register("light_blue_brick_slab", SlabBlock::new, brickSlabProperties(MapColor.COLOR_LIGHT_BLUE));
+    public static final Block YELLOW_BRICK_SLAB = register("yellow_brick_slab", SlabBlock::new, brickSlabProperties(MapColor.COLOR_YELLOW));
+    public static final Block LIME_BRICK_SLAB = register("lime_brick_slab", SlabBlock::new, brickSlabProperties(MapColor.COLOR_LIGHT_GREEN));
+    public static final Block PINK_BRICK_SLAB = register("pink_brick_slab", SlabBlock::new, brickSlabProperties(MapColor.COLOR_PINK));
+    public static final Block GRAY_BRICK_SLAB = register("gray_brick_slab", SlabBlock::new, brickSlabProperties(MapColor.COLOR_GRAY));
+    public static final Block LIGHT_GRAY_BRICK_SLAB = register("light_gray_brick_slab", SlabBlock::new, brickSlabProperties(MapColor.COLOR_LIGHT_GRAY));
+    public static final Block CYAN_BRICK_SLAB = register("cyan_brick_slab", SlabBlock::new, brickSlabProperties(MapColor.COLOR_CYAN));
+    public static final Block PURPLE_BRICK_SLAB = register("purple_brick_slab", SlabBlock::new, brickSlabProperties(MapColor.COLOR_PURPLE));
+    public static final Block BLUE_BRICK_SLAB = register("blue_brick_slab", SlabBlock::new, brickSlabProperties(MapColor.COLOR_BLUE));
+    public static final Block BROWN_BRICK_SLAB = register("brown_brick_slab", SlabBlock::new, brickSlabProperties(MapColor.COLOR_BROWN));
+    public static final Block GREEN_BRICK_SLAB = register("green_brick_slab", SlabBlock::new, brickSlabProperties(MapColor.COLOR_GREEN));
+    public static final Block RED_BRICK_SLAB = register("red_brick_slab", SlabBlock::new, brickSlabProperties(MapColor.COLOR_RED));
+    public static final Block BLACK_BRICK_SLAB = register("black_brick_slab", SlabBlock::new, brickSlabProperties(MapColor.COLOR_BLACK));
+    public static final Block AMBER_BRICK_SLAB = register("amber_brick_slab", SlabBlock::new, brickSlabProperties(MapColor.COLOR_YELLOW));
+    public static final Block AQUA_BRICK_SLAB = register("aqua_brick_slab", SlabBlock::new, brickSlabProperties(MapColor.COLOR_LIGHT_BLUE));
+    public static final Block INDIGO_BRICK_SLAB = register("indigo_brick_slab", SlabBlock::new, brickSlabProperties(MapColor.COLOR_MAGENTA));
+    public static final Block MAROON_BRICK_SLAB = register("maroon_brick_slab", SlabBlock::new, brickSlabProperties(MapColor.COLOR_RED));
+    public static final Block WHITE_BRICK_STAIRS = registerBrickStairs("white_brick_stairs", WHITE_BRICKS);
+    public static final Block ORANGE_BRICK_STAIRS = registerBrickStairs("orange_brick_stairs", ORANGE_BRICKS);
+    public static final Block MAGENTA_BRICK_STAIRS = registerBrickStairs("magenta_brick_stairs", MAGENTA_BRICKS);
+    public static final Block LIGHT_BLUE_BRICK_STAIRS = registerBrickStairs("light_blue_brick_stairs", LIGHT_BLUE_BRICKS);
+    public static final Block YELLOW_BRICK_STAIRS = registerBrickStairs("yellow_brick_stairs", YELLOW_BRICKS);
+    public static final Block LIME_BRICK_STAIRS = registerBrickStairs("lime_brick_stairs", LIME_BRICKS);
+    public static final Block PINK_BRICK_STAIRS = registerBrickStairs("pink_brick_stairs", PINK_BRICKS);
+    public static final Block GRAY_BRICK_STAIRS = registerBrickStairs("gray_brick_stairs", GRAY_BRICKS);
+    public static final Block LIGHT_GRAY_BRICK_STAIRS = registerBrickStairs("light_gray_brick_stairs", LIGHT_GRAY_BRICKS);
+    public static final Block CYAN_BRICK_STAIRS = registerBrickStairs("cyan_brick_stairs", CYAN_BRICKS);
+    public static final Block PURPLE_BRICK_STAIRS = registerBrickStairs("purple_brick_stairs", PURPLE_BRICKS);
+    public static final Block BLUE_BRICK_STAIRS = registerBrickStairs("blue_brick_stairs", BLUE_BRICKS);
+    public static final Block BROWN_BRICK_STAIRS = registerBrickStairs("brown_brick_stairs", BROWN_BRICKS);
+    public static final Block GREEN_BRICK_STAIRS = registerBrickStairs("green_brick_stairs", GREEN_BRICKS);
+    public static final Block RED_BRICK_STAIRS = registerBrickStairs("red_brick_stairs", RED_BRICKS);
+    public static final Block BLACK_BRICK_STAIRS = registerBrickStairs("black_brick_stairs", BLACK_BRICKS);
+    public static final Block AMBER_BRICK_STAIRS = registerBrickStairs("amber_brick_stairs", AMBER_BRICKS);
+    public static final Block AQUA_BRICK_STAIRS = registerBrickStairs("aqua_brick_stairs", AQUA_BRICKS);
+    public static final Block INDIGO_BRICK_STAIRS = registerBrickStairs("indigo_brick_stairs", INDIGO_BRICKS);
+    public static final Block MAROON_BRICK_STAIRS = registerBrickStairs("maroon_brick_stairs", MAROON_BRICKS);
+    public static final Block WHITE_BRICK_WALL = register("white_brick_wall", WallBlock::new, brickWallProperties(WHITE_BRICKS));
+    public static final Block ORANGE_BRICK_WALL = register("orange_brick_wall", WallBlock::new, brickWallProperties(ORANGE_BRICKS));
+    public static final Block MAGENTA_BRICK_WALL = register("magenta_brick_wall", WallBlock::new, brickWallProperties(MAGENTA_BRICKS));
+    public static final Block LIGHT_BLUE_BRICK_WALL = register("light_blue_brick_wall", WallBlock::new, brickWallProperties(LIGHT_BLUE_BRICKS));
+    public static final Block YELLOW_BRICK_WALL = register("yellow_brick_wall", WallBlock::new, brickWallProperties(YELLOW_BRICKS));
+    public static final Block LIME_BRICK_WALL = register("lime_brick_wall", WallBlock::new, brickWallProperties(LIME_BRICKS));
+    public static final Block PINK_BRICK_WALL = register("pink_brick_wall", WallBlock::new, brickWallProperties(PINK_BRICKS));
+    public static final Block GRAY_BRICK_WALL = register("gray_brick_wall", WallBlock::new, brickWallProperties(GRAY_BRICKS));
+    public static final Block LIGHT_GRAY_BRICK_WALL = register("light_gray_brick_wall", WallBlock::new, brickWallProperties(LIGHT_GRAY_BRICKS));
+    public static final Block CYAN_BRICK_WALL = register("cyan_brick_wall", WallBlock::new, brickWallProperties(CYAN_BRICKS));
+    public static final Block PURPLE_BRICK_WALL = register("purple_brick_wall", WallBlock::new, brickWallProperties(PURPLE_BRICKS));
+    public static final Block BLUE_BRICK_WALL = register("blue_brick_wall", WallBlock::new, brickWallProperties(BLUE_BRICKS));
+    public static final Block BROWN_BRICK_WALL = register("brown_brick_wall", WallBlock::new, brickWallProperties(BROWN_BRICKS));
+    public static final Block GREEN_BRICK_WALL = register("green_brick_wall", WallBlock::new, brickWallProperties(GREEN_BRICKS));
+    public static final Block RED_BRICK_WALL = register("red_brick_wall", WallBlock::new, brickWallProperties(RED_BRICKS));
+    public static final Block BLACK_BRICK_WALL = register("black_brick_wall", WallBlock::new, brickWallProperties(BLACK_BRICKS));
+    public static final Block AMBER_BRICK_WALL = register("amber_brick_wall", WallBlock::new, brickWallProperties(AMBER_BRICKS));
+    public static final Block AQUA_BRICK_WALL = register("aqua_brick_wall", WallBlock::new, brickWallProperties(AQUA_BRICKS));
+    public static final Block INDIGO_BRICK_WALL = register("indigo_brick_wall", WallBlock::new, brickWallProperties(INDIGO_BRICKS));
+    public static final Block MAROON_BRICK_WALL = register("maroon_brick_wall", WallBlock::new, brickWallProperties(MAROON_BRICKS));
     public static final Block HOLLOW_OAK_LOG = register("hollow_oak_log", HollowLogBlock::new,
             hollowLogProperties(Blocks.OAK_LOG));
     public static final Block HOLLOW_SPRUCE_LOG = register("hollow_spruce_log", HollowLogBlock::new,
@@ -432,6 +512,34 @@ public class BlockRegistry {
                 .strength(0.1F)
                 .sound(SoundType.WOOL)
                 .ignitedByLava();
+    }
+
+    private static BlockBehaviour.Properties brickProperties(MapColor colour) {
+        // Recreates main's ofFullCopy(BRICKS): stone sound + 2.0/6.0 strength.
+        return BlockBehaviour.Properties.of()
+                .mapColor(colour)
+                .strength(2.0F, 6.0F)
+                .sound(SoundType.STONE);
+    }
+
+    private static BlockBehaviour.Properties brickSlabProperties(MapColor colour) {
+        // Recreates main's ofFullCopy(BRICK_SLAB); slab drops double blocks for
+        // the type=double state (vanilla-correct, main's self-drop is a bug).
+        return BlockBehaviour.Properties.of()
+                .mapColor(colour)
+                .strength(2.0F, 6.0F)
+                .sound(SoundType.STONE);
+    }
+
+    // Reproduces main's registerOldStairsBlock; base is the colour's brick block.
+    private static Block registerBrickStairs(String id, Block base) {
+        return register(id, settings -> new StairBlock(base.defaultBlockState(), settings),
+                brickProperties(base.defaultMapColor()));
+    }
+
+    // Reproduces main's ofLegacyCopy(X_BRICKS).forceSolidOn() for WallBlock.
+    private static BlockBehaviour.Properties brickWallProperties(Block base) {
+        return BlockBehaviour.Properties.ofLegacyCopy(base).forceSolidOn();
     }
 
     private static Block register(String id, BlockBehaviour.Properties settings) {

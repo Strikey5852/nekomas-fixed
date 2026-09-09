@@ -1,14 +1,9 @@
 {
-  "type": "nekomasfixed:recolour",
-  "category": "building",
-  "group": "spotted_carpet",
-  "input": {
-    "tag": "nekomasfixed:spotted_carpet"
-  },
-  "material": {
-    "item": "nekomasfixed:amber_dye"
-  },
-  "result": {
-    "id": "nekomasfixed:amber_spotted_carpet"
-  }
+  "type": "nekomasfixed:recolour", "category": "building", "group": "spotted_carpet", "input": {
+  "tag": "nekomasfixed:spotted_carpet"
+}, "material": {
+  "item": "nekomasfixed:amber_dye"
+}, "result": {
+  "id": "nekomasfixed:amber_spotted_carpet"
+}
 }

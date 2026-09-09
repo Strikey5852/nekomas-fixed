@@ -1,14 +1,9 @@
 {
-  "type": "nekomasfixed:recolour",
-  "category": "building",
-  "group": "spotted_carpet",
-  "input": {
-    "tag": "nekomasfixed:spotted_carpet"
-  },
-  "material": {
-    "item": "nekomasfixed:maroon_dye"
-  },
-  "result": {
-    "id": "nekomasfixed:maroon_spotted_carpet"
-  }
+  "type": "nekomasfixed:recolour", "category": "building", "group": "spotted_carpet", "input": {
+  "tag": "nekomasfixed:spotted_carpet"
+}, "material": {
+  "item": "nekomasfixed:maroon_dye"
+}, "result": {
+  "id": "nekomasfixed:maroon_spotted_carpet"
+}
 }

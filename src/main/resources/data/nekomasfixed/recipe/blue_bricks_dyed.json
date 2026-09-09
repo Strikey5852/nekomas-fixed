@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped", "category": "building", "group": "dyed_bricks_dyed", "key": {
+  "#": {
+    "item": "minecraft:bricks"
+  }, "D": {
+    "item": "minecraft:blue_dye"
+  }
+}, "pattern": [
+  "###", "#D#", "###"
+], "result": {
+  "count": 8, "id": "nekomasfixed:blue_bricks"
+}
+}
