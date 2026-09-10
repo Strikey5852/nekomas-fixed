@@ -1,0 +1,15 @@
+{
+  "type": "nekomasfixed:recolour",
+  "category": "building",
+  "group": "spotted_carpet",
+  "input": {
+    "tag": "nekomasfixed:spotted_carpet"
+  },
+  "material": {
+    "item": "minecraft:pink_dye"
+  },
+  "result": {
+    "count": 1,
+    "id": "nekomasfixed:pink_spotted_carpet"
+  }
+}

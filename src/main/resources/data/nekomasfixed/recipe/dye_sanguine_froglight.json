@@ -1,9 +1,0 @@
-{
-  "type": "nekomasfixed:recolour", "category": "misc", "group": "froglight", "input": {
-  "tag": "nekomasfixed:froglights"
-}, "material": {
-  "item": "nekomasfixed:maroon_dye"
-}, "result": {
-  "id": "nekomasfixed:sanguine_froglight"
-}
-}

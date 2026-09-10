@@ -1,9 +1,0 @@
-{
-  "type": "nekomasfixed:recolour", "category": "misc", "group": "froglight", "input": {
-  "tag": "nekomasfixed:froglights"
-}, "material": {
-  "item": "minecraft:light_blue_dye"
-}, "result": {
-  "id": "nekomasfixed:cerulean_froglight"
-}
-}

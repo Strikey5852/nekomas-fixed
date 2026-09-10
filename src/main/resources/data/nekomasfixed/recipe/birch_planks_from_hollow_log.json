@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:crafting_shapeless", "category": "building", "ingredients": [
-  {
-    "item": "nekomasfixed:hollow_birch_log"
-  }
-], "result": {
-  "id": "minecraft:birch_planks"
-}
-}

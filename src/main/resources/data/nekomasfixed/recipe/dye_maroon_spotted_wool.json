@@ -1,9 +1,0 @@
-{
-  "type": "nekomasfixed:recolour", "category": "building", "group": "spotted_wool", "input": {
-  "tag": "nekomasfixed:spotted_wool"
-}, "material": {
-  "item": "nekomasfixed:maroon_dye"
-}, "result": {
-  "id": "nekomasfixed:maroon_spotted_wool"
-}
-}

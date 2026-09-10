@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "dyed_brick_slab",
+  "key": {
+    "#": {
+      "item": "nekomasfixed:pink_bricks"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "nekomasfixed:pink_brick_slab"
+  }
+}

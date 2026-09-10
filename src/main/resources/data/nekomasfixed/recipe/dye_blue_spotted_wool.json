@@ -1,9 +1,0 @@
-{
-  "type": "nekomasfixed:recolour", "category": "building", "group": "spotted_wool", "input": {
-  "tag": "nekomasfixed:spotted_wool"
-}, "material": {
-  "item": "minecraft:blue_dye"
-}, "result": {
-  "id": "nekomasfixed:blue_spotted_wool"
-}
-}

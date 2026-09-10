@@ -1,9 +1,0 @@
-{
-  "type": "nekomasfixed:recolour", "category": "misc", "group": "froglight", "input": {
-  "tag": "nekomasfixed:froglights"
-}, "material": {
-  "item": "minecraft:light_gray_dye"
-}, "result": {
-  "id": "nekomasfixed:cloudy_froglight"
-}
-}

@@ -1,9 +1,0 @@
-{
-  "type": "nekomasfixed:recolour", "category": "building", "group": "spotted_carpet", "input": {
-  "tag": "nekomasfixed:spotted_carpet"
-}, "material": {
-  "item": "minecraft:lime_dye"
-}, "result": {
-  "id": "nekomasfixed:lime_spotted_carpet"
-}
-}

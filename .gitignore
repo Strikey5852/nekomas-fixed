@@ -42,3 +42,6 @@ replay_*.log
 # project tracking
 features.md
 /tools/
+
+# datagen output cache
+src/main/generated/.cache

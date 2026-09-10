@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:crafting_shapeless", "category": "building", "ingredients": [
-  {
-    "item": "nekomasfixed:hollow_mangrove_log"
-  }
-], "result": {
-  "id": "minecraft:mangrove_planks"
-}
-}

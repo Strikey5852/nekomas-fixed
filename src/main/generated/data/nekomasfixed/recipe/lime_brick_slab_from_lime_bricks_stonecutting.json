@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "nekomasfixed:lime_bricks"
+  },
+  "result": {
+    "count": 2,
+    "id": "nekomasfixed:lime_brick_slab"
+  }
+}

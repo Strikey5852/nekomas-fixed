@@ -1,5 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all", "textures": {
-  "all": "nekomasfixed:block/purple_spotted_wool"
-}
-}

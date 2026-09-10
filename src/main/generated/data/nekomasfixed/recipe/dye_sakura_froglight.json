@@ -1,0 +1,15 @@
+{
+  "type": "nekomasfixed:recolour",
+  "category": "misc",
+  "group": "froglight",
+  "input": {
+    "tag": "nekomasfixed:froglights"
+  },
+  "material": {
+    "item": "minecraft:pink_dye"
+  },
+  "result": {
+    "count": 1,
+    "id": "nekomasfixed:sakura_froglight"
+  }
+}

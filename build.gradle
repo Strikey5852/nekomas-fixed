@@ -31,6 +31,10 @@ loom {
     }
 }
 
+// Datagen writes to src/main/generated; expose it as a resources root so the
+// generated assets are packaged into the mod jar alongside the hand-written ones.
+sourceSets["main"].resources.srcDir("src/main/generated")
+
 // Original mod (26.2 source) lives in the top-level reference/ folder as a
 // per-feature spec; it is NOT part of any Gradle source set, so it never
 // interferes with the 1.21.1 build.

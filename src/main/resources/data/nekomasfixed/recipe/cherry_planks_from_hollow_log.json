@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:crafting_shapeless", "category": "building", "ingredients": [
-  {
-    "item": "nekomasfixed:hollow_cherry_log"
-  }
-], "result": {
-  "id": "minecraft:cherry_planks"
-}
-}

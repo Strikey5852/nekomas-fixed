@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:crafting_shapeless", "category": "building", "ingredients": [
-  {
-    "item": "nekomasfixed:hollow_spruce_log"
-  }
-], "result": {
-  "id": "minecraft:spruce_planks"
-}
-}
