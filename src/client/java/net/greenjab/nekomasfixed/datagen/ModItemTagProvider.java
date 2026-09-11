@@ -47,5 +47,8 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         BlockDyeMap.SPOTTED_WOOL.values().forEach(block -> getOrCreateTagBuilder(ModTags.SPOTTED_WOOL_ITEM).add(BuiltInRegistries.ITEM.getKey(block.asItem())));
         BlockDyeMap.SPOTTED_CARPET.values().forEach(block -> getOrCreateTagBuilder(ModTags.SPOTTED_CARPET_ITEM).add(BuiltInRegistries.ITEM.getKey(block.asItem())));
         BlockDyeMap.FROGLIGHT.values().forEach(block -> getOrCreateTagBuilder(ModTags.FROGLIGHTS_ITEM).add(BuiltInRegistries.ITEM.getKey(block.asItem())));
+        // The redstone striker can take Unbreaking via the vanilla durability-enchantable tag.
+        getOrCreateTagBuilder(net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE)
+                .add(BuiltInRegistries.ITEM.getKey(ItemRegistry.REDSTONE_STRIKER));
     }
 }

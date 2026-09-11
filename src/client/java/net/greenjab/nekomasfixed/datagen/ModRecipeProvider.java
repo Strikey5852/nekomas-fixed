@@ -217,6 +217,13 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .pattern("###").pattern("###").pattern("###").define('#', Items.GLISTERING_MELON_SLICE)
                 .unlockedBy("has_glistering_melon_slice", has(Items.GLISTERING_MELON_SLICE))
                 .save(output, NekomasFixed.id("glistering_melon"));
+
+        // Redstone Striker: flint + gold + redstone.
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ItemRegistry.REDSTONE_STRIKER)
+                .pattern("RG").pattern("FR")
+                .define('R', Items.REDSTONE).define('G', Items.GOLD_INGOT).define('F', Items.FLINT)
+                .unlockedBy("has_redstone", has(Items.REDSTONE))
+                .save(output, NekomasFixed.id("redstone_striker"));
     }
 
     @Override

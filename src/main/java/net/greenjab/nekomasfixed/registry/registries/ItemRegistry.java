@@ -4,6 +4,7 @@ import net.greenjab.nekomasfixed.NekomasFixed;
 import net.greenjab.nekomasfixed.registry.item.BaobabBoatItem;
 import net.greenjab.nekomasfixed.registry.item.BaobabSeedsItem;
 import net.greenjab.nekomasfixed.registry.item.ModDyeItems;
+import net.greenjab.nekomasfixed.registry.item.RedstoneStrikerItem;
 import net.greenjab.nekomasfixed.registry.item.RopeItem;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
@@ -53,6 +54,10 @@ public class ItemRegistry {
             new Item.Properties().stacksTo(16));
     public static final Item BAOBAB_LEAVES = register(BlockRegistry.BAOBAB_LEAVES);
     public static final Item ROPE = register(BlockRegistry.ROPE, RopeItem::new, new Item.Properties());
+    public static final Item REDSTONE_STRIKER = register(
+            "redstone_striker",
+            RedstoneStrikerItem::new,
+            new Item.Properties().stacksTo(1).durability(64));
     public static final FoodProperties BAOBAB_FRUIT_FOOD = new FoodProperties.Builder().nutrition(4).saturationModifier(0.3F).build();
     public static final Item BAOBAB_FRUIT = register(
             "baobab_fruit",
