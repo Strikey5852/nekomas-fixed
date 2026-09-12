@@ -1,0 +1,15 @@
+{
+  "type": "nekomasfixed:recolour",
+  "category": "building",
+  "group": "wool_carpets",
+  "input": {
+    "tag": "minecraft:wool_carpets"
+  },
+  "material": {
+    "item": "nekomasfixed:maroon_dye"
+  },
+  "result": {
+    "count": 1,
+    "id": "nekomasfixed:maroon_carpet"
+  }
+}

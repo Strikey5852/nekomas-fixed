@@ -1,11 +1,7 @@
 package net.greenjab.nekomasfixed.registry.registries;
 
 import net.greenjab.nekomasfixed.NekomasFixed;
-import net.greenjab.nekomasfixed.registry.item.BaobabBoatItem;
-import net.greenjab.nekomasfixed.registry.item.BaobabSeedsItem;
-import net.greenjab.nekomasfixed.registry.item.ModDyeItems;
-import net.greenjab.nekomasfixed.registry.item.RedstoneStrikerItem;
-import net.greenjab.nekomasfixed.registry.item.RopeItem;
+import net.greenjab.nekomasfixed.registry.item.*;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
@@ -170,6 +166,14 @@ public class ItemRegistry {
     public static final Item AQUA_SPOTTED_CARPET = register(BlockRegistry.AQUA_SPOTTED_CARPET);
     public static final Item INDIGO_SPOTTED_CARPET = register(BlockRegistry.INDIGO_SPOTTED_CARPET);
     public static final Item MAROON_SPOTTED_CARPET = register(BlockRegistry.MAROON_SPOTTED_CARPET);
+    public static final Item AMBER_WOOL = register(BlockRegistry.AMBER_WOOL);
+    public static final Item AQUA_WOOL = register(BlockRegistry.AQUA_WOOL);
+    public static final Item INDIGO_WOOL = register(BlockRegistry.INDIGO_WOOL);
+    public static final Item MAROON_WOOL = register(BlockRegistry.MAROON_WOOL);
+    public static final Item AMBER_CARPET = register(BlockRegistry.AMBER_CARPET);
+    public static final Item AQUA_CARPET = register(BlockRegistry.AQUA_CARPET);
+    public static final Item INDIGO_CARPET = register(BlockRegistry.INDIGO_CARPET);
+    public static final Item MAROON_CARPET = register(BlockRegistry.MAROON_CARPET);
 
     public static final Item WHITE_BRICKS = register(BlockRegistry.WHITE_BRICKS);
     public static final Item ORANGE_BRICKS = register(BlockRegistry.ORANGE_BRICKS);
@@ -252,6 +256,34 @@ public class ItemRegistry {
     public static final Item INDIGO_BRICK_WALL = register(BlockRegistry.INDIGO_BRICK_WALL);
     public static final Item MAROON_BRICK_WALL = register(BlockRegistry.MAROON_BRICK_WALL);
 
+    // Ancient-dye stained glass + panes (plain block items).
+    public static final Item AMBER_STAINED_GLASS = register(BlockRegistry.AMBER_STAINED_GLASS);
+    public static final Item AQUA_STAINED_GLASS = register(BlockRegistry.AQUA_STAINED_GLASS);
+    public static final Item INDIGO_STAINED_GLASS = register(BlockRegistry.INDIGO_STAINED_GLASS);
+    public static final Item MAROON_STAINED_GLASS = register(BlockRegistry.MAROON_STAINED_GLASS);
+    public static final Item AMBER_STAINED_GLASS_PANE = register(BlockRegistry.AMBER_STAINED_GLASS_PANE);
+    public static final Item AQUA_STAINED_GLASS_PANE = register(BlockRegistry.AQUA_STAINED_GLASS_PANE);
+    public static final Item INDIGO_STAINED_GLASS_PANE = register(BlockRegistry.INDIGO_STAINED_GLASS_PANE);
+    public static final Item MAROON_STAINED_GLASS_PANE = register(BlockRegistry.MAROON_STAINED_GLASS_PANE);
+
+    // Ancient-colour candles (plain block items).
+    public static final Item AMBER_CANDLE = register(BlockRegistry.AMBER_CANDLE);
+    public static final Item AQUA_CANDLE = register(BlockRegistry.AQUA_CANDLE);
+    public static final Item INDIGO_CANDLE = register(BlockRegistry.INDIGO_CANDLE);
+    public static final Item MAROON_CANDLE = register(BlockRegistry.MAROON_CANDLE);
+
+    // Ancient-colour beds (BedItem, stack to 1).
+    public static final Item AMBER_BED = registerBedItem(BlockRegistry.AMBER_BED);
+    public static final Item AQUA_BED = registerBedItem(BlockRegistry.AQUA_BED);
+    public static final Item INDIGO_BED = registerBedItem(BlockRegistry.INDIGO_BED);
+    public static final Item MAROON_BED = registerBedItem(BlockRegistry.MAROON_BED);
+
+    // Ancient-colour shulker boxes: stack to 1 with an empty container component (vanilla shulker).
+    public static final Item AMBER_SHULKER_BOX = register(BlockRegistry.AMBER_SHULKER_BOX, shulkerBoxProperties());
+    public static final Item AQUA_SHULKER_BOX = register(BlockRegistry.AQUA_SHULKER_BOX, shulkerBoxProperties());
+    public static final Item INDIGO_SHULKER_BOX = register(BlockRegistry.INDIGO_SHULKER_BOX, shulkerBoxProperties());
+    public static final Item MAROON_SHULKER_BOX = register(BlockRegistry.MAROON_SHULKER_BOX, shulkerBoxProperties());
+
     public static final Item AMBER_DYE = registerDye("amber_dye");
     public static final Item AQUA_DYE = registerDye("aqua_dye");
     public static final Item INDIGO_DYE = registerDye("indigo_dye");
@@ -293,6 +325,16 @@ public class ItemRegistry {
 
     private static Item registerDye(String id) {
         return Registry.register(BuiltInRegistries.ITEM, NekomasFixed.id(id), new ModDyeItems(new Item.Properties()));
+    }
+
+    // Bed: vanilla BedItem, stack to 1 (can't stack beds).
+    private static Item registerBedItem(Block block) {
+        return register(block, BedItem::new, new Item.Properties().stacksTo(1));
+    }
+
+    // Shulker box: stack to 1 with an empty container component (vanilla shulker behaviour).
+    private static Item.Properties shulkerBoxProperties() {
+        return new Item.Properties().stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY);
     }
 
     public static void registerItems() {

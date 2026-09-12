@@ -6,7 +6,9 @@ import net.greenjab.nekomasfixed.registry.registries.BlockRegistry;
 import net.greenjab.nekomasfixed.util.BlockDyeMap;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.properties.BedPart;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -35,6 +37,30 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         BlockDyeMap.BRICK_WALL.values().forEach(this::dropSelf);
         BlockDyeMap.SPOTTED_WOOL.values().forEach(this::dropSelf);
         BlockDyeMap.SPOTTED_CARPET.values().forEach(this::dropSelf);
+        // WOOL/CARPET maps mix mod ancient blocks; filter so vanilla blocks are never overridden.
+        BlockDyeMap.WOOL.values().stream().filter(ModLootTableProvider::isModBlock).forEach(this::dropSelf);
+        BlockDyeMap.CARPET.values().stream().filter(ModLootTableProvider::isModBlock).forEach(this::dropSelf);
+        // Stained glass + panes are silk-touch only (Vanilla-correct: glass drops nothing
+        // without silk touch). Filter to mod blocks so vanilla glass loot is untouched.
+        BlockDyeMap.STAINED_GLASS.values().stream()
+                .filter(ModLootTableProvider::isModBlock)
+                .forEach(block -> this.add(block, createSilkTouchOnlyTable(block)));
+        BlockDyeMap.STAINED_GLASS_PANE.values().stream()
+                .filter(ModLootTableProvider::isModBlock)
+                .forEach(block -> this.add(block, createSilkTouchOnlyTable(block)));
+        // Candles drop 1-4 based on the candles state (vanilla createCandleDrops shape).
+        BlockDyeMap.CANDLE.values().stream()
+                .filter(ModLootTableProvider::isModBlock)
+                .forEach(block -> this.add(block, createCandleDrops(block)));
+        // Beds drop only from the head half (vanilla single-prop condition table).
+        BlockDyeMap.BED.values().stream()
+                .filter(ModLootTableProvider::isModBlock)
+                .forEach(block -> this.add(block,
+                        createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD)));
+        // Shulker boxes drop themselves preserving container/custom-name/lock (vanilla shape).
+        BlockDyeMap.SHULKER_BOX.values().stream()
+                .filter(ModLootTableProvider::isModBlock)
+                .forEach(block -> this.add(block, createShulkerBoxDrop(block)));
         // Some dye maps mix in vanilla blocks (e.g. 3 vanilla froglights in the 20-colour
         // FROGLIGHT set). Only emit loot for mod blocks; never override vanilla ones.
         BlockDyeMap.FROGLIGHT.values().stream()

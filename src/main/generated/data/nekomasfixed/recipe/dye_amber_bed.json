@@ -1,0 +1,15 @@
+{
+  "type": "nekomasfixed:recolour",
+  "category": "misc",
+  "group": "bed_dye",
+  "input": {
+    "tag": "minecraft:beds"
+  },
+  "material": {
+    "item": "nekomasfixed:amber_dye"
+  },
+  "result": {
+    "count": 1,
+    "id": "nekomasfixed:amber_bed"
+  }
+}

@@ -10,7 +10,11 @@ import net.greenjab.nekomasfixed.util.ModTags;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -265,10 +269,141 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     ModTags.SPOTTED_CARPET_ITEM, dyeItem, BlockDyeMap.SPOTTED_CARPET.get(dye).asItem(),
                     RecipeCategory.DECORATIONS, CraftingBookCategory.BUILDING, "has_needed_dye", has(dyeItem));
         }
+        generateAncientWoolCarpet(output);
+        generateAncientGlass(output);
+        generateAncientCandle(output);
+        generateAncientBed(output);
+        generateAncientShulkerBox(output);
+
         BlockDyeMap.FROGLIGHT.forEach((dye, block) ->
                 recolour(output, "dye_" + BuiltInRegistries.BLOCK.getKey(block).getPath(), "froglight",
                         ModTags.FROGLIGHTS_ITEM, dyeItem(dye), block.asItem(),
                         RecipeCategory.DECORATIONS, CraftingBookCategory.MISC, "has_item", has(ModTags.FROGLIGHTS_ITEM)));
+    }
+
+    private void generateAncientWoolCarpet(RecipeOutput output) {
+        // Ancient-dye plain wool/carpet. Recolour from the vanilla wool / wool_carpets
+        // item tags + the ancient dye; carpet also has a base 2-wools craft (like vanilla).
+        recolour(output, "dye_amber_wool", "wool", ItemTags.WOOL, ItemRegistry.AMBER_DYE, ItemRegistry.AMBER_WOOL,
+                RecipeCategory.BUILDING_BLOCKS, CraftingBookCategory.BUILDING, "has_needed_dye", has(ItemRegistry.AMBER_DYE));
+        recolour(output, "dye_aqua_wool", "wool", ItemTags.WOOL, ItemRegistry.AQUA_DYE, ItemRegistry.AQUA_WOOL,
+                RecipeCategory.BUILDING_BLOCKS, CraftingBookCategory.BUILDING, "has_needed_dye", has(ItemRegistry.AQUA_DYE));
+        recolour(output, "dye_indigo_wool", "wool", ItemTags.WOOL, ItemRegistry.INDIGO_DYE, ItemRegistry.INDIGO_WOOL,
+                RecipeCategory.BUILDING_BLOCKS, CraftingBookCategory.BUILDING, "has_needed_dye", has(ItemRegistry.INDIGO_DYE));
+        recolour(output, "dye_maroon_wool", "wool", ItemTags.WOOL, ItemRegistry.MAROON_DYE, ItemRegistry.MAROON_WOOL,
+                RecipeCategory.BUILDING_BLOCKS, CraftingBookCategory.BUILDING, "has_needed_dye", has(ItemRegistry.MAROON_DYE));
+
+        recolour(output, "dye_amber_carpet", "wool_carpets", ItemTags.WOOL_CARPETS, ItemRegistry.AMBER_DYE, ItemRegistry.AMBER_CARPET,
+                RecipeCategory.DECORATIONS, CraftingBookCategory.BUILDING, "has_needed_dye", has(ItemRegistry.AMBER_DYE));
+        recolour(output, "dye_aqua_carpet", "wool_carpets", ItemTags.WOOL_CARPETS, ItemRegistry.AQUA_DYE, ItemRegistry.AQUA_CARPET,
+                RecipeCategory.DECORATIONS, CraftingBookCategory.BUILDING, "has_needed_dye", has(ItemRegistry.AQUA_DYE));
+        recolour(output, "dye_indigo_carpet", "wool_carpets", ItemTags.WOOL_CARPETS, ItemRegistry.INDIGO_DYE, ItemRegistry.INDIGO_CARPET,
+                RecipeCategory.DECORATIONS, CraftingBookCategory.BUILDING, "has_needed_dye", has(ItemRegistry.INDIGO_DYE));
+        recolour(output, "dye_maroon_carpet", "wool_carpets", ItemTags.WOOL_CARPETS, ItemRegistry.MAROON_DYE, ItemRegistry.MAROON_CARPET,
+                RecipeCategory.DECORATIONS, CraftingBookCategory.BUILDING, "has_needed_dye", has(ItemRegistry.MAROON_DYE));
+
+        carpetCraft(output, "amber_carpet", ItemRegistry.AMBER_WOOL, ItemRegistry.AMBER_CARPET);
+        carpetCraft(output, "aqua_carpet", ItemRegistry.AQUA_WOOL, ItemRegistry.AQUA_CARPET);
+        carpetCraft(output, "indigo_carpet", ItemRegistry.INDIGO_WOOL, ItemRegistry.INDIGO_CARPET);
+        carpetCraft(output, "maroon_carpet", ItemRegistry.MAROON_WOOL, ItemRegistry.MAROON_CARPET);
+    }
+
+    // Ancient-colour stained glass + panes. Three recipes per colour, mirroring main:
+    //   {c}_stained_glass                     : dye-ring around glass     -> 8 block
+    //   {c}_stained_glass_pane                : 6 coloured blocks          -> 16 pane
+    //   {c}_stained_glass_pane_from_glass_pane: dye-ring around glass_pane -> 8 pane
+    private void generateAncientGlass(RecipeOutput output) {
+        record GlassSet(Item glass, Item pane, Item dye, Item glassPane) {
+        }
+        GlassSet[] sets = {
+                new GlassSet(ItemRegistry.AMBER_STAINED_GLASS, ItemRegistry.AMBER_STAINED_GLASS_PANE, ItemRegistry.AMBER_DYE, Items.GLASS_PANE),
+                new GlassSet(ItemRegistry.AQUA_STAINED_GLASS, ItemRegistry.AQUA_STAINED_GLASS_PANE, ItemRegistry.AQUA_DYE, Items.GLASS_PANE),
+                new GlassSet(ItemRegistry.INDIGO_STAINED_GLASS, ItemRegistry.INDIGO_STAINED_GLASS_PANE, ItemRegistry.INDIGO_DYE, Items.GLASS_PANE),
+                new GlassSet(ItemRegistry.MAROON_STAINED_GLASS, ItemRegistry.MAROON_STAINED_GLASS_PANE, ItemRegistry.MAROON_DYE, Items.GLASS_PANE),
+        };
+        for (GlassSet s : sets) {
+            String name = BuiltInRegistries.ITEM.getKey(s.glass()).getPath(); // e.g. amber_stained_glass
+            ring(output, name, "stained_glass", Items.GLASS, s.dye(), s.glass(), 8,
+                    "has_glass", Items.GLASS, "has_needed_dye", s.dye());
+            ShapedRecipeBuilder.shaped(RecipeCategory.MISC, s.pane(), 16)
+                    .pattern("###").pattern("###").define('#', s.glass())
+                    .group("stained_glass_pane").unlockedBy("has_stained_glass", has(s.glass()))
+                    .save(output, NekomasFixed.id(name + "_pane"));
+            ring(output, name + "_pane_from_glass_pane", "stained_glass_pane", Items.GLASS_PANE, s.dye(), s.pane(), 8,
+                    "has_glass_pane", Items.GLASS_PANE, "has_needed_dye", s.dye());
+        }
+    }
+
+    // Ancient-colour candles: dye + vanilla candle -> {c}_candle (unshaped, group dyed_candle).
+    private void generateAncientCandle(RecipeOutput output) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ItemRegistry.AMBER_CANDLE)
+                .requires(ItemRegistry.AMBER_DYE).requires(Items.CANDLE)
+                .group("dyed_candle").unlockedBy("has_needed_dye", has(ItemRegistry.AMBER_DYE))
+                .save(output, NekomasFixed.id("amber_candle"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ItemRegistry.AQUA_CANDLE)
+                .requires(ItemRegistry.AQUA_DYE).requires(Items.CANDLE)
+                .group("dyed_candle").unlockedBy("has_needed_dye", has(ItemRegistry.AQUA_DYE))
+                .save(output, NekomasFixed.id("aqua_candle"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ItemRegistry.INDIGO_CANDLE)
+                .requires(ItemRegistry.INDIGO_DYE).requires(Items.CANDLE)
+                .group("dyed_candle").unlockedBy("has_needed_dye", has(ItemRegistry.INDIGO_DYE))
+                .save(output, NekomasFixed.id("indigo_candle"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ItemRegistry.MAROON_CANDLE)
+                .requires(ItemRegistry.MAROON_DYE).requires(Items.CANDLE)
+                .group("dyed_candle").unlockedBy("has_needed_dye", has(ItemRegistry.MAROON_DYE))
+                .save(output, NekomasFixed.id("maroon_candle"));
+    }
+
+    // Ancient-colour beds: a plain 3-wool + planks craft (like vanilla beds) plus a recolour
+    // of any bed (#minecraft:beds) with the ancient dye. Main used crafting_transmute for the
+    // latter; 1.21.1 uses the mod's recolour recipe instead.
+    private void generateAncientBed(RecipeOutput output) {
+        record BedSet(Item bed, Item wool, Item dye) {
+        }
+        BedSet[] sets = {
+                new BedSet(ItemRegistry.AMBER_BED, ItemRegistry.AMBER_WOOL, ItemRegistry.AMBER_DYE),
+                new BedSet(ItemRegistry.AQUA_BED, ItemRegistry.AQUA_WOOL, ItemRegistry.AQUA_DYE),
+                new BedSet(ItemRegistry.INDIGO_BED, ItemRegistry.INDIGO_WOOL, ItemRegistry.INDIGO_DYE),
+                new BedSet(ItemRegistry.MAROON_BED, ItemRegistry.MAROON_WOOL, ItemRegistry.MAROON_DYE),
+        };
+        for (BedSet s : sets) {
+            String name = BuiltInRegistries.ITEM.getKey(s.bed()).getPath(); // e.g. amber_bed
+            ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, s.bed())
+                    .pattern("DDD").pattern("###")
+                    .define('D', s.wool()).define('#', ItemTags.PLANKS)
+                    .group("bed").unlockedBy("has_wool", has(s.wool()))
+                    .save(output, NekomasFixed.id(name));
+            recolour(output, "dye_" + name, "bed_dye", ItemTags.BEDS, s.dye(), s.bed(),
+                    RecipeCategory.DECORATIONS, CraftingBookCategory.MISC, "has_dye", has(s.dye()));
+        }
+    }
+
+
+    // Ancient-colour shulker boxes: recolour any shulker box (#minecraft:shulker_boxes)
+    // with the ancient dye. Main used crafting_transmute; 1.21.1 uses the mod's recolour recipe.
+    // (1.21.1 has ItemTags.SHULKER_BOXES absent, so reference the vanilla tag by name.)
+    private void generateAncientShulkerBox(RecipeOutput output) {
+        TagKey<Item> shulkerTag = TagKey.create(Registries.ITEM, ResourceLocation.withDefaultNamespace("shulker_boxes"));
+        record ShulkerSet(Item box, Item dye) {
+        }
+        ShulkerSet[] sets = {
+                new ShulkerSet(ItemRegistry.AMBER_SHULKER_BOX, ItemRegistry.AMBER_DYE),
+                new ShulkerSet(ItemRegistry.AQUA_SHULKER_BOX, ItemRegistry.AQUA_DYE),
+                new ShulkerSet(ItemRegistry.INDIGO_SHULKER_BOX, ItemRegistry.INDIGO_DYE),
+                new ShulkerSet(ItemRegistry.MAROON_SHULKER_BOX, ItemRegistry.MAROON_DYE),
+        };
+        for (ShulkerSet s : sets) {
+            String name = BuiltInRegistries.ITEM.getKey(s.box()).getPath(); // e.g. amber_shulker_box
+            recolour(output, name, "shulker_box_dye", shulkerTag, s.dye(), s.box(),
+                    RecipeCategory.DECORATIONS, CraftingBookCategory.MISC, "has_item", has(s.dye()));
+        }
+    }
+
+    private void carpetCraft(RecipeOutput output, String rid, Item wool, Item carpet) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, carpet, 3)
+                .pattern("##").define('#', wool)
+                .group("carpet").unlockedBy("has_wool", has(wool))
+                .save(output, NekomasFixed.id(rid));
     }
 
     private void ring(RecipeOutput output, String rid, String group, Item outside, Item inside,

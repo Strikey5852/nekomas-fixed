@@ -8,6 +8,11 @@ import net.greenjab.nekomasfixed.util.BlockDyeMap;
 import net.greenjab.nekomasfixed.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 import java.util.concurrent.CompletableFuture;
@@ -47,6 +52,14 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         BlockDyeMap.SPOTTED_WOOL.values().forEach(block -> getOrCreateTagBuilder(ModTags.SPOTTED_WOOL_ITEM).add(BuiltInRegistries.ITEM.getKey(block.asItem())));
         BlockDyeMap.SPOTTED_CARPET.values().forEach(block -> getOrCreateTagBuilder(ModTags.SPOTTED_CARPET_ITEM).add(BuiltInRegistries.ITEM.getKey(block.asItem())));
         BlockDyeMap.FROGLIGHT.values().forEach(block -> getOrCreateTagBuilder(ModTags.FROGLIGHTS_ITEM).add(BuiltInRegistries.ITEM.getKey(block.asItem())));
+        // Candles: vanilla #minecraft:candles item tag override (replace: false semantics).
+        BlockDyeMap.CANDLE.values().forEach(block -> getOrCreateTagBuilder(ItemTags.CANDLES).add(BuiltInRegistries.ITEM.getKey(block.asItem())));
+        // Beds: vanilla #minecraft:beds item tag override (replace: false semantics).
+        BlockDyeMap.BED.values().forEach(block -> getOrCreateTagBuilder(ItemTags.BEDS).add(BuiltInRegistries.ITEM.getKey(block.asItem())));
+        // Shulker boxes: append to the vanilla #minecraft:shulker_boxes item tag (replace: false).
+        // (No ItemTags.SHULKER_BOXES constant in 1.21.1, so reference by name.)
+        TagKey<Item> shulkerTag = TagKey.create(Registries.ITEM, ResourceLocation.withDefaultNamespace("shulker_boxes"));
+        BlockDyeMap.SHULKER_BOX.values().forEach(block -> getOrCreateTagBuilder(shulkerTag).add(BuiltInRegistries.ITEM.getKey(block.asItem())));
         // The redstone striker can take Unbreaking via the vanilla durability-enchantable tag.
         getOrCreateTagBuilder(net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE)
                 .add(BuiltInRegistries.ITEM.getKey(ItemRegistry.REDSTONE_STRIKER));

@@ -1,6 +1,6 @@
 {
   "required": true, "package": "net.greenjab.nekomasfixed.mixin.client", "compatibilityLevel": "JAVA_21", "client": [
-  "ClientTooltipComponentMixin", "ItemPropertiesAccessor"
+  "ClientTooltipComponentMixin", "ItemPropertiesAccessor", "ShulkerBoxRendererMixin", "BlockEntityWithoutLevelRendererMixin", "BedRendererMixin", "BedItemBlockEntityMixin"
 ], "injectors": {
   "defaultRequire": 1
 }

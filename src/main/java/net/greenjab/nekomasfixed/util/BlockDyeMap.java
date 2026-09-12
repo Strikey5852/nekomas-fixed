@@ -92,6 +92,40 @@ public class BlockDyeMap {
         SPOTTED_CARPET.put(AllDyes.AQUA, BlockRegistry.AQUA_SPOTTED_CARPET);
         SPOTTED_CARPET.put(AllDyes.INDIGO, BlockRegistry.INDIGO_SPOTTED_CARPET);
         SPOTTED_CARPET.put(AllDyes.MAROON, BlockRegistry.MAROON_SPOTTED_CARPET);
+        WOOL.put(AllDyes.AMBER, BlockRegistry.AMBER_WOOL);
+        WOOL.put(AllDyes.AQUA, BlockRegistry.AQUA_WOOL);
+        WOOL.put(AllDyes.INDIGO, BlockRegistry.INDIGO_WOOL);
+        WOOL.put(AllDyes.MAROON, BlockRegistry.MAROON_WOOL);
+
+        CARPET.put(AllDyes.AMBER, BlockRegistry.AMBER_CARPET);
+        CARPET.put(AllDyes.AQUA, BlockRegistry.AQUA_CARPET);
+        CARPET.put(AllDyes.INDIGO, BlockRegistry.INDIGO_CARPET);
+        CARPET.put(AllDyes.MAROON, BlockRegistry.MAROON_CARPET);
+
+        STAINED_GLASS.put(AllDyes.AMBER, BlockRegistry.AMBER_STAINED_GLASS);
+        STAINED_GLASS.put(AllDyes.AQUA, BlockRegistry.AQUA_STAINED_GLASS);
+        STAINED_GLASS.put(AllDyes.INDIGO, BlockRegistry.INDIGO_STAINED_GLASS);
+        STAINED_GLASS.put(AllDyes.MAROON, BlockRegistry.MAROON_STAINED_GLASS);
+
+        STAINED_GLASS_PANE.put(AllDyes.AMBER, BlockRegistry.AMBER_STAINED_GLASS_PANE);
+        STAINED_GLASS_PANE.put(AllDyes.AQUA, BlockRegistry.AQUA_STAINED_GLASS_PANE);
+        STAINED_GLASS_PANE.put(AllDyes.INDIGO, BlockRegistry.INDIGO_STAINED_GLASS_PANE);
+        STAINED_GLASS_PANE.put(AllDyes.MAROON, BlockRegistry.MAROON_STAINED_GLASS_PANE);
+
+        CANDLE.put(AllDyes.AMBER, BlockRegistry.AMBER_CANDLE);
+        CANDLE.put(AllDyes.AQUA, BlockRegistry.AQUA_CANDLE);
+        CANDLE.put(AllDyes.INDIGO, BlockRegistry.INDIGO_CANDLE);
+        CANDLE.put(AllDyes.MAROON, BlockRegistry.MAROON_CANDLE);
+
+        BED.put(AllDyes.AMBER, BlockRegistry.AMBER_BED);
+        BED.put(AllDyes.AQUA, BlockRegistry.AQUA_BED);
+        BED.put(AllDyes.INDIGO, BlockRegistry.INDIGO_BED);
+        BED.put(AllDyes.MAROON, BlockRegistry.MAROON_BED);
+
+        SHULKER_BOX.put(AllDyes.AMBER, BlockRegistry.AMBER_SHULKER_BOX);
+        SHULKER_BOX.put(AllDyes.AQUA, BlockRegistry.AQUA_SHULKER_BOX);
+        SHULKER_BOX.put(AllDyes.INDIGO, BlockRegistry.INDIGO_SHULKER_BOX);
+        SHULKER_BOX.put(AllDyes.MAROON, BlockRegistry.MAROON_SHULKER_BOX);
 
         BRICKS.put(AllDyes.WHITE, BlockRegistry.WHITE_BRICKS);
         BRICKS.put(AllDyes.ORANGE, BlockRegistry.ORANGE_BRICKS);

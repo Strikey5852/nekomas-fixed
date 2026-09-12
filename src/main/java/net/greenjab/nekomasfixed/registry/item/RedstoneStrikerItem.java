@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RedstoneStrikerItem extends FlintAndSteelItem {
-    /** Struck positions (dimension + pos) -> game time the full-power effect expires. */
+    //Struck positions (dimension + pos) -> game time the full-power effect expires.
     public static final Map<GlobalPos, Long> STRUCK_WIRES = new HashMap<>();
 
     public RedstoneStrikerItem(Properties settings) {

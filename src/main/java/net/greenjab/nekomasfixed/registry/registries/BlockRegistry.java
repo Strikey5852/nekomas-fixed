@@ -11,9 +11,12 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
 import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
@@ -348,6 +351,49 @@ public class BlockRegistry {
     public static final Block AQUA_SPOTTED_CARPET = register("aqua_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_LIGHT_BLUE));
     public static final Block INDIGO_SPOTTED_CARPET = register("indigo_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_MAGENTA));
     public static final Block MAROON_SPOTTED_CARPET = register("maroon_spotted_carpet", CarpetBlock::new, spottedCarpetProperties(MapColor.COLOR_RED));
+    public static final Block AMBER_WOOL = register("amber_wool", Block::new, woolProperties(MapColor.COLOR_YELLOW));
+    public static final Block AQUA_WOOL = register("aqua_wool", Block::new, woolProperties(MapColor.COLOR_LIGHT_BLUE));
+    public static final Block INDIGO_WOOL = register("indigo_wool", Block::new, woolProperties(MapColor.COLOR_MAGENTA));
+    public static final Block MAROON_WOOL = register("maroon_wool", Block::new, woolProperties(MapColor.COLOR_RED));
+    public static final Block AMBER_CARPET = register("amber_carpet", CarpetBlock::new, carpetProperties(MapColor.COLOR_YELLOW));
+    public static final Block AQUA_CARPET = register("aqua_carpet", CarpetBlock::new, carpetProperties(MapColor.COLOR_LIGHT_BLUE));
+    public static final Block INDIGO_CARPET = register("indigo_carpet", CarpetBlock::new, carpetProperties(MapColor.COLOR_MAGENTA));
+    public static final Block MAROON_CARPET = register("maroon_carpet", CarpetBlock::new, carpetProperties(MapColor.COLOR_RED));
+
+    // Ancient-colour stained glass + panes. Representational DyeColor (as in main):
+    // the block class takes a vanilla DyeColor; the custom texture gives the colour.
+    public static final Block AMBER_STAINED_GLASS = registerStainedGlassBlock("amber_stained_glass", DyeColor.YELLOW);
+    public static final Block AQUA_STAINED_GLASS = registerStainedGlassBlock("aqua_stained_glass", DyeColor.LIGHT_BLUE);
+    public static final Block INDIGO_STAINED_GLASS = registerStainedGlassBlock("indigo_stained_glass", DyeColor.MAGENTA);
+    public static final Block MAROON_STAINED_GLASS = registerStainedGlassBlock("maroon_stained_glass", DyeColor.RED);
+    public static final Block AMBER_STAINED_GLASS_PANE = registerStainedGlassPaneBlock("amber_stained_glass_pane", DyeColor.YELLOW);
+    public static final Block AQUA_STAINED_GLASS_PANE = registerStainedGlassPaneBlock("aqua_stained_glass_pane", DyeColor.LIGHT_BLUE);
+    public static final Block INDIGO_STAINED_GLASS_PANE = registerStainedGlassPaneBlock("indigo_stained_glass_pane", DyeColor.MAGENTA);
+    public static final Block MAROON_STAINED_GLASS_PANE = registerStainedGlassPaneBlock("maroon_stained_glass_pane", DyeColor.RED);
+
+    // Ancient-colour candles: vanilla CandleBlock (no block entity), vanilla candle settings.
+    public static final Block AMBER_CANDLE = register("amber_candle", CandleBlock::new, createCandleSettings(MapColor.COLOR_YELLOW));
+    public static final Block AQUA_CANDLE = register("aqua_candle", CandleBlock::new, createCandleSettings(MapColor.WARPED_NYLIUM));
+    public static final Block INDIGO_CANDLE = register("indigo_candle", CandleBlock::new, createCandleSettings(MapColor.ICE));
+    public static final Block MAROON_CANDLE = register("maroon_candle", CandleBlock::new, createCandleSettings(MapColor.CRIMSON_HYPHAE));
+
+    // Ancient-colour beds: vanilla BedBlock with a representational DyeColor. Rendered by the
+    // vanilla BedRenderer keyed off that DyeColor (so amber renders as yellow in-world), and the
+    // block must be attached to BlockEntityType.BED for the block-entity lookup (see BlockEntityRegistry).
+    public static final Block AMBER_BED = registerBedBlock("amber_bed", DyeColor.YELLOW);
+    public static final Block AQUA_BED = registerBedBlock("aqua_bed", DyeColor.LIGHT_BLUE);
+    public static final Block INDIGO_BED = registerBedBlock("indigo_bed", DyeColor.MAGENTA);
+    public static final Block MAROON_BED = registerBedBlock("maroon_bed", DyeColor.RED);
+
+    // Ancient-colour shulker boxes: vanilla ShulkerBoxBlock with a representational DyeColor +
+    // vanilla shulker properties. Rendered by the vanilla ShulkerBoxRenderer, which we override
+    // (client ShulkerBoxRendererMixin) to swap in the amber/aqua/indigo/maroon texture. The block
+    // must be attached to BlockEntityType.SHULKER_BOX for placement/storage (see BlockEntityRegistry).
+    public static final Block AMBER_SHULKER_BOX = registerShulkerBoxBlock("amber_shulker_box", DyeColor.YELLOW);
+    public static final Block AQUA_SHULKER_BOX = registerShulkerBoxBlock("aqua_shulker_box", DyeColor.LIGHT_BLUE);
+    public static final Block INDIGO_SHULKER_BOX = registerShulkerBoxBlock("indigo_shulker_box", DyeColor.MAGENTA);
+    public static final Block MAROON_SHULKER_BOX = registerShulkerBoxBlock("maroon_shulker_box", DyeColor.RED);
+
     public static final Block WHITE_BRICKS = register("white_bricks", brickProperties(MapColor.SNOW));
     public static final Block ORANGE_BRICKS = register("orange_bricks", brickProperties(MapColor.COLOR_ORANGE));
     public static final Block MAGENTA_BRICKS = register("magenta_bricks", brickProperties(MapColor.COLOR_MAGENTA));
@@ -504,7 +550,99 @@ public class BlockRegistry {
                 .ignitedByLava();
     }
 
-    // Carpet defaults to HARP (no instrument() call) to match vanilla carpet's
+    // Plain ancient-colour wool; note-block instrument matches vanilla wool (GUITAR).
+    private static BlockBehaviour.Properties woolProperties(MapColor colour) {
+        return BlockBehaviour.Properties.of()
+                .mapColor(colour)
+                .instrument(NoteBlockInstrument.GUITAR)
+                .strength(0.8F)
+                .sound(SoundType.WOOL)
+                .ignitedByLava();
+    }
+
+    // Plain ancient-colour carpet; no instrument() so it defaults to HARP (vanilla carpet).
+    private static BlockBehaviour.Properties carpetProperties(MapColor colour) {
+        return BlockBehaviour.Properties.of()
+                .mapColor(colour)
+                .strength(0.1F)
+                .sound(SoundType.WOOL)
+                .ignitedByLava();
+    }
+
+    // Ancient-colour stained glass; transparent block (no occlusion/conduction/blocking),
+    // same light-blocking profile as vanilla stained glass.
+    private static Block registerStainedGlassBlock(String id, DyeColor colour) {
+        return register(id, settings -> new StainedGlassBlock(colour, settings),
+                BlockBehaviour.Properties.of()
+                        .mapColor(colour)
+                        .instrument(NoteBlockInstrument.HAT)
+                        .strength(0.3F)
+                        .sound(SoundType.GLASS)
+                        .noOcclusion()
+                        .isValidSpawn(Blocks::never)
+                        .isRedstoneConductor(Blocks::never)
+                        .isSuffocating(Blocks::never)
+                        .isViewBlocking(Blocks::never));
+    }
+
+    // Ancient-colour stained glass pane.
+    private static Block registerStainedGlassPaneBlock(String id, DyeColor colour) {
+        return register(id, settings -> new StainedGlassPaneBlock(colour, settings),
+                BlockBehaviour.Properties.of()
+                        .mapColor(colour)
+                        .instrument(NoteBlockInstrument.HAT)
+                        .strength(0.3F)
+                        .sound(SoundType.GLASS)
+                        .noOcclusion());
+    }
+
+    // Vanilla candle settings (LightEmission from CandleBlock), candle sound + breakable.
+    private static BlockBehaviour.Properties createCandleSettings(MapColor colour) {
+        return BlockBehaviour.Properties.of()
+                .mapColor(colour)
+                .noOcclusion()
+                .strength(0.1F)
+                .sound(SoundType.CANDLE)
+                .lightLevel(CandleBlock.LIGHT_EMISSION)
+                .pushReaction(PushReaction.DESTROY);
+    }
+
+    private static Block registerBedBlock(String id, DyeColor color) {
+        return register(id,
+                settings -> new BedBlock(color, settings),
+                BlockBehaviour.Properties.of()
+                        .mapColor(state -> state.getValue(BedBlock.PART) == BedPart.FOOT
+                                ? color.getMapColor()
+                                : MapColor.WOOL)
+                        .sound(SoundType.WOOD)
+                        .strength(0.2F)
+                        .jumpFactor(0.75F)
+                        .noOcclusion()
+                        .ignitedByLava()
+                        .pushReaction(PushReaction.DESTROY)
+        );
+    }
+
+    // Recreates main's Blocks.shulkerBoxProperties (which doesn't exist in 1.21.1) by
+    // replicating vanilla's private shulkerBox() settings. The closed-predicate mirrors
+    // vanilla's NOT_CLOSED_SHULKER: a shulker is suffocating/view-blocking only when closed.
+    private static Block registerShulkerBoxBlock(String id, DyeColor color) {
+        BlockBehaviour.StatePredicate isClosedShulker = (state, level, pos) ->
+                level.getBlockEntity(pos) instanceof ShulkerBoxBlockEntity be && be.isClosed();
+        return register(id,
+                settings -> new ShulkerBoxBlock(color, settings),
+                BlockBehaviour.Properties.of()
+                        .mapColor(color.getMapColor())
+                        .forceSolidOn()
+                        .strength(2.0F)
+                        .dynamicShape()
+                        .noOcclusion()
+                        .isSuffocating(isClosedShulker)
+                        .isViewBlocking(isClosedShulker)
+                        .pushReaction(PushReaction.DESTROY)
+        );
+    }
+
     // note-block sound; main's spotted carpet GUITAR mismatch is being fixed.
     private static BlockBehaviour.Properties spottedCarpetProperties(MapColor colour) {
         return BlockBehaviour.Properties.of()

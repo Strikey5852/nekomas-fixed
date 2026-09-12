@@ -16,6 +16,16 @@ public class NekomasFixedClient implements ClientModInitializer {
     public void onInitializeClient() {
         BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.BAOBAB_SAPLING, RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.BAOBAB_FRUIT, RenderType.cutout());
+        // Ancient stained glass + panes render translucent, like vanilla stained glass (else they
+        // render solid because they're not in ItemBlockRenderTypes' per-block map).
+        BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.AMBER_STAINED_GLASS, RenderType.translucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.AQUA_STAINED_GLASS, RenderType.translucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.INDIGO_STAINED_GLASS, RenderType.translucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.MAROON_STAINED_GLASS, RenderType.translucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.AMBER_STAINED_GLASS_PANE, RenderType.translucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.AQUA_STAINED_GLASS_PANE, RenderType.translucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.INDIGO_STAINED_GLASS_PANE, RenderType.translucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.MAROON_STAINED_GLASS_PANE, RenderType.translucent());
         ModEntityRendererRegistry.registerEntityRenderer();
         ModBlockEntityRendererRegistry.registerBlockEntityRenderers();
 

@@ -1,0 +1,15 @@
+{
+  "type": "nekomasfixed:recolour",
+  "category": "building",
+  "group": "wool",
+  "input": {
+    "tag": "minecraft:wool"
+  },
+  "material": {
+    "item": "nekomasfixed:aqua_dye"
+  },
+  "result": {
+    "count": 1,
+    "id": "nekomasfixed:aqua_wool"
+  }
+}

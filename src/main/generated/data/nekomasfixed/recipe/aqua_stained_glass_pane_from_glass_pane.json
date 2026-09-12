@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "stained_glass_pane",
+  "key": {
+    "#": {
+      "item": "minecraft:glass_pane"
+    },
+    "D": {
+      "item": "nekomasfixed:aqua_dye"
+    }
+  },
+  "pattern": [
+    "###",
+    "#D#",
+    "###"
+  ],
+  "result": {
+    "count": 8,
+    "id": "nekomasfixed:aqua_stained_glass_pane"
+  }
+}

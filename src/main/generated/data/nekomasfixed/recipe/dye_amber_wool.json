@@ -1,0 +1,15 @@
+{
+  "type": "nekomasfixed:recolour",
+  "category": "building",
+  "group": "wool",
+  "input": {
+    "tag": "minecraft:wool"
+  },
+  "material": {
+    "item": "nekomasfixed:amber_dye"
+  },
+  "result": {
+    "count": 1,
+    "id": "nekomasfixed:amber_wool"
+  }
+}

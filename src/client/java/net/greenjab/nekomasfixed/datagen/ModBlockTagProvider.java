@@ -51,5 +51,12 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         BlockDyeMap.SPOTTED_WOOL.values().forEach(block -> getOrCreateTagBuilder(ModTags.SPOTTED_WOOL).add(BuiltInRegistries.BLOCK.getKey(block)));
         BlockDyeMap.SPOTTED_CARPET.values().forEach(block -> getOrCreateTagBuilder(ModTags.SPOTTED_CARPET).add(BuiltInRegistries.BLOCK.getKey(block)));
         BlockDyeMap.FROGLIGHT.values().forEach(block -> getOrCreateTagBuilder(ModTags.FROGLIGHTS).add(BuiltInRegistries.BLOCK.getKey(block)));
+        // Candles: vanilla #minecraft:candles tag override so ancient candles work with
+        // cake/waxing interactions as vanilla candles do (replace: false semantics).
+        BlockDyeMap.CANDLE.values().forEach(block -> getOrCreateTagBuilder(BlockTags.CANDLES).add(BuiltInRegistries.BLOCK.getKey(block)));
+        // Beds: vanilla #minecraft:beds block tag override (replace: false semantics).
+        BlockDyeMap.BED.values().forEach(block -> getOrCreateTagBuilder(BlockTags.BEDS).add(BuiltInRegistries.BLOCK.getKey(block)));
+        // Shulker boxes: vanilla #minecraft:shulker_boxes block tag override (replace: false semantics).
+        BlockDyeMap.SHULKER_BOX.values().forEach(block -> getOrCreateTagBuilder(BlockTags.SHULKER_BOXES).add(BuiltInRegistries.BLOCK.getKey(block)));
     }
 }

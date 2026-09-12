@@ -86,6 +86,33 @@ public class ModModelProvider extends FabricModelProvider {
                     TexturedModel.CARPET.updateTexture(mapping ->
                             mapping.put(TextureSlot.WOOL, TextureMapping.wool(wool).get(TextureSlot.WOOL))));
         }
+
+        // Ancient-dye plain wool + carpet. Carpet reuses the wool texture (there
+        // is no separate {colour}_carpet.png), mirroring the spotted set's approach.
+        Block[] plainWools = {
+                BlockRegistry.AMBER_WOOL, BlockRegistry.AQUA_WOOL,
+                BlockRegistry.INDIGO_WOOL, BlockRegistry.MAROON_WOOL
+        };
+        Block[] plainCarpets = {
+                BlockRegistry.AMBER_CARPET, BlockRegistry.AQUA_CARPET,
+                BlockRegistry.INDIGO_CARPET, BlockRegistry.MAROON_CARPET
+        };
+        for (int i = 0; i < plainWools.length; i++) {
+            Block wool = plainWools[i];
+            generator.createTrivialCube(wool);
+            generator.createTrivialBlock(plainCarpets[i],
+                    TexturedModel.CARPET.updateTexture(mapping ->
+                            mapping.put(TextureSlot.WOOL, TextureMapping.wool(wool).get(TextureSlot.WOOL))));
+        }
+
+        // Ancient-colour stained glass blocks: plain cube using the shared
+        // {colour}_stained_glass texture. (Panes are bespoke multipart models,
+        // hand-written in the resources folder.)
+        for (Block glass : new Block[]{
+                BlockRegistry.AMBER_STAINED_GLASS, BlockRegistry.AQUA_STAINED_GLASS,
+                BlockRegistry.INDIGO_STAINED_GLASS, BlockRegistry.MAROON_STAINED_GLASS}) {
+            generator.createTrivialCube(glass);
+        }
     }
 
     @Override

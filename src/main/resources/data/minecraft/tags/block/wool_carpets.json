@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "nekomasfixed:amber_carpet",
+    "nekomasfixed:aqua_carpet",
+    "nekomasfixed:indigo_carpet",
+    "nekomasfixed:maroon_carpet",
+    "#nekomasfixed:spotted_carpet"
+  ]
+}

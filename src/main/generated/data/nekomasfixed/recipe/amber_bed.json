@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "bed",
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "D": {
+      "item": "nekomasfixed:amber_wool"
+    }
+  },
+  "pattern": [
+    "DDD",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "nekomasfixed:amber_bed"
+  }
+}

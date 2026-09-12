@@ -1,0 +1,15 @@
+{
+  "type": "nekomasfixed:recolour",
+  "category": "building",
+  "group": "wool",
+  "input": {
+    "tag": "minecraft:wool"
+  },
+  "material": {
+    "item": "nekomasfixed:maroon_dye"
+  },
+  "result": {
+    "count": 1,
+    "id": "nekomasfixed:maroon_wool"
+  }
+}
