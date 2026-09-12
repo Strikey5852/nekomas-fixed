@@ -259,6 +259,22 @@ public class ItemGroupRegistry {
                         entries.accept(ItemRegistry.AQUA_BRICK_WALL);
                         entries.accept(ItemRegistry.INDIGO_BRICK_WALL);
                         entries.accept(ItemRegistry.MAROON_BRICK_WALL);
+                        entries.accept(ItemRegistry.AMBER_TERRACOTTA);
+                        entries.accept(ItemRegistry.AQUA_TERRACOTTA);
+                        entries.accept(ItemRegistry.INDIGO_TERRACOTTA);
+                        entries.accept(ItemRegistry.MAROON_TERRACOTTA);
+                        entries.accept(ItemRegistry.AMBER_CONCRETE);
+                        entries.accept(ItemRegistry.AQUA_CONCRETE);
+                        entries.accept(ItemRegistry.INDIGO_CONCRETE);
+                        entries.accept(ItemRegistry.MAROON_CONCRETE);
+                        entries.accept(ItemRegistry.AMBER_CONCRETE_POWDER);
+                        entries.accept(ItemRegistry.AQUA_CONCRETE_POWDER);
+                        entries.accept(ItemRegistry.INDIGO_CONCRETE_POWDER);
+                        entries.accept(ItemRegistry.MAROON_CONCRETE_POWDER);
+                        entries.accept(ItemRegistry.AMBER_GLAZED_TERRACOTTA);
+                        entries.accept(ItemRegistry.AQUA_GLAZED_TERRACOTTA);
+                        entries.accept(ItemRegistry.INDIGO_GLAZED_TERRACOTTA);
+                        entries.accept(ItemRegistry.MAROON_GLAZED_TERRACOTTA);
                     })
                     .build()
     );

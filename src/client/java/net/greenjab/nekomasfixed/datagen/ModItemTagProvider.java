@@ -56,6 +56,9 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         BlockDyeMap.CANDLE.values().forEach(block -> getOrCreateTagBuilder(ItemTags.CANDLES).add(BuiltInRegistries.ITEM.getKey(block.asItem())));
         // Beds: vanilla #minecraft:beds item tag override (replace: false semantics).
         BlockDyeMap.BED.values().forEach(block -> getOrCreateTagBuilder(ItemTags.BEDS).add(BuiltInRegistries.ITEM.getKey(block.asItem())));
+        // Terracotta: vanilla #minecraft:terracotta item override (replace: false) so the
+        // ancient items join the vanilla family (concrete/powder have no vanilla item tag).
+        BlockDyeMap.TERRACOTTA.values().forEach(block -> getOrCreateTagBuilder(ItemTags.TERRACOTTA).add(BuiltInRegistries.ITEM.getKey(block.asItem())));
         // Shulker boxes: append to the vanilla #minecraft:shulker_boxes item tag (replace: false).
         // (No ItemTags.SHULKER_BOXES constant in 1.21.1, so reference by name.)
         TagKey<Item> shulkerTag = TagKey.create(Registries.ITEM, ResourceLocation.withDefaultNamespace("shulker_boxes"));
@@ -63,5 +66,40 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         // The redstone striker can take Unbreaking via the vanilla durability-enchantable tag.
         getOrCreateTagBuilder(net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE)
                 .add(BuiltInRegistries.ITEM.getKey(ItemRegistry.REDSTONE_STRIKER));
+        // Wool + carpets: vanilla #minecraft:wool / #minecraft:wool_carpets item tag overrides
+        // (replace: false). The block tag holds the spotted-wool reference; the item tag lists
+        // just the four ancient wools (mirrors the committed hand-written item overrides).
+        var woolItems = getOrCreateTagBuilder(ItemTags.WOOL);
+        BlockDyeMap.WOOL.values().forEach(block -> woolItems.add(BuiltInRegistries.ITEM.getKey(block.asItem())));
+        var carpetItems = getOrCreateTagBuilder(ItemTags.WOOL_CARPETS);
+        BlockDyeMap.CARPET.values().forEach(block -> carpetItems.add(BuiltInRegistries.ITEM.getKey(block.asItem())));
+        // Baobab wood set: vanilla item tag overrides (replace: false). Logs join via the
+        // #nekomasfixed:baobab_logs item-tag reference.
+        getOrCreateTagBuilder(ItemTags.PLANKS).add(BuiltInRegistries.ITEM.getKey(BlockRegistry.BAOBAB_PLANKS.asItem()));
+        getOrCreateTagBuilder(ItemTags.SIGNS).add(BuiltInRegistries.ITEM.getKey(BlockRegistry.BAOBAB_SIGN.asItem()));
+        getOrCreateTagBuilder(ItemTags.HANGING_SIGNS).add(BuiltInRegistries.ITEM.getKey(BlockRegistry.BAOBAB_HANGING_SIGN.asItem()));
+        getOrCreateTagBuilder(ItemTags.WOODEN_BUTTONS).add(BuiltInRegistries.ITEM.getKey(BlockRegistry.BAOBAB_BUTTON.asItem()));
+        getOrCreateTagBuilder(ItemTags.WOODEN_DOORS).add(BuiltInRegistries.ITEM.getKey(BlockRegistry.BAOBAB_DOOR.asItem()));
+        getOrCreateTagBuilder(ItemTags.WOODEN_FENCES).add(BuiltInRegistries.ITEM.getKey(BlockRegistry.BAOBAB_FENCE.asItem()));
+        getOrCreateTagBuilder(ItemTags.WOODEN_PRESSURE_PLATES).add(BuiltInRegistries.ITEM.getKey(BlockRegistry.BAOBAB_PRESSURE_PLATE.asItem()));
+        getOrCreateTagBuilder(ItemTags.WOODEN_SLABS).add(BuiltInRegistries.ITEM.getKey(BlockRegistry.BAOBAB_SLAB.asItem()));
+        getOrCreateTagBuilder(ItemTags.WOODEN_STAIRS).add(BuiltInRegistries.ITEM.getKey(BlockRegistry.BAOBAB_STAIRS.asItem()));
+        getOrCreateTagBuilder(ItemTags.WOODEN_TRAPDOORS).add(BuiltInRegistries.ITEM.getKey(BlockRegistry.BAOBAB_TRAPDOOR.asItem()));
+        getOrCreateTagBuilder(ItemTags.LOGS_THAT_BURN).addTag(ModTags.BAOBAB_LOGS_ITEM);
+        // Mod-namespace item tags (kept datagen-owned like the rest of the suite).
+        getOrCreateTagBuilder(ModTags.CLAMS)
+                .add(BuiltInRegistries.ITEM.getKey(ItemRegistry.CLAM))
+                .add(BuiltInRegistries.ITEM.getKey(ItemRegistry.CLAM_BLUE))
+                .add(BuiltInRegistries.ITEM.getKey(ItemRegistry.CLAM_PINK))
+                .add(BuiltInRegistries.ITEM.getKey(ItemRegistry.CLAM_PURPLE));
+        getOrCreateTagBuilder(ModTags.STACKED_CAKES)
+                .add(BuiltInRegistries.ITEM.getKey(ItemRegistry.SWEETBERRY_CAKE))
+                .add(BuiltInRegistries.ITEM.getKey(ItemRegistry.PAN_CAKE))
+                .add(BuiltInRegistries.ITEM.getKey(ItemRegistry.GLOWBERRY_CAKE))
+                .add(BuiltInRegistries.ITEM.getKey(ItemRegistry.APPLE_CAKE))
+                .add(BuiltInRegistries.ITEM.getKey(ItemRegistry.VANILLA_CAKE))
+                .add(BuiltInRegistries.ITEM.getKey(ItemRegistry.COOKIE_CAKE))
+                .add(BuiltInRegistries.ITEM.getKey(ItemRegistry.CHOCOLATE_CAKE))
+                .add(BuiltInRegistries.ITEM.getKey(ItemRegistry.BEETROOT_CAKE));
     }
 }

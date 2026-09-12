@@ -394,6 +394,41 @@ public class BlockRegistry {
     public static final Block INDIGO_SHULKER_BOX = registerShulkerBoxBlock("indigo_shulker_box", DyeColor.MAGENTA);
     public static final Block MAROON_SHULKER_BOX = registerShulkerBoxBlock("maroon_shulker_box", DyeColor.RED);
 
+    // Ancient-dye terracotta + concrete + concrete powder. Terracotta/concrete are plain cubes
+    // (terracotta + glazed need a pickaxe; concrete powder is a FallingBlock that hardens on
+    // contact and converts to the concrete block). MapColors mirror main (baked terracotta uses
+    // the TERRACOTTA_* tones; concrete is monochrome white on the map; powder uses the dye tones).
+    public static final Block AMBER_TERRACOTTA = register("amber_terracotta", Block::new, terracottaProperties(MapColor.TERRACOTTA_YELLOW));
+    public static final Block AQUA_TERRACOTTA = register("aqua_terracotta", Block::new, terracottaProperties(MapColor.TERRACOTTA_LIGHT_BLUE));
+    public static final Block INDIGO_TERRACOTTA = register("indigo_terracotta", Block::new, terracottaProperties(MapColor.TERRACOTTA_BLUE));
+    public static final Block MAROON_TERRACOTTA = register("maroon_terracotta", Block::new, terracottaProperties(MapColor.TERRACOTTA_RED));
+
+    public static final Block AMBER_CONCRETE = register("amber_concrete", Block::new, concreteProperties());
+    public static final Block AQUA_CONCRETE = register("aqua_concrete", Block::new, concreteProperties());
+    public static final Block INDIGO_CONCRETE = register("indigo_concrete", Block::new, concreteProperties());
+    public static final Block MAROON_CONCRETE = register("maroon_concrete", Block::new, concreteProperties());
+
+    public static final Block AMBER_CONCRETE_POWDER = register("amber_concrete_powder",
+            settings -> new ConcretePowderBlock(AMBER_CONCRETE, settings), concretePowderProperties(MapColor.COLOR_YELLOW));
+    public static final Block AQUA_CONCRETE_POWDER = register("aqua_concrete_powder",
+            settings -> new ConcretePowderBlock(AQUA_CONCRETE, settings), concretePowderProperties(MapColor.COLOR_LIGHT_BLUE));
+    public static final Block INDIGO_CONCRETE_POWDER = register("indigo_concrete_powder",
+            settings -> new ConcretePowderBlock(INDIGO_CONCRETE, settings), concretePowderProperties(MapColor.COLOR_MAGENTA));
+    public static final Block MAROON_CONCRETE_POWDER = register("maroon_concrete_powder",
+            settings -> new ConcretePowderBlock(MAROON_CONCRETE, settings), concretePowderProperties(MapColor.COLOR_RED));
+
+    // Ancient-dye glazed terracotta: vanilla GlazedTerracottaBlock (directional FACING state).
+    // Renders via the vanilla glazed terracotta pattern with the {colour} texture; the soft
+    // terracotta is smelted to glaze it (see ModRecipeProvider).
+    public static final Block AMBER_GLAZED_TERRACOTTA = register("amber_glazed_terracotta",
+            GlazedTerracottaBlock::new, glazedTerracottaProperties(MapColor.TERRACOTTA_WHITE));
+    public static final Block AQUA_GLAZED_TERRACOTTA = register("aqua_glazed_terracotta",
+            GlazedTerracottaBlock::new, glazedTerracottaProperties(MapColor.TERRACOTTA_LIGHT_BLUE));
+    public static final Block INDIGO_GLAZED_TERRACOTTA = register("indigo_glazed_terracotta",
+            GlazedTerracottaBlock::new, glazedTerracottaProperties(MapColor.TERRACOTTA_MAGENTA));
+    public static final Block MAROON_GLAZED_TERRACOTTA = register("maroon_glazed_terracotta",
+            GlazedTerracottaBlock::new, glazedTerracottaProperties(MapColor.TERRACOTTA_RED));
+
     public static final Block WHITE_BRICKS = register("white_bricks", brickProperties(MapColor.SNOW));
     public static final Block ORANGE_BRICKS = register("orange_bricks", brickProperties(MapColor.COLOR_ORANGE));
     public static final Block MAGENTA_BRICKS = register("magenta_bricks", brickProperties(MapColor.COLOR_MAGENTA));
@@ -678,6 +713,46 @@ public class BlockRegistry {
     // Reproduces main's ofLegacyCopy(X_BRICKS).forceSolidOn() for WallBlock.
     private static BlockBehaviour.Properties brickWallProperties(Block base) {
         return BlockBehaviour.Properties.ofLegacyCopy(base).forceSolidOn();
+    }
+
+    // Baked terracotta: basedrum, 0.7/4.2 strength (as main; requires a pickaxe, no sound
+    // specified so it stays stone-like). Glazed terracotta reuses these (BASE + 1.4 strength).
+    private static BlockBehaviour.Properties terracottaProperties(MapColor colour) {
+        return BlockBehaviour.Properties.of()
+                .mapColor(colour)
+                .instrument(NoteBlockInstrument.BASEDRUM)
+                .strength(0.7F, 4.2F)
+                .requiresCorrectToolForDrops();
+    }
+
+    // Concrete: basedrum, 1.8 strength, pickaxe. All colours map white on the map (monochrome,
+    // as in main's DyeColor.WHITE -> MapColor.SNOW); the texture provides the actual colour.
+    private static BlockBehaviour.Properties concreteProperties() {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.SNOW)
+                .instrument(NoteBlockInstrument.BASEDRUM)
+                .strength(1.8F)
+                .requiresCorrectToolForDrops();
+    }
+
+    // Concrete powder: falling block, snare, sand sound; the DyeColor tone drives map colour.
+    private static BlockBehaviour.Properties concretePowderProperties(MapColor colour) {
+        return BlockBehaviour.Properties.of()
+                .mapColor(colour)
+                .instrument(NoteBlockInstrument.SNARE)
+                .strength(0.5F)
+                .sound(SoundType.SAND);
+    }
+
+    // Glazed terracotta: same bases as terracotta but 1.4 strength (vanilla glazed hardness)
+    // and the glazed map tone. The directional FACING state + pattern render come free from
+    // GlazedTerracottaBlock; we only provide the per-colour texture.
+    private static BlockBehaviour.Properties glazedTerracottaProperties(MapColor colour) {
+        return BlockBehaviour.Properties.of()
+                .mapColor(colour)
+                .instrument(NoteBlockInstrument.BASEDRUM)
+                .strength(1.4F, 4.2F)
+                .requiresCorrectToolForDrops();
     }
 
     private static Block register(String id, BlockBehaviour.Properties settings) {

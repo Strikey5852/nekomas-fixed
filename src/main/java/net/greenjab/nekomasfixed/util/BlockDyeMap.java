@@ -23,7 +23,10 @@ public class BlockDyeMap {
     public static final EnumMap<AllDyes, Block> SPOTTED_WOOL = new EnumMap<>(AllDyes.class);
     public static final EnumMap<AllDyes, Block> CARPET = new EnumMap<>(AllDyes.class);
     public static final EnumMap<AllDyes, Block> SPOTTED_CARPET = new EnumMap<>(AllDyes.class);
+    public static final EnumMap<AllDyes, Block> TERRACOTTA = new EnumMap<>(AllDyes.class);
     public static final EnumMap<AllDyes, Block> GLAZED_TERRACOTTA = new EnumMap<>(AllDyes.class);
+    public static final EnumMap<AllDyes, Block> CONCRETE = new EnumMap<>(AllDyes.class);
+    public static final EnumMap<AllDyes, Block> CONCRETE_POWDER = new EnumMap<>(AllDyes.class);
     public static final EnumMap<AllDyes, Block> CANDLE = new EnumMap<>(AllDyes.class);
     public static final EnumMap<AllDyes, Block> FROGLIGHT = new EnumMap<>(AllDyes.class);
     public static final EnumMap<AllDyes, Block> SHULKER_BOX = new EnumMap<>(AllDyes.class);
@@ -126,6 +129,23 @@ public class BlockDyeMap {
         SHULKER_BOX.put(AllDyes.AQUA, BlockRegistry.AQUA_SHULKER_BOX);
         SHULKER_BOX.put(AllDyes.INDIGO, BlockRegistry.INDIGO_SHULKER_BOX);
         SHULKER_BOX.put(AllDyes.MAROON, BlockRegistry.MAROON_SHULKER_BOX);
+
+        TERRACOTTA.put(AllDyes.AMBER, BlockRegistry.AMBER_TERRACOTTA);
+        TERRACOTTA.put(AllDyes.AQUA, BlockRegistry.AQUA_TERRACOTTA);
+        TERRACOTTA.put(AllDyes.INDIGO, BlockRegistry.INDIGO_TERRACOTTA);
+        TERRACOTTA.put(AllDyes.MAROON, BlockRegistry.MAROON_TERRACOTTA);
+        GLAZED_TERRACOTTA.put(AllDyes.AMBER, BlockRegistry.AMBER_GLAZED_TERRACOTTA);
+        GLAZED_TERRACOTTA.put(AllDyes.AQUA, BlockRegistry.AQUA_GLAZED_TERRACOTTA);
+        GLAZED_TERRACOTTA.put(AllDyes.INDIGO, BlockRegistry.INDIGO_GLAZED_TERRACOTTA);
+        GLAZED_TERRACOTTA.put(AllDyes.MAROON, BlockRegistry.MAROON_GLAZED_TERRACOTTA);
+        CONCRETE.put(AllDyes.AMBER, BlockRegistry.AMBER_CONCRETE);
+        CONCRETE.put(AllDyes.AQUA, BlockRegistry.AQUA_CONCRETE);
+        CONCRETE.put(AllDyes.INDIGO, BlockRegistry.INDIGO_CONCRETE);
+        CONCRETE.put(AllDyes.MAROON, BlockRegistry.MAROON_CONCRETE);
+        CONCRETE_POWDER.put(AllDyes.AMBER, BlockRegistry.AMBER_CONCRETE_POWDER);
+        CONCRETE_POWDER.put(AllDyes.AQUA, BlockRegistry.AQUA_CONCRETE_POWDER);
+        CONCRETE_POWDER.put(AllDyes.INDIGO, BlockRegistry.INDIGO_CONCRETE_POWDER);
+        CONCRETE_POWDER.put(AllDyes.MAROON, BlockRegistry.MAROON_CONCRETE_POWDER);
 
         BRICKS.put(AllDyes.WHITE, BlockRegistry.WHITE_BRICKS);
         BRICKS.put(AllDyes.ORANGE, BlockRegistry.ORANGE_BRICKS);

@@ -228,6 +228,10 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .define('R', Items.REDSTONE).define('G', Items.GOLD_INGOT).define('F', Items.FLINT)
                 .unlockedBy("has_redstone", has(Items.REDSTONE))
                 .save(output, NekomasFixed.id("redstone_striker"));
+
+        // NOTE: the vanilla cake / flower-dye recipe overrides (result air) stay hand-written
+        // in resources. Fabric's recipe builders reject an air result ("Item must not be
+        // minecraft:air"), so datagen can't express those void-result overrides.
     }
 
     @Override
@@ -274,6 +278,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         generateAncientCandle(output);
         generateAncientBed(output);
         generateAncientShulkerBox(output);
+        generateAncientConcreteTerracotta(output);
+        generateAncientGlazedTerracotta(output);
 
         BlockDyeMap.FROGLIGHT.forEach((dye, block) ->
                 recolour(output, "dye_" + BuiltInRegistries.BLOCK.getKey(block).getPath(), "froglight",
@@ -396,6 +402,53 @@ public class ModRecipeProvider extends FabricRecipeProvider {
             String name = BuiltInRegistries.ITEM.getKey(s.box()).getPath(); // e.g. amber_shulker_box
             recolour(output, name, "shulker_box_dye", shulkerTag, s.dye(), s.box(),
                     RecipeCategory.DECORATIONS, CraftingBookCategory.MISC, "has_item", has(s.dye()));
+        }
+    }
+
+    // Ancient-dye terracotta: plain terracotta dye-ring -> 8 baked terracotta (as main).
+    // Ancient-dye concrete powder: dye + sand + gravel shapeless -> 8 powder (no concrete
+    // craft; concrete is the hardened form that powder turns into on water contact).
+    private void generateAncientConcreteTerracotta(RecipeOutput output) {
+        record StoneSet(Item terracotta, Item powder, Item dye) {
+        }
+        StoneSet[] sets = {
+                new StoneSet(ItemRegistry.AMBER_TERRACOTTA, ItemRegistry.AMBER_CONCRETE_POWDER, ItemRegistry.AMBER_DYE),
+                new StoneSet(ItemRegistry.AQUA_TERRACOTTA, ItemRegistry.AQUA_CONCRETE_POWDER, ItemRegistry.AQUA_DYE),
+                new StoneSet(ItemRegistry.INDIGO_TERRACOTTA, ItemRegistry.INDIGO_CONCRETE_POWDER, ItemRegistry.INDIGO_DYE),
+                new StoneSet(ItemRegistry.MAROON_TERRACOTTA, ItemRegistry.MAROON_CONCRETE_POWDER, ItemRegistry.MAROON_DYE),
+        };
+        for (StoneSet s : sets) {
+            String name = BuiltInRegistries.ITEM.getKey(s.terracotta()).getPath(); // e.g. amber_terracotta
+            ring(output, name, "dyed_terracotta", Items.TERRACOTTA, s.dye(), s.terracotta(), 8,
+                    "has_terracotta", Items.TERRACOTTA, "has_needed_dye", s.dye());
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, s.powder(), 8)
+                    .requires(s.dye())
+                    .requires(Items.SAND).requires(Items.SAND).requires(Items.SAND).requires(Items.SAND)
+                    .requires(Items.GRAVEL).requires(Items.GRAVEL).requires(Items.GRAVEL).requires(Items.GRAVEL)
+                    .group("concrete_powder")
+                    .unlockedBy("has_sand", has(Items.SAND))
+                    .unlockedBy("has_gravel", has(Items.GRAVEL))
+                    .save(output, NekomasFixed.id(BuiltInRegistries.ITEM.getKey(s.powder()).getPath()));
+        }
+    }
+
+    // Ancient-dye glazed terracotta: smelt the baked terracotta to glaze it (vanilla-style,
+    // 0.1 xp / 200 ticks / blocks category). Unlocks on the baked terracotta item, matching main.
+    private void generateAncientGlazedTerracotta(RecipeOutput output) {
+        record GlazeSet(Item baked, Item glazed) {
+        }
+        GlazeSet[] sets = {
+                new GlazeSet(ItemRegistry.AMBER_TERRACOTTA, ItemRegistry.AMBER_GLAZED_TERRACOTTA),
+                new GlazeSet(ItemRegistry.AQUA_TERRACOTTA, ItemRegistry.AQUA_GLAZED_TERRACOTTA),
+                new GlazeSet(ItemRegistry.INDIGO_TERRACOTTA, ItemRegistry.INDIGO_GLAZED_TERRACOTTA),
+                new GlazeSet(ItemRegistry.MAROON_TERRACOTTA, ItemRegistry.MAROON_GLAZED_TERRACOTTA),
+        };
+        for (GlazeSet s : sets) {
+            String name = BuiltInRegistries.ITEM.getKey(s.glazed()).getPath(); // e.g. amber_glazed_terracotta
+            SimpleCookingRecipeBuilder.smelting(Ingredient.of(s.baked()), RecipeCategory.BUILDING_BLOCKS,
+                            s.glazed(), 0.1F, 200)
+                    .unlockedBy("has_baked_terracotta", has(s.baked()))
+                    .save(output, NekomasFixed.id(name));
         }
     }
 

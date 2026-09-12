@@ -181,5 +181,21 @@
   "block.nekomasfixed.green_brick_wall": "Green Brick Wall", "block.nekomasfixed.red_brick_wall": "Red Brick Wall",
   "block.nekomasfixed.black_brick_wall": "Black Brick Wall", "block.nekomasfixed.amber_brick_wall": "Amber Brick Wall",
   "block.nekomasfixed.aqua_brick_wall": "Aqua Brick Wall", "block.nekomasfixed.indigo_brick_wall": "Indigo Brick Wall",
-  "block.nekomasfixed.maroon_brick_wall": "Maroon Brick Wall"
+  "block.nekomasfixed.maroon_brick_wall": "Maroon Brick Wall",
+  "block.nekomasfixed.amber_terracotta": "Amber Terracotta",
+  "block.nekomasfixed.aqua_terracotta": "Aqua Terracotta",
+  "block.nekomasfixed.indigo_terracotta": "Indigo Terracotta",
+  "block.nekomasfixed.maroon_terracotta": "Maroon Terracotta",
+  "block.nekomasfixed.amber_concrete": "Amber Concrete",
+  "block.nekomasfixed.aqua_concrete": "Aqua Concrete",
+  "block.nekomasfixed.indigo_concrete": "Indigo Concrete",
+  "block.nekomasfixed.maroon_concrete": "Maroon Concrete",
+  "block.nekomasfixed.amber_concrete_powder": "Amber Concrete Powder",
+  "block.nekomasfixed.aqua_concrete_powder": "Aqua Concrete Powder",
+  "block.nekomasfixed.indigo_concrete_powder": "Indigo Concrete Powder",
+  "block.nekomasfixed.maroon_concrete_powder": "Maroon Concrete Powder",
+  "block.nekomasfixed.amber_glazed_terracotta": "Amber Glazed Terracotta",
+  "block.nekomasfixed.aqua_glazed_terracotta": "Aqua Glazed Terracotta",
+  "block.nekomasfixed.indigo_glazed_terracotta": "Indigo Glazed Terracotta",
+  "block.nekomasfixed.maroon_glazed_terracotta": "Maroon Glazed Terracotta"
 }

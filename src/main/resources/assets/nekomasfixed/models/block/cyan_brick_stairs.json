@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/stairs", "textures": {
-  "bottom": "nekomasfixed:block/cyan_bricks", "side": "nekomasfixed:block/cyan_bricks",
-  "top": "nekomasfixed:block/cyan_bricks"
-}
-}

@@ -1,9 +1,8 @@
 {
-  "type": "minecraft:crafting_shapeless", "category": "misc", "ingredients": [
-  {
-    "item": "minecraft:torchflower"
-  }
-], "result": {
-  "count": 1, "id": "minecraft:air"
-}
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "minecraft:torchflower" }
+  ],
+  "result": { "count": 1, "id": "minecraft:air" }
 }

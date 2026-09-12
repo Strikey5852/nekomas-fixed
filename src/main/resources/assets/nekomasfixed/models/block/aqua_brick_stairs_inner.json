@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs", "textures": {
-  "bottom": "nekomasfixed:block/aqua_bricks", "side": "nekomasfixed:block/aqua_bricks",
-  "top": "nekomasfixed:block/aqua_bricks"
-}
-}

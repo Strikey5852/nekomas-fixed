@@ -61,6 +61,12 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         BlockDyeMap.SHULKER_BOX.values().stream()
                 .filter(ModLootTableProvider::isModBlock)
                 .forEach(block -> this.add(block, createShulkerBoxDrop(block)));
+        // Terracotta / concrete / concrete powder self-drop; filtered to mod blocks.
+        BlockDyeMap.TERRACOTTA.values().stream().filter(ModLootTableProvider::isModBlock).forEach(this::dropSelf);
+        BlockDyeMap.CONCRETE.values().stream().filter(ModLootTableProvider::isModBlock).forEach(this::dropSelf);
+        BlockDyeMap.CONCRETE_POWDER.values().stream().filter(ModLootTableProvider::isModBlock).forEach(this::dropSelf);
+        // Glazed terracotta self-drops (vanilla glazed terracotta). Filtered to mod blocks.
+        BlockDyeMap.GLAZED_TERRACOTTA.values().stream().filter(ModLootTableProvider::isModBlock).forEach(this::dropSelf);
         // Some dye maps mix in vanilla blocks (e.g. 3 vanilla froglights in the 20-colour
         // FROGLIGHT set). Only emit loot for mod blocks; never override vanilla ones.
         BlockDyeMap.FROGLIGHT.values().stream()

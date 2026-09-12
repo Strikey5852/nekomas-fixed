@@ -289,6 +289,26 @@ public class ItemRegistry {
     public static final Item INDIGO_DYE = registerDye("indigo_dye");
     public static final Item MAROON_DYE = registerDye("maroon_dye");
 
+    // Ancient-dye terracotta + concrete + concrete powder (plain block items).
+    public static final Item AMBER_TERRACOTTA = register(BlockRegistry.AMBER_TERRACOTTA);
+    public static final Item AQUA_TERRACOTTA = register(BlockRegistry.AQUA_TERRACOTTA);
+    public static final Item INDIGO_TERRACOTTA = register(BlockRegistry.INDIGO_TERRACOTTA);
+    public static final Item MAROON_TERRACOTTA = register(BlockRegistry.MAROON_TERRACOTTA);
+    public static final Item AMBER_CONCRETE = register(BlockRegistry.AMBER_CONCRETE);
+    public static final Item AQUA_CONCRETE = register(BlockRegistry.AQUA_CONCRETE);
+    public static final Item INDIGO_CONCRETE = register(BlockRegistry.INDIGO_CONCRETE);
+    public static final Item MAROON_CONCRETE = register(BlockRegistry.MAROON_CONCRETE);
+    public static final Item AMBER_CONCRETE_POWDER = register(BlockRegistry.AMBER_CONCRETE_POWDER);
+    public static final Item AQUA_CONCRETE_POWDER = register(BlockRegistry.AQUA_CONCRETE_POWDER);
+    public static final Item INDIGO_CONCRETE_POWDER = register(BlockRegistry.INDIGO_CONCRETE_POWDER);
+    public static final Item MAROON_CONCRETE_POWDER = register(BlockRegistry.MAROON_CONCRETE_POWDER);
+
+    // Ancient-dye glazed terracotta (plain block items).
+    public static final Item AMBER_GLAZED_TERRACOTTA = register(BlockRegistry.AMBER_GLAZED_TERRACOTTA);
+    public static final Item AQUA_GLAZED_TERRACOTTA = register(BlockRegistry.AQUA_GLAZED_TERRACOTTA);
+    public static final Item INDIGO_GLAZED_TERRACOTTA = register(BlockRegistry.INDIGO_GLAZED_TERRACOTTA);
+    public static final Item MAROON_GLAZED_TERRACOTTA = register(BlockRegistry.MAROON_GLAZED_TERRACOTTA);
+
     private static Item register(Block block) {
         return Registry.register(BuiltInRegistries.ITEM,
                 ResourceKey.create(Registries.ITEM, blockKeyOf(block)),

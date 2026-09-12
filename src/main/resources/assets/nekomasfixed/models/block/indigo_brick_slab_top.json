@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top", "textures": {
-  "bottom": "nekomasfixed:block/indigo_bricks", "side": "nekomasfixed:block/indigo_bricks",
-  "top": "nekomasfixed:block/indigo_bricks"
-}
-}
