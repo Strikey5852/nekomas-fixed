@@ -26,11 +26,30 @@ public enum HollowLogType {
     BAOBAB(BlockRegistry.BAOBAB_LOG, BlockRegistry.HOLLOW_BAOBAB_LOG);
 
     private static final Map<Block, Block> BASE_TO_HOLLOW = new HashMap<>();
+    // Stripping a hollow log with an axe yields its stripped variant. Both
+    // share the same HollowLogBlockEntity type, so vanilla keeps the block
+    // entity (and its stored contents) across the swap.
+    private static final Map<Block, Block> HOLLOW_TO_STRIPPED = new HashMap<>();
 
     static {
         for (HollowLogType type : values()) {
             BASE_TO_HOLLOW.put(type.baseLog, type.hollowLog);
         }
+    }
+
+    static {
+        HOLLOW_TO_STRIPPED.put(BlockRegistry.HOLLOW_OAK_LOG, BlockRegistry.HOLLOW_STRIPPED_OAK_LOG);
+        HOLLOW_TO_STRIPPED.put(BlockRegistry.HOLLOW_SPRUCE_LOG, BlockRegistry.HOLLOW_STRIPPED_SPRUCE_LOG);
+        HOLLOW_TO_STRIPPED.put(BlockRegistry.HOLLOW_BIRCH_LOG, BlockRegistry.HOLLOW_STRIPPED_BIRCH_LOG);
+        HOLLOW_TO_STRIPPED.put(BlockRegistry.HOLLOW_JUNGLE_LOG, BlockRegistry.HOLLOW_STRIPPED_JUNGLE_LOG);
+        HOLLOW_TO_STRIPPED.put(BlockRegistry.HOLLOW_ACACIA_LOG, BlockRegistry.HOLLOW_STRIPPED_ACACIA_LOG);
+        HOLLOW_TO_STRIPPED.put(BlockRegistry.HOLLOW_DARK_OAK_LOG, BlockRegistry.HOLLOW_STRIPPED_DARK_OAK_LOG);
+        HOLLOW_TO_STRIPPED.put(BlockRegistry.HOLLOW_MANGROVE_LOG, BlockRegistry.HOLLOW_STRIPPED_MANGROVE_LOG);
+        HOLLOW_TO_STRIPPED.put(BlockRegistry.HOLLOW_CHERRY_LOG, BlockRegistry.HOLLOW_STRIPPED_CHERRY_LOG);
+        HOLLOW_TO_STRIPPED.put(BlockRegistry.HOLLOW_BAMBOO_BLOCK, BlockRegistry.HOLLOW_STRIPPED_BAMBOO_BLOCK);
+        HOLLOW_TO_STRIPPED.put(BlockRegistry.HOLLOW_CRIMSON_STEM, BlockRegistry.HOLLOW_STRIPPED_CRIMSON_STEM);
+        HOLLOW_TO_STRIPPED.put(BlockRegistry.HOLLOW_WARPED_STEM, BlockRegistry.HOLLOW_STRIPPED_WARPED_STEM);
+        HOLLOW_TO_STRIPPED.put(BlockRegistry.HOLLOW_BAOBAB_LOG, BlockRegistry.HOLLOW_STRIPPED_BAOBAB_LOG);
     }
 
     private final Block baseLog;
@@ -39,6 +58,10 @@ public enum HollowLogType {
     HollowLogType(Block baseLog, Block hollowLog) {
         this.baseLog = baseLog;
         this.hollowLog = hollowLog;
+    }
+
+    public static Block getStrippedBlock(Block hollowLog) {
+        return HOLLOW_TO_STRIPPED.get(hollowLog);
     }
 
     public static Block getHollowBlock(Block baseLog) {

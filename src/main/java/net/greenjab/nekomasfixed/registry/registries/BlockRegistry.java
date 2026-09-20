@@ -11,6 +11,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
@@ -533,6 +534,46 @@ public class BlockRegistry {
             hollowLogProperties(Blocks.WARPED_HYPHAE));
     public static final Block HOLLOW_BAOBAB_LOG = register("hollow_baobab_log", HollowLogBlock::new,
             hollowLogProperties(BAOBAB_LOG));
+    public static final Block HOLLOW_STRIPPED_OAK_LOG = register("stripped_oak_hollow_log", HollowLogBlock::new,
+            hollowLogProperties(Blocks.STRIPPED_OAK_LOG));
+    public static final Block HOLLOW_STRIPPED_SPRUCE_LOG = register("stripped_spruce_hollow_log", HollowLogBlock::new,
+            hollowLogProperties(Blocks.STRIPPED_SPRUCE_LOG));
+    public static final Block HOLLOW_STRIPPED_BIRCH_LOG = register("stripped_birch_hollow_log", HollowLogBlock::new,
+            hollowLogProperties(Blocks.STRIPPED_BIRCH_LOG));
+    public static final Block HOLLOW_STRIPPED_JUNGLE_LOG = register("stripped_jungle_hollow_log", HollowLogBlock::new,
+            hollowLogProperties(Blocks.STRIPPED_JUNGLE_LOG));
+    public static final Block HOLLOW_STRIPPED_ACACIA_LOG = register("stripped_acacia_hollow_log", HollowLogBlock::new,
+            hollowLogProperties(Blocks.STRIPPED_ACACIA_LOG));
+    public static final Block HOLLOW_STRIPPED_DARK_OAK_LOG = register("stripped_dark_oak_hollow_log", HollowLogBlock::new,
+            hollowLogProperties(Blocks.STRIPPED_DARK_OAK_LOG));
+    public static final Block HOLLOW_STRIPPED_MANGROVE_LOG = register("stripped_mangrove_hollow_log", HollowLogBlock::new,
+            hollowLogProperties(Blocks.STRIPPED_MANGROVE_LOG));
+    public static final Block HOLLOW_STRIPPED_CHERRY_LOG = register("stripped_cherry_hollow_log", HollowLogBlock::new,
+            hollowLogProperties(Blocks.STRIPPED_CHERRY_LOG));
+    public static final Block HOLLOW_STRIPPED_BAMBOO_BLOCK = register("stripped_bamboo_hollow_block", HollowLogBlock::new,
+            hollowLogProperties(Blocks.STRIPPED_BAMBOO_BLOCK));
+    public static final Block HOLLOW_STRIPPED_CRIMSON_STEM = register("stripped_crimson_hollow_stem", HollowLogBlock::new,
+            hollowLogProperties(Blocks.STRIPPED_CRIMSON_STEM));
+    public static final Block HOLLOW_STRIPPED_WARPED_STEM = register("stripped_warped_hollow_stem", HollowLogBlock::new,
+            hollowLogProperties(Blocks.STRIPPED_WARPED_STEM));
+    public static final Block HOLLOW_STRIPPED_BAOBAB_LOG = register("stripped_baobab_hollow_log", HollowLogBlock::new,
+            hollowLogProperties(STRIPPED_BAOBAB_LOG));
+
+    // The clock replaces vanilla minecraft:clock - registered under the vanilla namespace so the
+    // same id also places from the (ItemsMixin-replaced) clock item. Wall clock drops via the floor
+    // clock's loot table (dropsLike) so breaking it yields the minecraft:clock block item.
+    public static final Block CLOCK = registerVanilla("clock", FloorClockBlock::new,
+            BlockBehaviour.Properties.of()
+                    .noCollission()
+                    .mapColor(MapColor.COLOR_YELLOW)
+                    .strength(0.2F).sound(SoundType.METAL)
+                    .pushReaction(PushReaction.DESTROY));
+    public static final Block WALL_CLOCK = registerVanilla("wall_clock", WallClockBlock::new,
+            BlockBehaviour.Properties.of()
+                    .noCollission()
+                    .mapColor(MapColor.COLOR_YELLOW)
+                    .strength(0.2F).sound(SoundType.METAL)
+                    .pushReaction(PushReaction.DESTROY));
 
     // Build properties copied from the base log, with the emitted light driven by the
     // hollow log's LIGHT_LEVEL state property. Non-occluding (1.21.1 culls
@@ -710,9 +751,10 @@ public class BlockRegistry {
                 brickProperties(base.defaultMapColor()));
     }
 
-    // Reproduces main's ofLegacyCopy(X_BRICKS).forceSolidOn() for WallBlock.
+    // Reproduces main's ofLegacyCopy(X_BRICKS).forceSolidOn() for WallBlock; ofFullCopy
+    // is the non-deprecated successor (also copies jump/redstone/occlusion/drops fields).
     private static BlockBehaviour.Properties brickWallProperties(Block base) {
-        return BlockBehaviour.Properties.ofLegacyCopy(base).forceSolidOn();
+        return BlockBehaviour.Properties.ofFullCopy(base).forceSolidOn();
     }
 
     // Baked terracotta: basedrum, 0.7/4.2 strength (as main; requires a pickaxe, no sound
@@ -762,6 +804,13 @@ public class BlockRegistry {
     private static Block register(String id, Function<BlockBehaviour.Properties, Block> factory, BlockBehaviour.Properties settings) {
         return Registry.register(BuiltInRegistries.BLOCK,
                 ResourceKey.create(Registries.BLOCK, NekomasFixed.id(id)),
+                factory.apply(settings));
+    }
+
+    // Registers a block that overrides/extends a vanilla id (minecraft:), e.g. the clock.
+    private static Block registerVanilla(String id, Function<BlockBehaviour.Properties, Block> factory, BlockBehaviour.Properties settings) {
+        return Registry.register(BuiltInRegistries.BLOCK,
+                ResourceKey.create(Registries.BLOCK, ResourceLocation.withDefaultNamespace(id)),
                 factory.apply(settings));
     }
 
