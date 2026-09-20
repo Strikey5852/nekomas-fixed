@@ -1,7 +1,23 @@
 {
-  "required": true, "package": "net.greenjab.nekomasfixed.mixin.client", "compatibilityLevel": "JAVA_21", "client": [
-  "ClientTooltipComponentMixin", "ItemPropertiesAccessor", "ShulkerBoxRendererMixin", "BlockEntityWithoutLevelRendererMixin", "BedRendererMixin", "BedItemBlockEntityMixin"
-], "injectors": {
-  "defaultRequire": 1
-}
+  "required": true,
+  "package": "net.greenjab.nekomasfixed.mixin.client",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "BannerRendererMixin",
+    "BedItemBlockEntityMixin",
+    "BedRendererMixin",
+    "BlockEntityWithoutLevelRendererMixin",
+    "ClientTooltipComponentMixin",
+    "DecoratedPotRendererMixin",
+    "HumanoidArmorLayerMixin",
+    "ItemFrameRendererMixin",
+    "ItemPropertiesAccessor",
+    "ItemRendererMixin",
+    "SheepFurLayerMixin",
+    "ShulkerBoxRendererMixin",
+    "SignRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
 }

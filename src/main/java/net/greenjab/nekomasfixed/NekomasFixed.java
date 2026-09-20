@@ -19,6 +19,8 @@ public class NekomasFixed implements ModInitializer {
     public static final String NAMESPACE = "nekomasfixed";
     public static final Logger LOGGER = LoggerFactory.getLogger(NAMESPACE);
 
+    public static final int ECHOING_LAYER_LIMIT = 8;
+
     public static ResourceLocation id(String path) {
         return ResourceLocation.fromNamespaceAndPath(NAMESPACE, path);
     }
@@ -52,5 +54,8 @@ public class NekomasFixed implements ModInitializer {
         ItemGroupRegistry.registerItemGroup();
         BlockEntityRegistry.attachBlockEntities();
         ModWorldGeneration.generateModWorldGen();
+        SoundEventRegistry.registerSoundEvents();
+        LootTableModifierRegistry.registerLootTableModifiers();
+        GlowingDecoratedPotPatternRegistry.registerGlowingDecoratedPotPatterns();
     }
 }
