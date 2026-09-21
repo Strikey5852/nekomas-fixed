@@ -9,6 +9,8 @@ import net.minecraft.world.level.block.Block;
 public class ModTags {
     public static final TagKey<Item> STACKED_CAKES = TagKey.create(Registries.ITEM, NekomasFixed.id("stacked_cakes"));
     public static final TagKey<Item> CLAMS = itemTag("clams");
+    public static final TagKey<Item> SLINGSHOT_PROJECTILES = itemTag("slingshot_projectiles");
+    public static final TagKey<Item> SLINGSHOT_ENCHANTABLE = itemTag("enchantable/slingshot");
 
     // Wood-family tag: the four baobab log/wood variants that yield planks.
     public static final TagKey<Block> BAOBAB_LOGS = blockTag("baobab_logs");
@@ -17,6 +19,11 @@ public class ModTags {
     // Hollow-log family: all hollow log/stem/block variants (one per wood type).
     public static final TagKey<Block> HOLLOW_LOGS = blockTag("hollow_logs");
     public static final TagKey<Item> HOLLOW_LOGS_ITEM = itemTag("hollow_logs");
+    // Stripped hollow logs (axe-stripped variants of the above).
+    public static final TagKey<Block> STRIPPED_HOLLOW_LOGS = blockTag("stripped_hollow_logs");
+    public static final TagKey<Item> STRIPPED_HOLLOW_LOGS_ITEM = itemTag("stripped_hollow_logs");
+    // Moobloom food: the flowers a moobloom eats / is tempted by.
+    public static final TagKey<Item> MOOBLOOM_FLOWERS = itemTag("moobloom_flowers");
 
     // Colour-suite tags (block + item, mirroring the committed JSON pairs).
     public static final TagKey<Block> BRICKS = blockTag("bricks");

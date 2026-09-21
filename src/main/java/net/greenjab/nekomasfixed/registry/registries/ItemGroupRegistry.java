@@ -54,9 +54,11 @@ public class ItemGroupRegistry {
                         entries.accept(ItemRegistry.PEARL_BLOCK);
                         entries.accept(ItemRegistry.REDSTONE_STRIKER);
                         entries.accept(ItemRegistry.TARGET_DUMMY);
+                        entries.accept(ItemRegistry.MOOBLOOM_SPAWN_EGG);
                         entries.accept(ItemRegistry.TURTLE_CHESTPLATE);
                         entries.accept(ItemRegistry.TURTLE_LEGGINGS);
                         entries.accept(ItemRegistry.TURTLE_BOOTS);
+                        entries.accept(ItemRegistry.SLINGSHOT);
                         entries.accept(ItemRegistry.GEYSER);
                         entries.accept(ItemRegistry.GLISTERING_MELON);
                         entries.accept(ItemRegistry.SWEETBERRY_CAKE);
@@ -80,6 +82,18 @@ public class ItemGroupRegistry {
                         entries.accept(ItemRegistry.HOLLOW_CRIMSON_STEM);
                         entries.accept(ItemRegistry.HOLLOW_WARPED_STEM);
                         entries.accept(ItemRegistry.HOLLOW_BAOBAB_LOG);
+                        entries.accept(ItemRegistry.HOLLOW_STRIPPED_OAK_LOG);
+                        entries.accept(ItemRegistry.HOLLOW_STRIPPED_SPRUCE_LOG);
+                        entries.accept(ItemRegistry.HOLLOW_STRIPPED_BIRCH_LOG);
+                        entries.accept(ItemRegistry.HOLLOW_STRIPPED_JUNGLE_LOG);
+                        entries.accept(ItemRegistry.HOLLOW_STRIPPED_ACACIA_LOG);
+                        entries.accept(ItemRegistry.HOLLOW_STRIPPED_DARK_OAK_LOG);
+                        entries.accept(ItemRegistry.HOLLOW_STRIPPED_MANGROVE_LOG);
+                        entries.accept(ItemRegistry.HOLLOW_STRIPPED_CHERRY_LOG);
+                        entries.accept(ItemRegistry.HOLLOW_STRIPPED_BAMBOO_BLOCK);
+                        entries.accept(ItemRegistry.HOLLOW_STRIPPED_CRIMSON_STEM);
+                        entries.accept(ItemRegistry.HOLLOW_STRIPPED_WARPED_STEM);
+                        entries.accept(ItemRegistry.HOLLOW_STRIPPED_BAOBAB_LOG);
                     })
                     .build()
     );

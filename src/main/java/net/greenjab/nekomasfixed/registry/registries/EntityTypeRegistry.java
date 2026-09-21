@@ -5,7 +5,9 @@ import net.greenjab.nekomasfixed.NekomasFixed;
 import net.greenjab.nekomasfixed.registry.entity.BaobabBoat;
 import net.greenjab.nekomasfixed.registry.entity.BaobabChestBoat;
 import net.greenjab.nekomasfixed.registry.entity.ClearItemFrameEntity;
+import net.greenjab.nekomasfixed.registry.entity.SlingshotProjectile;
 import net.greenjab.nekomasfixed.registry.entity.TargetDummy;
+import net.greenjab.nekomasfixed.registry.entity.moobloom.Moobloom;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -41,6 +43,19 @@ public class EntityTypeRegistry {
                     .sized(0.5F, 1.975F).eyeHeight(1.7775F).clientTrackingRange(10)
     );
 
+    public static final EntityType<SlingshotProjectile> SLINGSHOT_PROJECTILE = register(
+            "slingshot_projectile",
+            EntityType.Builder.<SlingshotProjectile>of(SlingshotProjectile::new, MobCategory.MISC)
+                    .sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10)
+    );
+
+    // Moobloom: a flower cow. CREATURE + cow dimensions (main's 26.x AMBIENT/1x1 was loose).
+    public static final EntityType<Moobloom> MOOBLOOM = register(
+            "moobloom",
+            EntityType.Builder.of(Moobloom::new, MobCategory.CREATURE)
+                    .sized(0.9F, 1.4F).eyeHeight(1.3F).passengerAttachments(1.36875F).clientTrackingRange(10)
+    );
+
     private static <T extends net.minecraft.world.entity.Entity> EntityType<T> register(String id, EntityType.Builder<T> builder) {
         return Registry.register(BuiltInRegistries.ENTITY_TYPE,
                 ResourceKey.create(Registries.ENTITY_TYPE, NekomasFixed.id(id)),
@@ -49,6 +64,7 @@ public class EntityTypeRegistry {
 
     public static void registerEntityType() {
         FabricDefaultAttributeRegistry.register(TARGET_DUMMY, TargetDummy.createTargetDummyAttributes().build());
+        FabricDefaultAttributeRegistry.register(MOOBLOOM, Moobloom.createAttributes());
         NekomasFixed.LOGGER.info("Registering entity types");
     }
 }

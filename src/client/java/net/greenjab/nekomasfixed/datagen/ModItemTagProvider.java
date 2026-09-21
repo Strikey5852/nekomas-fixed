@@ -13,6 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 
 import java.util.concurrent.CompletableFuture;
@@ -39,6 +40,18 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         };
         for (Block b : hollowLogs) {
             getOrCreateTagBuilder(ModTags.HOLLOW_LOGS_ITEM).add(BuiltInRegistries.ITEM.getKey(b.asItem()));
+        }
+        // Stripped hollow-log family (item-tag mirror of the block tag).
+        Block[] strippedHollowLogs = {
+                BlockRegistry.HOLLOW_STRIPPED_OAK_LOG, BlockRegistry.HOLLOW_STRIPPED_SPRUCE_LOG,
+                BlockRegistry.HOLLOW_STRIPPED_BIRCH_LOG, BlockRegistry.HOLLOW_STRIPPED_JUNGLE_LOG,
+                BlockRegistry.HOLLOW_STRIPPED_ACACIA_LOG, BlockRegistry.HOLLOW_STRIPPED_DARK_OAK_LOG,
+                BlockRegistry.HOLLOW_STRIPPED_MANGROVE_LOG, BlockRegistry.HOLLOW_STRIPPED_CHERRY_LOG,
+                BlockRegistry.HOLLOW_STRIPPED_BAMBOO_BLOCK, BlockRegistry.HOLLOW_STRIPPED_CRIMSON_STEM,
+                BlockRegistry.HOLLOW_STRIPPED_WARPED_STEM, BlockRegistry.HOLLOW_STRIPPED_BAOBAB_LOG
+        };
+        for (Block b : strippedHollowLogs) {
+            getOrCreateTagBuilder(ModTags.STRIPPED_HOLLOW_LOGS_ITEM).add(BuiltInRegistries.ITEM.getKey(b.asItem()));
         }
         getOrCreateTagBuilder(ModTags.BAOBAB_LOGS_ITEM)
                 .add(BuiltInRegistries.ITEM.getKey(ItemRegistry.BAOBAB_LOG))
@@ -105,5 +118,28 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ItemTags.CHEST_ARMOR).add(BuiltInRegistries.ITEM.getKey(ItemRegistry.TURTLE_CHESTPLATE));
         getOrCreateTagBuilder(ItemTags.LEG_ARMOR).add(BuiltInRegistries.ITEM.getKey(ItemRegistry.TURTLE_LEGGINGS));
         getOrCreateTagBuilder(ItemTags.FOOT_ARMOR).add(BuiltInRegistries.ITEM.getKey(ItemRegistry.TURTLE_BOOTS));
+        // Slingshot: supported projectile set (1.21.1 has no copper/resin nuggets).
+        getOrCreateTagBuilder(ModTags.SLINGSHOT_PROJECTILES)
+                .add(BuiltInRegistries.ITEM.getKey(Items.GOLD_NUGGET))
+                .add(BuiltInRegistries.ITEM.getKey(Items.IRON_NUGGET))
+                .add(BuiltInRegistries.ITEM.getKey(Items.AMETHYST_SHARD));
+        getOrCreateTagBuilder(ModTags.SLINGSHOT_ENCHANTABLE)
+                .add(BuiltInRegistries.ITEM.getKey(ItemRegistry.SLINGSHOT));
+        // Moobloom food: every vanilla flower (open_eyeblossom is 26.x-only and skipped).
+        getOrCreateTagBuilder(ModTags.MOOBLOOM_FLOWERS)
+                .add(BuiltInRegistries.ITEM.getKey(Items.DANDELION))
+                .add(BuiltInRegistries.ITEM.getKey(Items.POPPY))
+                .add(BuiltInRegistries.ITEM.getKey(Items.BLUE_ORCHID))
+                .add(BuiltInRegistries.ITEM.getKey(Items.ALLIUM))
+                .add(BuiltInRegistries.ITEM.getKey(Items.AZURE_BLUET))
+                .add(BuiltInRegistries.ITEM.getKey(Items.RED_TULIP))
+                .add(BuiltInRegistries.ITEM.getKey(Items.ORANGE_TULIP))
+                .add(BuiltInRegistries.ITEM.getKey(Items.WHITE_TULIP))
+                .add(BuiltInRegistries.ITEM.getKey(Items.PINK_TULIP))
+                .add(BuiltInRegistries.ITEM.getKey(Items.OXEYE_DAISY))
+                .add(BuiltInRegistries.ITEM.getKey(Items.CORNFLOWER))
+                .add(BuiltInRegistries.ITEM.getKey(Items.LILY_OF_THE_VALLEY))
+                .add(BuiltInRegistries.ITEM.getKey(Items.WITHER_ROSE))
+                .add(BuiltInRegistries.ITEM.getKey(Items.TORCHFLOWER));
     }
 }

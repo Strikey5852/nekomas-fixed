@@ -3,13 +3,21 @@ package net.greenjab.nekomasfixed.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.greenjab.nekomasfixed.registry.registries.BlockRegistry;
+import net.greenjab.nekomasfixed.registry.registries.ComponentRegistry;
 import net.greenjab.nekomasfixed.registry.registries.ItemRegistry;
 import net.greenjab.nekomasfixed.util.BlockDyeMap;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BedPart;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -110,6 +118,20 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         this.dropSelf(BlockRegistry.HOLLOW_CRIMSON_STEM);
         this.dropSelf(BlockRegistry.HOLLOW_WARPED_STEM);
         this.dropSelf(BlockRegistry.HOLLOW_BAOBAB_LOG);
+        // Stripped variants self-drop too (port needs datagen loot so mining them
+        // returns the item; upstream 26.x relied on vanilla spill, no loot table).
+        this.dropSelf(BlockRegistry.HOLLOW_STRIPPED_OAK_LOG);
+        this.dropSelf(BlockRegistry.HOLLOW_STRIPPED_SPRUCE_LOG);
+        this.dropSelf(BlockRegistry.HOLLOW_STRIPPED_BIRCH_LOG);
+        this.dropSelf(BlockRegistry.HOLLOW_STRIPPED_JUNGLE_LOG);
+        this.dropSelf(BlockRegistry.HOLLOW_STRIPPED_ACACIA_LOG);
+        this.dropSelf(BlockRegistry.HOLLOW_STRIPPED_DARK_OAK_LOG);
+        this.dropSelf(BlockRegistry.HOLLOW_STRIPPED_MANGROVE_LOG);
+        this.dropSelf(BlockRegistry.HOLLOW_STRIPPED_CHERRY_LOG);
+        this.dropSelf(BlockRegistry.HOLLOW_STRIPPED_BAMBOO_BLOCK);
+        this.dropSelf(BlockRegistry.HOLLOW_STRIPPED_CRIMSON_STEM);
+        this.dropSelf(BlockRegistry.HOLLOW_STRIPPED_WARPED_STEM);
+        this.dropSelf(BlockRegistry.HOLLOW_STRIPPED_BAOBAB_LOG);
 
         // Simple self-drop + silk-touch tables migrated from the hand-written resources.
         this.dropSelf(BlockRegistry.GLOW_TORCH);
@@ -119,5 +141,44 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         this.dropSelf(BlockRegistry.ROPE);
         // Geyser is mined silk-touch-only (faithful to main).
         this.add(BlockRegistry.GEYSER, createSilkTouchOnlyTable(BlockRegistry.GEYSER));
+
+        // Migrated from the hand-written loot resources: clocks drop the clock item carrying
+        // stored_time (copy_components from the BE); the wall clock drops the standing clock item.
+        this.add(BlockRegistry.CLOCK, clockDrop());
+        this.add(BlockRegistry.WALL_CLOCK, clockDrop());
+        // Goat horn block drops nothing.
+        this.add(BlockRegistry.GOAT_HORN, LootTable.lootTable());
+        // Enderman head: both floor and wall drop the standing head item.
+        this.add(BlockRegistry.ENDERMAN_HEAD, createSingleItemTable(ItemRegistry.ENDERMAN_HEAD));
+        this.add(BlockRegistry.WALL_ENDERMAN_HEAD, createSingleItemTable(ItemRegistry.ENDERMAN_HEAD));
+        // Clams drop themselves carrying their BE data/state.
+        this.add(BlockRegistry.CLAM, clamDrop(ItemRegistry.CLAM));
+        this.add(BlockRegistry.CLAM_BLUE, clamDrop(ItemRegistry.CLAM_BLUE));
+        this.add(BlockRegistry.CLAM_PINK, clamDrop(ItemRegistry.CLAM_PINK));
+        this.add(BlockRegistry.CLAM_PURPLE, clamDrop(ItemRegistry.CLAM_PURPLE));
+    }
+
+    // minecraft:clock / wall_clock drop the clock item + its stored_time from the block entity.
+    private LootTable.Builder clockDrop() {
+        LootPool.Builder pool = LootPool.lootPool()
+                .setRolls(ConstantValue.exactly(1))
+                .add(LootItem.lootTableItem(BlockRegistry.CLOCK.asItem())
+                        .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
+                                .include(ComponentRegistry.STORED_TIME)));
+        return LootTable.lootTable().withPool(pool);
+    }
+
+    // Clams drop themselves preserving custom name / container / lock / loot + the clam state.
+    private LootTable.Builder clamDrop(Item item) {
+        LootPool.Builder pool = LootPool.lootPool()
+                .setRolls(ConstantValue.exactly(1))
+                .add(LootItem.lootTableItem(item)
+                        .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
+                                .include(DataComponents.CUSTOM_NAME)
+                                .include(DataComponents.CONTAINER)
+                                .include(DataComponents.LOCK)
+                                .include(DataComponents.CONTAINER_LOOT)
+                                .include(ComponentRegistry.CLAM_STATE)));
+        return LootTable.lootTable().withPool(pool);
     }
 }

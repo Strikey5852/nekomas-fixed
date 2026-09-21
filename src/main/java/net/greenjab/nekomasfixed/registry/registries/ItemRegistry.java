@@ -10,10 +10,12 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.block.Block;
 
@@ -61,6 +63,7 @@ public class ItemRegistry {
             "target_dummy",
             TargetDummyItem::new,
             new Item.Properties().stacksTo(1));
+    public static final Item MOOBLOOM_SPAWN_EGG = registerSpawnEgg(EntityTypeRegistry.MOOBLOOM, 0xF8D038, 0x709028);
     public static final FoodProperties BAOBAB_FRUIT_FOOD = new FoodProperties.Builder().nutrition(4).saturationModifier(0.3F).build();
     public static final Item BAOBAB_FRUIT = register(
             "baobab_fruit",
@@ -99,6 +102,7 @@ public class ItemRegistry {
             settings -> new ArmorItem(ArmorMaterialRegistry.TURTLE_SCUTE, ArmorItem.Type.BOOTS, settings),
             new Item.Properties().stacksTo(1).durability(325));
     public static final Holder<Potion> LIGHTNING = register("lightning", new Potion("lightning", new MobEffectInstance(EffectRegistry.LIGHTNING, 1)));
+    public static final Item SLINGSHOT = register("slingshot", SlingshotItem::new, new Item.Properties().stacksTo(1).durability(384));
     public static final Item SWEETBERRY_CAKE = register(BlockRegistry.SWEETBERRY_CAKE, new Item.Properties().stacksTo(1));
     public static final Item PAN_CAKE = register(BlockRegistry.PAN_CAKE, new Item.Properties().stacksTo(1));
     public static final Item GLOWBERRY_CAKE = register(BlockRegistry.GLOWBERRY_CAKE, new Item.Properties().stacksTo(1));
@@ -128,6 +132,18 @@ public class ItemRegistry {
     public static final Item HOLLOW_CRIMSON_STEM = register(BlockRegistry.HOLLOW_CRIMSON_STEM);
     public static final Item HOLLOW_WARPED_STEM = register(BlockRegistry.HOLLOW_WARPED_STEM);
     public static final Item HOLLOW_BAOBAB_LOG = register(BlockRegistry.HOLLOW_BAOBAB_LOG);
+    public static final Item HOLLOW_STRIPPED_OAK_LOG = register(BlockRegistry.HOLLOW_STRIPPED_OAK_LOG);
+    public static final Item HOLLOW_STRIPPED_SPRUCE_LOG = register(BlockRegistry.HOLLOW_STRIPPED_SPRUCE_LOG);
+    public static final Item HOLLOW_STRIPPED_BIRCH_LOG = register(BlockRegistry.HOLLOW_STRIPPED_BIRCH_LOG);
+    public static final Item HOLLOW_STRIPPED_JUNGLE_LOG = register(BlockRegistry.HOLLOW_STRIPPED_JUNGLE_LOG);
+    public static final Item HOLLOW_STRIPPED_ACACIA_LOG = register(BlockRegistry.HOLLOW_STRIPPED_ACACIA_LOG);
+    public static final Item HOLLOW_STRIPPED_DARK_OAK_LOG = register(BlockRegistry.HOLLOW_STRIPPED_DARK_OAK_LOG);
+    public static final Item HOLLOW_STRIPPED_MANGROVE_LOG = register(BlockRegistry.HOLLOW_STRIPPED_MANGROVE_LOG);
+    public static final Item HOLLOW_STRIPPED_CHERRY_LOG = register(BlockRegistry.HOLLOW_STRIPPED_CHERRY_LOG);
+    public static final Item HOLLOW_STRIPPED_BAMBOO_BLOCK = register(BlockRegistry.HOLLOW_STRIPPED_BAMBOO_BLOCK);
+    public static final Item HOLLOW_STRIPPED_CRIMSON_STEM = register(BlockRegistry.HOLLOW_STRIPPED_CRIMSON_STEM);
+    public static final Item HOLLOW_STRIPPED_WARPED_STEM = register(BlockRegistry.HOLLOW_STRIPPED_WARPED_STEM);
+    public static final Item HOLLOW_STRIPPED_BAOBAB_LOG = register(BlockRegistry.HOLLOW_STRIPPED_BAOBAB_LOG);
 
     public static final Item CLEAR_FROGLIGHT = register(BlockRegistry.CLEAR_FROGLIGHT);
     public static final Item CLOUDY_FROGLIGHT = register(BlockRegistry.CLOUDY_FROGLIGHT);
@@ -370,6 +386,15 @@ public class ItemRegistry {
 
     private static Item registerDye(String id) {
         return Registry.register(BuiltInRegistries.ITEM, NekomasFixed.id(id), new ModDyeItems(new Item.Properties()));
+    }
+
+    // 1.21.1 spawn eggs are SpawnEggItem(type, base, highlight, props) — no 26.x
+    // Item.Properties.spawnEgg() builder. Tints come from the two colours.
+    private static Item registerSpawnEgg(EntityType<? extends Mob> type, int backgroundColor, int highlightColor) {
+        ResourceLocation eggId = BuiltInRegistries.ENTITY_TYPE.getKey(type).withSuffix("_spawn_egg");
+        return Registry.register(BuiltInRegistries.ITEM,
+                ResourceKey.create(Registries.ITEM, eggId),
+                new SpawnEggItem(type, backgroundColor, highlightColor, new Item.Properties()));
     }
 
     // Bed: vanilla BedItem, stack to 1 (can't stack beds).
