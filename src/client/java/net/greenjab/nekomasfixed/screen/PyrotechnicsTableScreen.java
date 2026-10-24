@@ -1,3 +1,5 @@
+package net.greenjab.nekomasfixed.screen;
+
 
 import com.mojang.datafixers.util.Pair;
 import net.fabricmc.api.EnvType;
